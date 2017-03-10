@@ -11,7 +11,7 @@ const BUILD_DIR = path.resolve(__dirname, 'app/build')
 
 module.exports = {
   entry: {
-    main: path.resolve(SRC_DIR, 'index.js'),
+    main: path.resolve(SRC_DIR, 'index.jsx'),
   },
   output: {
     filename: 'bundle.js',
