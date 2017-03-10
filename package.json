@@ -1,0 +1,26 @@
+{
+  "name": "cvrcle.io",
+  "version": "1.0.0",
+  "description": "Make your circles come full circle.",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node server.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/armenr/cvrcle.io.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/armenr/cvrcle.io/issues"
+  },
+  "homepage": "https://github.com/armenr/cvrcle.io#readme",
+  "dependencies": {
+    "body-parser": "^1.17.1",
+    "express": "^4.15.2",
+    "morgan": "^1.8.1",
+    "path": "^0.12.7"
+  }
+}
