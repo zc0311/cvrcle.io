@@ -1,5 +1,5 @@
 var cvrcleRouter = require('express').Router();
-var cvrcleController = require('./cvrcleController');
+var cvrcleController = require('../controllers/cvrcleControllers');
 
 cvrcleRouter.route('/:user')
   .get(cvrcleController.retrieveAll)
