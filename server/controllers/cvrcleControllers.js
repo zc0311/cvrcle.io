@@ -18,3 +18,7 @@ exports.update = function (req, res) {
 
 exports.deleteOne = function (req, res) {
 };
+
+exports.faceBookUser = function(req, res) {
+  
+}
