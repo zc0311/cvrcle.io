@@ -14,7 +14,7 @@ class AppContainer extends Component {
       data: []
     };
   }
-  //adding comment
+
   componentDidMount() {
 
   }
@@ -23,17 +23,18 @@ class AppContainer extends Component {
     this.serverRequest.abort();
   }
 
-render() {
-  return (
-    <Container text fluid>
-      <Header as='h1' textAlign='center'>Cvrcle.io</Header>
-      <SampleCard header='Herro Friend!'/>
-    </Container>
-  );
-}
+  render() {
+    return (
+      <Container text fluid>
+        <Header as='h1' textAlign='center'>Cvrcle.io</Header>
+        <SampleCard header='Herro Friend!' />
+      </Container>
+    );
+  }
 }
 
 
 
 ReactDOM.render(
   <AppContainer />, document.getElementById('appRoot'));
+  
