@@ -6,7 +6,7 @@ const port = process.env.PORT || 3000;
 const bodyParser = require('body-parser');
 const morgan = require('morgan');
 const passport = require('passport');
-const Aut0Strategy = require('passport-auth0');
+const Auth0Strategy = require('passport-auth0');
 
 
 
