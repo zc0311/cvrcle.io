@@ -1,20 +1,30 @@
 const express = require('express');
-const bodyParser = require('body-parser');
-const morgan = require('morgan');
-
 const app = express();
-const port = process.env.PORT || 3000;
-
 const cvrcleCtlr = require('./controllers/cvrcleControllers');
 const cvrcleRouter = require('./routers/cvrcleRoutes');
+const port = process.env.PORT || 3000;
+const bodyParser = require('body-parser');
+const morgan = require('morgan');
+const passport = require('passport');
+const Aut0Strategy = require('passport-auth0');
+
+
+
+
+
+
+
 
 // middleware
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
-app.use(express.static('client'));
+
+// serve up React front-end client code
+// app.use(express.static('client'));
 
 app.use('/', cvrcleRouter);
 
+
 app.listen(port, function () {
-  console.log('Server listening on ', port);
+  console.log('Cvrcle listening on port ' + port);
 });
