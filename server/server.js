@@ -1,5 +1,6 @@
 const express = require('express');
 const app = express();
+const db = require('./db/config.js');
 const path = require('path');
 const favicon = require('serve-favicon');
 const dotenv = require('dotenv')
