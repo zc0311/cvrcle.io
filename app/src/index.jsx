@@ -12,7 +12,10 @@ class AppContainer extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      data: []
+      initialCenter: { 
+        lat: 33.9759, 
+        lng: -118.3907 
+      }
     };
   }
 
@@ -28,8 +31,8 @@ class AppContainer extends Component {
     return (
       <Container text fluid>
         <Header as='h1' textAlign='center'>Cvrcle.io</Header>
-        <SampleCard header='Herro Friend!!!' />
-        <GoogleMap />
+        <SampleCard header='Herro Friend!' />
+        <GoogleMap initialCenter={this.state.initialCenter} />
       </Container>
     );
   }
