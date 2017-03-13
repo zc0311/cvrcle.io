@@ -27,7 +27,7 @@ class AppContainer extends Component {
     return (
       <Container text fluid>
         <Header as='h1' textAlign='center'>Cvrcle.io</Header>
-        <SampleCard header='Herro Friend!' />
+        <SampleCard header='Herro Friend!!!' />
       </Container>
     );
   }
