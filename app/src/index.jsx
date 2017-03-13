@@ -6,12 +6,16 @@ import $ from 'jquery';
 import axios from "axios";
 import { Container, Header, Card, Message, Segment, Form } from 'semantic-ui-react';
 
+import GoogleMap from './components/map.jsx';
 
 class AppContainer extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      data: []
+      initialCenter: { 
+        lat: 33.9759, 
+        lng: -118.3907 
+      }
     };
   }
 
@@ -27,7 +31,8 @@ class AppContainer extends Component {
     return (
       <Container text fluid>
         <Header as='h1' textAlign='center'>Cvrcle.io</Header>
-        <SampleCard header='Herro Friend!!!' />
+        <SampleCard header='Herro Friend!' />
+        <GoogleMap initialCenter={this.state.initialCenter} />
       </Container>
     );
   }
