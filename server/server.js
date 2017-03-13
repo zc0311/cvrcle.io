@@ -4,13 +4,15 @@ const db = require('./db/config.js');
 const path = require('path');
 const favicon = require('serve-favicon');
 const dotenv = require('dotenv')
-const cvrcleCtlr = require('./controllers/controllers.js');
-const router = require('./routes/router');
+const controllers = require('./controllers/controllers.js');
 const port = process.env.PORT || 3000;
 const bodyParser = require('body-parser');
 const morgan = require('morgan');
 const passport = require('passport');
 const Auth0Strategy = require('passport-auth0');
+const user = require('./routes/user.js');
+var routes = require('./routes/index');
+
 
 // load in ENV variables before ANYTHING
 dotenv.load();
@@ -39,7 +41,8 @@ passport.deserializeUser(function(user, done) {
 });
 
 
-
+app.set('views', path.join(__dirname, 'views'));
+app.set('view engine', 'jade');
 
 
 // middleware
@@ -47,7 +50,10 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(passport.initialize());
 app.use(passport.session());
-app.use('/', router);
+
+app.use('/', routes);
+app.use('/user', user);
+
 
 // serve up React front-end client code
 // commenting out for now while I layer in a working
