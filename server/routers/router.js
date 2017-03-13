@@ -1,11 +1,11 @@
-var cvrcleRouter = require('express').Router();
+var router = require('express').Router();
 var cvrcleController = require('../controllers/cvrcleControllers');
 
-cvrcleRouter.route('/:user')
+router.route('/:user')
   .get(cvrcleController.retrieveAll)
   .post(cvrcleController.createOne)
 
-cvrcleRouter.route('/:user/:itinerary')
+router.route('/:user/:itinerary')
   .get(cvrcleController.retrieveOne)
   .post(cvrcleController.createOne)
   .put(cvrcleController.updateOne)
@@ -13,4 +13,4 @@ cvrcleRouter.route('/:user/:itinerary')
 
 
 
-module.exports = cvrcleRouter;
+module.exports = router;

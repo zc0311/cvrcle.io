@@ -4,14 +4,14 @@ const path = require('path');
 const favicon = require('serve-favicon');
 const dotenv = require('dotenv')
 const cvrcleCtlr = require('./controllers/cvrcleControllers');
-const cvrcleRouter = require('./routers/cvrcleRoutes');
+const router = require('./routers/router');
 const port = process.env.PORT || 3000;
 const bodyParser = require('body-parser');
 const morgan = require('morgan');
 const passport = require('passport');
 const Auth0Strategy = require('passport-auth0');
 
-// load in ENV variables 
+// load in ENV variables before ANYTHING
 dotenv.load();
 
 
@@ -46,11 +46,14 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(passport.initialize());
 app.use(passport.session());
+app.use('/', router);
 
 // serve up React front-end client code
+// commenting out for now while I layer in a working
+// auth0 implementation
 // app.use(express.static('client'));
 
-app.use('/', cvrcleRouter);
+
 
 
 app.listen(port, function () {
