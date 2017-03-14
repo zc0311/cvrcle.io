@@ -18,3 +18,10 @@ db.once('open', function() {
 });
 
 module.exports = db;
+
+
+// users table
+// users_itins --> maps which itineraries belong to which users
+// itineraries --> list of itinerary ids
+// entries --> table for itinerary ids
+// entries_ids --> maps which entries belong to which itineraries
