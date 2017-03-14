@@ -24,16 +24,16 @@ CREATE TABLE `users` (
 -- ---
 
 DROP TABLE IF EXISTS `entries`;
-		
+
 CREATE TABLE `entries` (
-  `id` INTEGER NULL AUTO_INCREMENT,
+  `id` INT NOT NULL AUTO_INCREMENT,
   `title` VARCHAR(50) NULL,
   `body` MEDIUMTEXT NULL,
-  `lat` DECIMAL NULL DEFAULT NULL,
-  `long` INTEGER NULL DEFAULT NULL,
-  `name` INTEGER NULL DEFAULT NULL,
-  `address` INTEGER NULL DEFAULT NULL,
-  `type` INTEGER NULL DEFAULT NULL,
+  `lat` FLOAT( 10, 6 ) NOT NULL ,
+  `lng` FLOAT( 10, 6 ) NOT NULL ,
+  `name` VARCHAR( 60 ) NOT NULL ,
+  `address` VARCHAR( 80 ) NOT NULL ,
+  `type` VARCHAR( 30 ) NOT NULL,
   `contributor_id` INTEGER(6) NULL,
   `created_at` TIMESTAMP NULL,
   `last_updated` TIMESTAMP NULL,
@@ -119,3 +119,7 @@ ALTER TABLE `entries_itins` ADD FOREIGN KEY (id_entry) REFERENCES `entries` (`id
 -- ('','','','','','');
 -- INSERT INTO `entries_itins` (`id`,`id_itin`,`id_entry`) VALUES
 -- ('','','');
+
+-- Restore sanity when you're done'
+
+SET FOREIGN_KEY_CHECKS=1;
