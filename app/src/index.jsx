@@ -10,7 +10,7 @@ import ContributorEntry from './components/ContributorEntry.jsx';
 import GoogleMap from './containers/map.jsx';
 import LocationSearchBar from './containers/locationSearchBar.jsx';
 
-class AppContainer extends Component {
+class AppContainer extends Component { 
   constructor(props) {
     super(props);
     this.state = {
