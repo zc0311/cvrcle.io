@@ -17,12 +17,16 @@ class LocationSearchBar extends React.Component {
   handleFormSubmit = (event) => {
     event.preventDefault()
     const { address } = this.state
+    console.log({address});
 
     geocodeByAddress(address,  (err, { lat, lng }) => {
-      if (err) { console.log('Error', err) }
-      // let locationCoordinates = { lat, lng };
-      // selectFromLocationSearch(locationCoordinates);
-      console.log(`The longitutde and latitude for ${address}`, { lat, lng })
+      if (err) { 
+        console.log('Error', err) 
+      } else {
+        // let locationCoordinates = { lat, lng };
+        // selectFromLocationSearch(locationCoordinates);
+        console.log(`The longitutde and latitude for ${address}`, { lat, lng })
+      }
     })
   }
 
