@@ -5,8 +5,10 @@ import { geocodeByAddress, geocodeByPlaceId } from 'react-places-autocomplete';
 class LocationSearchBar extends React.Component {
   constructor(props) {
     super(props)
-    this.state = { address: 'Hack Reactor, CA' }
-    this.onChange = (address) => this.setState({ address })
+    this.state = { 
+      address: 'Hack Reactor, CA' 
+    }
+    // this.onChange = (address) => this.setState({ address })
   }
 
   handleFormSubmit = (event) => {
@@ -14,10 +16,14 @@ class LocationSearchBar extends React.Component {
     const { address } = this.state
 
     geocodeByAddress(address,  (err, { lat, lng }) => {
-      if (err) { console.log('Oh no!', err) }
+      if (err) { console.log('Error', err) }
 
-      console.log(`Yay! got latitude and longitude for ${address}`, { lat, lng })
+      console.log(`The longitutde and latitude for ${address}`, { lat, lng })
     })
+  }
+
+  onChange = (address) => {
+    this.setState({ address })
   }
 
   render() {

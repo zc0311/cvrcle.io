@@ -7,6 +7,7 @@ import axios from "axios";
 import { Container, Header, Card, Message, Segment, Form } from 'semantic-ui-react';
 
 import GoogleMap from './components/map.jsx';
+import LocationSearchBar from './components/locationSearchBar.jsx';
 
 class AppContainer extends Component {
   constructor(props) {
@@ -32,6 +33,7 @@ class AppContainer extends Component {
       <Container text fluid>
         <Header as='h1' textAlign='center'>Cvrcle.io</Header>
         <SampleCard header='Herro Friend!' />
+        <LocationSearchBar />
         <GoogleMap initialCenter={this.state.initialCenter} />
       </Container>
     );
