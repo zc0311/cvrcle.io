@@ -48,7 +48,7 @@ CREATE TABLE `entries` (
 DROP TABLE IF EXISTS `users_itins`;
 		
 CREATE TABLE `users_itins` (
-  `id` INTEGER NULL AUTO_INCREMENT,
+  `id` INTEGER NOT NULL AUTO_INCREMENT,
   `id_user` INTEGER(6) NULL,
   `id_itin` INTEGER(8) NULL,
   PRIMARY KEY (`id`)
@@ -62,7 +62,7 @@ CREATE TABLE `users_itins` (
 DROP TABLE IF EXISTS `itineraries`;
 		
 CREATE TABLE `itineraries` (
-  `id` INTEGER NULL AUTO_INCREMENT,
+  `id` INTEGER NOT NULL AUTO_INCREMENT,
   `owner_id` INTEGER NULL,
   `itin_name` VARCHAR(40) NULL,
   `is_active` INTEGER NULL DEFAULT NULL,
@@ -79,7 +79,7 @@ CREATE TABLE `itineraries` (
 DROP TABLE IF EXISTS `entries_itins`;
 		
 CREATE TABLE `entries_itins` (
-  `id` INTEGER NULL AUTO_INCREMENT,
+  `id` INTEGER NOT NULL AUTO_INCREMENT,
   `id_itin` INTEGER NULL,
   `id_entry` INTEGER NULL,
   PRIMARY KEY (`id`)
