@@ -6,8 +6,8 @@ import $ from 'jquery';
 import axios from "axios";
 import { Container, Header, Card, Message, Segment, Form } from 'semantic-ui-react';
 
-import GoogleMap from './components/map.jsx';
-import LocationSearchBar from './components/locationSearchBar.jsx';
+import GoogleMap from './containers/map.jsx';
+import LocationSearchBar from './containers/locationSearchBar.jsx';
 
 class AppContainer extends Component {
   constructor(props) {
