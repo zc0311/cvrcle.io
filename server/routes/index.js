@@ -4,6 +4,7 @@ const passport = require('passport');
 
 // when users request login, send them to login
 router.get('/login', (req, res, next) => {
+  console.log()
   res.render('login', {env: process.env});
 });
 
