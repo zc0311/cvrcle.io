@@ -1,11 +1,15 @@
+//importing libraries
 import React from 'react';
 import PlacesAutocomplete from 'react-places-autocomplete';
 import { geocodeByAddress, geocodeByPlaceId } from 'react-places-autocomplete';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
-// import { someString, selectBook } from '../actions/index';
+import axios from 'axios';
 
-// live location search bar that sets locationInput app state 
+//importing files
+import GOOGLE_API_KEY from '../../../config.js';
+import { selectFromLocationSearch } from '../actions/actions_index';
+
 class LocationSearchBar extends React.Component {
   constructor(props) {
     super(props)
@@ -17,15 +21,30 @@ class LocationSearchBar extends React.Component {
   handleFormSubmit = (event) => {
     event.preventDefault()
     const { address } = this.state
-    console.log({address});
+    console.log('Submit button returns: ', {address});
 
     geocodeByAddress(address,  (err, { lat, lng }) => {
       if (err) { 
         console.log('Error', err) 
       } else {
-        // let locationCoordinates = { lat, lng };
-        // selectFromLocationSearch(locationCoordinates);
         console.log(`The longitutde and latitude for ${address}`, { lat, lng })
+
+        // connecting data to app state
+        let location = { address, lat, lng };
+        this.props.selectFromLocationSearch(location);
+
+        // const key = GOOGLE_API_KEY
+        // let url = `https://maps.googleapis.com/maps/api/geocode/json?latlng=${lat},${lng}&key=${key}`
+        
+        // //axios call to google maps api with lat and lng
+        // axios
+        //   .get(url)
+        //   .then((response) => {
+        //     console.log('Response from Axios call to Maps API is: ', response.data)
+        //   })
+        //   .catch((err) => {
+        //     if (err) {console.log(err)}
+        //   })
       }
     })
   }
@@ -57,19 +76,15 @@ class LocationSearchBar extends React.Component {
   }
 }
 
-export default LocationSearchBar;
+const mapStateToProps = (state) => {
+  return {
+    locationInput: state.locationInput
+  }
+}
 
-// const mapStateToProps = (state) => {
-//   return {
-//     locationInput: state.locationInput
-//   }
-// }
+const mapDispatchToProps = (dispatch) => {
+  return bindActionCreators({ selectFromLocationSearch }, dispatch);
+}
 
-// const mapDispatchToProps = (dispatch) => {
-//   return bindActionCreators({
-//     selectFromLocationSearch: selectFromLocationSearch
-//   }, dispatch);
-// }
-
-// export default connect(mapStateToProps, mapDispatchToProps)(LocationSearchBar);
+export default connect(mapStateToProps, mapDispatchToProps)(LocationSearchBar);
 

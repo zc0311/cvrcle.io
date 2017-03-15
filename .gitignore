@@ -5,3 +5,4 @@ app/build
 .env
 .vscode
 .DS_Store
+config.js
