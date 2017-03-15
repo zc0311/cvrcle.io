@@ -6,3 +6,4 @@ app/build
 .vscode
 .DS_Store
 knexfile.js
+config.js
