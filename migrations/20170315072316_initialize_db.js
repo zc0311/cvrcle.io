@@ -22,6 +22,13 @@ exports.up = function(knex, Promise) {
       table.increments('id').primary();
       table.string('title', 50);
       table.text('body', 'mediumtext');
+      table.float('lat', 10, 6);
+      table.float('lng', 10, 6);
+      table.string('name', 60);
+      table.string('address', 80);
+      table.string('type', 30);
+      table.integer('contributorID');
+      table.timestamps();
     })
     //it creates the requisite join_tables
     .createTable('users_itins', (table) => {
