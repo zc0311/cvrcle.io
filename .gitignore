@@ -5,5 +5,4 @@ app/build
 .env
 .vscode
 .DS_Store
-knexfile.js
 config.js
