@@ -19,6 +19,25 @@ let store = createStore(rootReducer)
 class AppContainer extends Component { 
   constructor(props) {
     super(props);
+    this.state = {
+      entries: []
+    };
+
+    this.getEntries = this.getEntries.bind(this);
+
+    this.getEntries();
+  }
+
+  getEntries() {
+    axios.get('http://localhost:4000/posts/')
+      .then((res) => {
+        this.setState({
+          entries: res.data
+        })
+      })
+      .catch((err) => {
+        console.log(err);
+      })
   }
 
   componentDidMount() {
@@ -39,6 +58,9 @@ class AppContainer extends Component {
           </Provider>
           <GoogleMap store={store} />
           <ContributorEntry />
+          {this.state.entries.map((entryData, i) => (
+            <ContributorEntry key={i} {...entryData} />
+          ))}
         </div>
       </div>
     );

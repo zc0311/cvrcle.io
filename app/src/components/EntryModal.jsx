@@ -10,7 +10,7 @@ class EntryModal extends Component {
     this.state = {
       showModal: true,
       formTitle: "",
-      formDesc: ""
+      formBody: ""
     }
 
     this.close = this.close.bind(this);
@@ -25,7 +25,7 @@ class EntryModal extends Component {
   }
 
   saveEdits() {
-   this.props.updateEntry(this.state.formTitle, this.state.formDesc);
+   this.props.updateEntry(this.state.formTitle, this.state.formBody);
    this.close();
   }
 
@@ -52,7 +52,7 @@ class EntryModal extends Component {
             </FormGroup>
             <FormGroup>
               <ControlLabel>Description</ControlLabel>
-              <FormControl name="formDesc" onChange={this.handleInputchange} componentClass="textarea" />
+              <FormControl name="formBody" onChange={this.handleInputchange} componentClass="textarea" />
             </FormGroup>
           </form>
         </Modal.Body>
