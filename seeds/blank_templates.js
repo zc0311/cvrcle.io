@@ -29,7 +29,8 @@
    lng: 26.33333,
    name: 'something',
    address: '123 Yourstreet Drive, YourTown, CA, 90210',
-   type: 'restaurant'
+   type: 'restaurant',
+   contributorID: 00000000000
   },
 
   // User mapping to Itinerary - yucky
