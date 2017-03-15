@@ -37,7 +37,7 @@ class AppContainer extends Component {
           <Provider store={store}>
             <LocationSearchBar />
           </Provider>
-          <GoogleMap />
+          <GoogleMap store={store} />
           <ContributorEntry />
         </div>
       </div>

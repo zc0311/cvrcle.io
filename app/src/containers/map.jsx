@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { connect } from 'react-redux';
 
 class GoogleMap extends Component {
   constructor(props) {
@@ -8,8 +9,7 @@ class GoogleMap extends Component {
         lat: 33.9759, 
         lng: -118.3907 
       },
-      zoom: 16,
-      markers: []
+      zoom: 13,
     }
   }
 
@@ -17,7 +17,7 @@ class GoogleMap extends Component {
     // create the map, marker and infoWindow after the component has
     // been rendered because we need to manipulate the DOM for Google =(
     this.map = this.createMap()
-    this.marker = this.createMarker()
+    // this.marker = this.createMarker()
   }
 
   createMap() {
@@ -35,18 +35,46 @@ class GoogleMap extends Component {
     )
   }
 
-  createMarker() {
-    return new google.maps.Marker({
-      position: this.mapCenter(),
-      map: this.map
-    })
-	}
 
   render() {
-    return (
-      <div className="google-map" ref="mapCanvas"></div>
-    );
+  // createMarkers() {
+    // get lat/lng of locations from app state
+    // render markers for locations on the map
+    if (!this.props.locationInputs) {
+      return (
+        <div className="google-map" ref="mapCanvas"></div>
+      );
+    } else {
+      return (
+        <div className="google-map" ref="mapCanvas">{
+          this.props.locationInputs.forEach((location) => {
+            let center = new google.maps.LatLng(
+              location.lat, 
+              location.lng
+            )
+            return new google.maps.Marker({
+              position: center,
+              map: this.map
+            })
+          })  
+        }
+        </div>
+      );
+    }
+	// }
+    // return (
+    //   <div className="google-map" ref="mapCanvas"></div>
+    // );
   }
 }
 
-export default GoogleMap;
+// export default GoogleMap;
+
+const mapStateToProps = (state) => {
+  return {
+    locationInputs: state.locationInput
+  }
+}
+
+export default connect(mapStateToProps)(GoogleMap);
+
