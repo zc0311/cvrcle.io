@@ -34,7 +34,7 @@ class AppContainer extends Component {
       <div>
         <Container text fluid>
           <Header as='h1' textAlign='center'>Cvrcle.io</Header>
-          <SampleCard header='Herro Friend!' />
+          <LocationSearchBar />
           <GoogleMap initialCenter={this.state.initialCenter} />
         </Container>
         <div className="container">

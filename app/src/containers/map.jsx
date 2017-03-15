@@ -4,7 +4,7 @@ class GoogleMap extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      zoom: 16
+      zoom: 15
     }
   }
 
@@ -16,18 +16,23 @@ class GoogleMap extends Component {
   }
 
   createMap() {
-    let mapOptions = {
+    let map = new google.maps.Map(this.refs.mapCanvas, {
       zoom: this.state.zoom,
-      center: this.mapCenter()
-    }
-    return new google.maps.Map(this.refs.mapCanvas, mapOptions)
-  }
-
-  mapCenter() {
-    return new google.maps.LatLng(
-      this.props.initialCenter.lat,
-      this.props.initialCenter.lng
-    )
+      center: {lat: 33.9759, lng: -118.3907}
+    });
+    if (navigator.geolocation) {
+      navigator.geolocation.getCurrentPosition((position) => {
+        let pos = {
+          lat: position.coords.latitude,
+          lng: position.coords.longitude
+        };
+        map.setCenter(pos);
+        return new google.maps.Marker({
+          position: pos,
+          map: map
+        })
+      });
+    } 
   }
 
   createMarker() {
