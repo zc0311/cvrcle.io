@@ -21,7 +21,7 @@ class LocationSearchBar extends React.Component {
   handleFormSubmit = (event) => {
     event.preventDefault()
     const { address } = this.state
-    console.log({address});
+    console.log('Submit button returns: ', {address});
 
     geocodeByAddress(address,  (err, { lat, lng }) => {
       if (err) { 
@@ -40,7 +40,7 @@ class LocationSearchBar extends React.Component {
         axios
           .get(url)
           .then((response) => {
-            console.log(response.data)
+            console.log('Response from Axios call to Maps API is: ', response.data)
           })
           .catch((err) => {
             if (err) {console.log(err)}
