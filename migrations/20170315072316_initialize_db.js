@@ -7,16 +7,16 @@ exports.up = function(knex, Promise) {
       table.string('firstName', 20);
       table.string('lastName', 20);
       table.string('email', 25);
-      table.string('fbID', 10);
-      table.timestamps();
+      table.string('fbID');
+      table.timestamps(true);
     })
     .createTable('itineraries', (table) => {
       table.increments('id').primary();
-      table.integer('ownerID');
+      table.integer('ownerID').unsigned().references('id').inTable('users').onDelete('CASCADE');
       table.string('itinName', 40);
       table.integer('isActive');
       table.integer('isPublic');
-      table.timestamps();
+      table.timestamps(true);
     })
     .createTable('entries', (table) => {
       table.increments('id').primary();
@@ -27,8 +27,8 @@ exports.up = function(knex, Promise) {
       table.string('name', 60);
       table.string('address', 80);
       table.string('type', 30);
-      table.integer('contributorID');
-      table.timestamps();
+      table.integer('contributorID').unsigned().references('id').inTable('users').onDelete('CASCADE');
+      table.timestamps(true);
     })
     //it creates the requisite join_tables
     .createTable('users_itins', (table) => {
