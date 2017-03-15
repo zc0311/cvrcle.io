@@ -20,6 +20,8 @@ exports.up = function(knex, Promise) {
     })
     .createTable('entries', (table) => {
       table.increments('id').primary();
+      table.string('title', 50);
+      table.text('body', 'mediumtext');
     })
     //it creates the requisite join_tables
     .createTable('users_itins', (table) => {
