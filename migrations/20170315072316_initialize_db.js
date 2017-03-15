@@ -4,9 +4,19 @@ exports.up = function(knex, Promise) {
   // It builds the requisite core tables
     .createTable('users', (table) => {
       table.increments('id').primary();
+      table.string('firstName', 20);
+      table.string('lastName', 20);
+      table.string('email', 25);
+      table.string('fbID', 10);
+      table.timestamps();
     })
     .createTable('itineraries', (table) => {
       table.increments('id').primary();
+      table.integer('ownerID');
+      table.string('itinName', 40);
+      table.integer('isActive');
+      table.integer('isPublic');
+      table.timestamps();
     })
     .createTable('entries', (table) => {
       table.increments('id').primary();
