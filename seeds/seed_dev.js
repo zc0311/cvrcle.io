@@ -19,5 +19,23 @@ exports.seed = function (knex, Promise) {
           fbID: '10158329375645263'
         }
       ]);
-    });
+    })
+    .then(function() {
+      return knex('itineraries').insert([
+        {
+          id: 1,
+          ownerID: '10106693933724976',
+          itinName: 'Fuckin Awesome Test Itinerary #1',
+          isActive: '0',
+          isPublic: '1',
+        },
+        {
+          id: 2,
+          ownerID: '10158329375645263',
+          itinName: 'Bloody BadAss Test Itinerary #2',
+          isActive: '0',
+          isPublic: '1',
+        }
+      ])
+    })
 };
