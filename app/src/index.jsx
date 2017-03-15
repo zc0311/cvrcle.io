@@ -7,18 +7,18 @@ import axios from "axios";
 import { Container, Header, Card, Message, Segment, Form } from 'semantic-ui-react';
 import ContributorEntry from './components/ContributorEntry.jsx';
 
+import { Provider } from 'react-redux';
+import { createStore } from 'redux';
+import rootReducer from './reducers/reducers_index';
+
 import GoogleMap from './containers/map.jsx';
 import LocationSearchBar from './containers/locationSearchBar.jsx';
+
+let store = createStore(rootReducer)
 
 class AppContainer extends Component { 
   constructor(props) {
     super(props);
-    this.state = {
-      initialCenter: { 
-        lat: 33.9759, 
-        lng: -118.3907 
-      }
-    };
   }
 
   componentDidMount() {
@@ -34,8 +34,10 @@ class AppContainer extends Component {
       <div>
         <div className="container">
           <h1 className="text-center">Cvrcle</h1>
-          <LocationSearchBar />
-          <GoogleMap initialCenter={this.state.initialCenter} />
+          <Provider store={store}>
+            <LocationSearchBar />
+          </Provider>
+          <GoogleMap />
           <ContributorEntry />
         </div>
       </div>

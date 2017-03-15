@@ -7,6 +7,7 @@
 
 const LocationReducer = (state = null, action) => {
   if (action.type === 'LOCATION_SELECTED') {
+    console.log('Payload returned from LocationReducer is: ', action.payload);
     return action.payload;
   };
 
