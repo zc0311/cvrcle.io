@@ -76,8 +76,6 @@ class LocationSearchBar extends React.Component {
   }
 }
 
-// export default LocationSearchBar;
-
 const mapStateToProps = (state) => {
   return {
     locationInput: state.locationInput

@@ -17,7 +17,6 @@ class GoogleMap extends Component {
     // create the map, marker and infoWindow after the component has
     // been rendered because we need to manipulate the DOM for Google =(
     this.map = this.createMap()
-    // this.marker = this.createMarker()
   }
 
   createMap() {
@@ -37,9 +36,6 @@ class GoogleMap extends Component {
 
 
   render() {
-  // createMarkers() {
-    // get lat/lng of locations from app state
-    // render markers for locations on the map
     if (!this.props.locationInputs) {
       return (
         <div className="google-map" ref="mapCanvas"></div>
@@ -61,14 +57,8 @@ class GoogleMap extends Component {
         </div>
       );
     }
-	// }
-    // return (
-    //   <div className="google-map" ref="mapCanvas"></div>
-    // );
   }
 }
-
-// export default GoogleMap;
 
 const mapStateToProps = (state) => {
   return {
