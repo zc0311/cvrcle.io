@@ -34,6 +34,7 @@ class AppContainer extends Component {
       <div>
         <div className="container">
           <h1 className="text-center">Cvrcle</h1>
+          <LocationSearchBar />
           <GoogleMap initialCenter={this.state.initialCenter} />
           <ContributorEntry />
         </div>
