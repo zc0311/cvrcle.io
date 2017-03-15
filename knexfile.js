@@ -3,28 +3,18 @@
 module.exports = {
 
   development: {
-    client: 'sqlite3',
+    client: 'mysql',
     connection: {
-      filename: './dev.sqlite3'
-    }
-  },
-
-  staging: {
-    client: 'postgresql',
-    connection: {
-      database: 'my_db',
-      user:     'username',
-      password: 'password'
-    },
+      host: 'cvrcle-dev.cixe27doo37n.us-west-2.rds.amazonaws.com', 
+      database: 'armenr',
+      user:     'rmenr',
+      password: 'Vard33g!!'
+     },
     pool: {
-      min: 2,
-      max: 10
+      min: 1,
+      max: 1
     },
-    migrations: {
-      tableName: 'knex_migrations'
-    }
   },
-
   production: {
     client: 'postgresql',
     connection: {
@@ -33,12 +23,11 @@ module.exports = {
       password: 'password'
     },
     pool: {
-      min: 2,
-      max: 10
+      min: 5,
+      max: 20
     },
     migrations: {
       tableName: 'knex_migrations'
     }
   }
-
 };
