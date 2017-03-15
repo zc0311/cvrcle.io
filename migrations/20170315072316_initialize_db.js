@@ -33,9 +33,13 @@ exports.up = function(knex, Promise) {
     //it creates the requisite join_tables
     .createTable('users_itins', (table) => {
       table.increments('id').primary();
+      table.integer('userID').unsigned().references('id').inTable('users').onDelete('CASCADE');
+      table.integer('itinID').unsigned().references('id').inTable('itineraries').onDelete('CASCADE');
     })
     .createTable('entries_itins', (table) => {
       table.increments('id').primary();
+      table.integer('ID_itin').unsigned().references('id').inTable('itineraries').onDelete('CASCADE');
+      table.integer('ID_entry').unsigned().references('id').inTable('entries').onDelete('CASCADE');
     })
 };
 
