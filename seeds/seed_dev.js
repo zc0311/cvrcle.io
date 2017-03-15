@@ -20,7 +20,7 @@ exports.seed = function (knex, Promise) {
         }
       ]);
     })
-    .then(function() {
+    .then(function () {
       return knex('itineraries').insert([
         {
           id: 1,
@@ -36,6 +36,29 @@ exports.seed = function (knex, Promise) {
           isActive: '0',
           isPublic: '1',
         }
-      ])
+      ]);
+    })
+    .then(function () {
+      return knex('entries').insert([
+        {
+          id: 1,
+          title: 'Things to Eat in Brocelona',
+          text: 'A small descriptive paragraph goes here. Tell them what you think they should do, and why. It\'s the spectaculars.',
+          lat: 37.787596,
+          lng: -122.40011529999998,
+          name: 'Two Bros and a Girl Cafe',
+          address: '123 Yourstreet Drive, YourTown, CA, 90210',
+          type: 'eatery',
+          contributorID: '10106693933724976' // contributed by Armen to his own itin
+
+        },
+        {
+          id: 2,
+          ownerID: '10158329375645263',
+          itinName: 'Bloody BadAss Test Itinerary #2',
+          isActive: '0',
+          isPublic: '1',
+        }
+      ]);
     })
 };
