@@ -12,7 +12,6 @@ exports.up = function(knex, Promise) {
     })
     .createTable('itineraries', (table) => {
       table.increments('id').primary();
-      // table.integer('ownerID').unsigned();
       table.integer('ownerID').unsigned().references('id').inTable('users').onDelete('CASCADE');
       table.string('itinName', 40);
       table.integer('isActive');
@@ -28,9 +27,7 @@ exports.up = function(knex, Promise) {
       table.string('name', 60);
       table.string('address', 80);
       table.integer('contributorID').unsigned().references('id').inTable('users').onDelete('CASCADE');
-      // table.integer('contributorID').unsigned();
       table.integer('itinID').unsigned().references('id').inTable('itineraries').onDelete('CASCADE');
-      // table.integer('itinID').unsigned();
       table.timestamps(true);
     })
     //it creates the requisite join_tables
