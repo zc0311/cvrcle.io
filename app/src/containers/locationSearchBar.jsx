@@ -1,11 +1,15 @@
+//importing libraries
 import React from 'react';
 import PlacesAutocomplete from 'react-places-autocomplete';
 import { geocodeByAddress, geocodeByPlaceId } from 'react-places-autocomplete';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
+import axios from 'axios';
+
+//importing files
+import GOOGLE_API_KEY from '../../../config.js';
 // import { someString, selectBook } from '../actions/index';
 
-// live location search bar that sets locationInput app state 
 class LocationSearchBar extends React.Component {
   constructor(props) {
     super(props)
@@ -23,9 +27,16 @@ class LocationSearchBar extends React.Component {
       if (err) { 
         console.log('Error', err) 
       } else {
+        console.log(`The longitutde and latitude for ${address}`, { lat, lng })
+
+        //redux stuff
         // let locationCoordinates = { lat, lng };
         // selectFromLocationSearch(locationCoordinates);
-        console.log(`The longitutde and latitude for ${address}`, { lat, lng })
+
+        const key = GOOGLE_API_KEY
+        let url = `https://maps.googleapis.com/maps/api/geocode/json?latlng=${lat},${lng}&key=${key}`
+        
+        //axios call to google maps api with lat and lng
       }
     })
   }
