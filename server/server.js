@@ -12,10 +12,12 @@ const passport = require('passport');
 const Auth0Strategy = require('passport-auth0');
 const user = require('./routes/user.js');
 var routes = require('./routes/index');
+var cors = require('cors');
 
 
 // load in ENV variables before ANYTHING
 dotenv.load();
+app.use(cors());
 
 
 const strategy = new Auth0Strategy({
@@ -52,6 +54,7 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(passport.initialize());
 app.use(passport.session());
+
 
 app.use('/', routes);
 app.use('/user', user);
