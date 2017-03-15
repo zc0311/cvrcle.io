@@ -6,17 +6,37 @@ import EntryModal from './EntryModal.jsx';
 
 
 class ContributorEntry extends Component {
-  constructor() {
-    super();
+  constructor(props) {
+    super(props);
 
     this.state = {
       isEditing: false,
-      title: "Go Climbing",
-      desc: "The rocks are beautiful. You should climb! Good send!"
+      id: "",
+      title: "",
+      author: "",
+      body: "",
+      date: "",
+      location: ""
     }
 
     this.toggleModal = this.toggleModal.bind(this);
     this.updateEntry = this.updateEntry.bind(this);
+    this.updateState = this.updateState.bind(this);
+  }
+
+  componentDidMount() {
+    this.updateState();
+  }
+
+  updateState() {
+    this.setState({
+      id: this.props.id,
+      title: this.props.title,
+      author: this.props.author,
+      body: this.props.body,
+      date: this.props.date,
+      location: this.props.location
+    })
   }
 
   toggleModal() {
@@ -25,10 +45,10 @@ class ContributorEntry extends Component {
     })
   }
 
-  updateEntry(title, desc) {
+  updateEntry(title, body) {
     this.setState({
       title: title,
-      desc: desc
+      body: body
     })
   }
 
@@ -36,18 +56,18 @@ class ContributorEntry extends Component {
     return (
       <div>
         {this.state.isEditing ? <EntryModal resetFlag={this.toggleModal} updateEntry={this.updateEntry} /> : ""}
-        <Card color="teal" className="entry" onClick={this.toggleModal}>
+        <Card id={this.state.id} color="teal" className="entry" onClick={this.toggleModal}>
           <Card.Content>
             <Card.Header> 
               {this.state.title}
             </Card.Header>
             <Card.Description>
-              {this.state.desc}
+              {this.state.body}
             </Card.Description>
           </Card.Content>
           <Card.Content extra>
-            <span className="author">Andrew Yi</span>
-            <span className="date">2/2/2017</span>
+            <span className="author">{this.state.author}</span>
+            <span className="date">{this.state.date}</span>
           </Card.Content>
         </Card>
       </div>
