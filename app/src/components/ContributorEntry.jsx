@@ -10,10 +10,13 @@ class ContributorEntry extends Component {
     super();
 
     this.state = {
-      isEditing: false
+      isEditing: false,
+      title: "Go Climbing",
+      desc: "The rocks are beautiful. You should climb! Good send!"
     }
 
     this.toggleModal = this.toggleModal.bind(this);
+    this.updateEntry = this.updateEntry.bind(this);
   }
 
   toggleModal() {
@@ -22,17 +25,24 @@ class ContributorEntry extends Component {
     })
   }
 
+  updateEntry(title, desc) {
+    this.setState({
+      title: title,
+      desc: desc
+    })
+  }
+
   render() {
     return (
       <div>
-        {this.state.isEditing ? <EntryModal resetFlag={this.toggleModal}/> : ""}
+        {this.state.isEditing ? <EntryModal resetFlag={this.toggleModal} updateEntry={this.updateEntry} /> : ""}
         <Card color="teal" className="entry" onClick={this.toggleModal}>
           <Card.Content>
             <Card.Header> 
-              Go Skiing in Aspen!
+              {this.state.title}
             </Card.Header>
             <Card.Description>
-              The mountains in Aspen are so beautiful. You have to go there trust me!
+              {this.state.desc}
             </Card.Description>
           </Card.Content>
           <Card.Content extra>

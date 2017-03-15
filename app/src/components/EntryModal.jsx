@@ -8,15 +8,35 @@ class EntryModal extends Component {
     super(props);
 
     this.state = {
-      showModal: true
+      showModal: true,
+      formTitle: "",
+      formDesc: ""
     }
 
     this.close = this.close.bind(this);
+    this.handleInputchange = this.handleInputchange.bind(this);
+    this.saveEdits = this.saveEdits.bind(this);
   }
 
   close() {
     this.setState({showModal: false}, () => {
       this.props.resetFlag();
+    });
+  }
+
+  saveEdits() {
+   this.props.updateEntry(this.state.formTitle, this.state.formDesc);
+   this.close();
+  }
+
+  handleInputchange(e) {
+    const name = e.target.name;
+    const val = e.target.value;
+    
+    const obj = {};
+    obj[name] = val;
+    this.setState((prevState, props) => {
+      return obj;
     });
   }
 
@@ -28,16 +48,16 @@ class EntryModal extends Component {
           <form>
             <FormGroup>
               <ControlLabel>Title</ControlLabel>
-              <FormControl componentClass="input" />
+              <FormControl name="formTitle" onChange={this.handleInputchange} componentClass="input" />
             </FormGroup>
             <FormGroup>
               <ControlLabel>Description</ControlLabel>
-              <FormControl componentClass="textarea" />
+              <FormControl name="formDesc" onChange={this.handleInputchange} componentClass="textarea" />
             </FormGroup>
           </form>
         </Modal.Body>
         <Modal.Footer>
-          <Button className="btn btn-primary">Save</Button>
+          <Button className="btn btn-primary" onClick={this.saveEdits}>Save</Button>
         </Modal.Footer>
       </Modal>
     );

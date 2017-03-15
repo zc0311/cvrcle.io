@@ -10,7 +10,7 @@ import ContributorEntry from './components/ContributorEntry.jsx';
 import GoogleMap from './containers/map.jsx';
 import LocationSearchBar from './containers/locationSearchBar.jsx';
 
-class AppContainer extends Component {
+class AppContainer extends Component { 
   constructor(props) {
     super(props);
     this.state = {
@@ -32,13 +32,9 @@ class AppContainer extends Component {
   render() {
     return (
       <div>
-        <Container text fluid>
-          <Header as='h1' textAlign='center'>Cvrcle.io</Header>
-          <SampleCard header='Herro Friend!' />
-          <GoogleMap initialCenter={this.state.initialCenter} />
-        </Container>
         <div className="container">
           <h1 className="text-center">Cvrcle</h1>
+          <GoogleMap initialCenter={this.state.initialCenter} />
           <ContributorEntry />
         </div>
       </div>
