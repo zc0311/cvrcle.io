@@ -37,6 +37,14 @@ class LocationSearchBar extends React.Component {
         let url = `https://maps.googleapis.com/maps/api/geocode/json?latlng=${lat},${lng}&key=${key}`
         
         //axios call to google maps api with lat and lng
+        axios
+          .get(url)
+          .then((response) => {
+            console.log(response.data)
+          })
+          .catch((err) => {
+            if (err) {console.log(err)}
+          })
       }
     })
   }
