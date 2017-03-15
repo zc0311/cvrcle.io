@@ -43,6 +43,8 @@ passport.deserializeUser(function(user, done) {
 
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'jade');
+// prety print json responses (yay secret express params)
+app.set('json spaces', 2);
 
 
 // middleware
@@ -53,6 +55,7 @@ app.use(passport.session());
 
 app.use('/', routes);
 app.use('/user', user);
+
 
 
 // serve up React front-end client code
