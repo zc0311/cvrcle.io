@@ -1,13 +1,13 @@
-exports.createOne = function (req, res) {
+exports.createItin = function (req, res) {
 };
 
-exports.create = function (req, res) {
+exports.createEntry = function (req, res) {
 };
 
-exports.retrieveOne = function (req, res) {
+exports.retrieveItin = function (req, res) {
 };
 
-exports.retrieveAll = function (req, res) {
+exports.retrieveAllItins = function (req, res) {
 };
 
 exports.updateOne = function (req, res) {

@@ -12,10 +12,12 @@ const passport = require('passport');
 const Auth0Strategy = require('passport-auth0');
 const user = require('./routes/user.js');
 var routes = require('./routes/index');
+var cors = require('cors');
 
 
 // load in ENV variables before ANYTHING
 dotenv.load();
+app.use(cors());
 
 
 const strategy = new Auth0Strategy({
@@ -43,6 +45,8 @@ passport.deserializeUser(function(user, done) {
 
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'jade');
+// prety print json responses (yay secret express params)
+app.set('json spaces', 2);
 
 
 // middleware
@@ -51,8 +55,10 @@ app.use(bodyParser.urlencoded({ extended: true }));
 app.use(passport.initialize());
 app.use(passport.session());
 
+
 app.use('/', routes);
 app.use('/user', user);
+
 
 
 // serve up React front-end client code
