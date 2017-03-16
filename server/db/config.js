@@ -7,3 +7,6 @@ const db = Knex(knexConfig.development);
 Model.knex(db);
 
 module.exports = db;
+
+
+//comment line
