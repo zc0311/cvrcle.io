@@ -7,6 +7,7 @@ import { Container, Header, Card, Message, Segment, Form } from 'semantic-ui-rea
 import ContributorEntry from './components/ContributorEntry.jsx';
 import { Navbar, Nav, NavItem } from 'react-bootstrap';
 import { Router, Route, Switch } from 'react-router'
+import Routes from './views/Main/routes.js';
 
 import { Provider } from 'react-redux';
 import { createStore } from 'redux';
@@ -33,8 +34,9 @@ class AppContainer extends Component {
   }
 
   getEntries() {
-    axios.get('http://localhost:4000/posts/')
+    axios.get('http://localhost:3000/entries')
       .then((res) => {
+        console.log(res.data);
         this.setState({
           entries: res.data
         })
