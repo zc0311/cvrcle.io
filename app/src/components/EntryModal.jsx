@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import ReactDOM from "react-dom";
-import axios from "axios";
 import { Button, Modal, Form, FormGroup, FormControl, ControlLabel } from 'react-bootstrap';
 
 class EntryModal extends Component {

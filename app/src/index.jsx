@@ -1,4 +1,3 @@
-
 import React, { Component } from 'react';
 import ReactDOM from 'react-dom';
 import SampleCard from './components/SampleCard.jsx';
@@ -6,6 +5,7 @@ import $ from 'jquery';
 import axios from "axios";
 import { Container, Header, Card, Message, Segment, Form } from 'semantic-ui-react';
 import ContributorEntry from './components/ContributorEntry.jsx';
+import { Navbar, Nav, NavItem } from 'react-bootstrap';
 
 import { Provider } from 'react-redux';
 import { createStore } from 'redux';
@@ -51,8 +51,16 @@ class AppContainer extends Component {
   render() {
     return (
       <div>
+          <Navbar>
+            <Navbar.Header>
+              <Navbar.Brand><a href="#">Cvrcle</a></Navbar.Brand>
+            </Navbar.Header>
+            <Nav>
+              <NavItem eventKey={1} href="#">Itineraries</NavItem>
+              <NavItem className="logout" eventKey={2} href="#">Logout</NavItem>
+            </Nav>
+          </Navbar>
         <div className="container">
-          <h1 className="text-center">Cvrcle</h1>
           <Provider store={store}>
             <LocationSearchBar />
           </Provider>
