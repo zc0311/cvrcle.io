@@ -14,7 +14,6 @@ const Entry = require('./models/Entry');
 module.exports = (app) => {
 
   app.get('/users', (req, res, next) => {
-    console.log(req.query);
     User
       .query()
       .skipUndefined()
@@ -26,8 +25,6 @@ module.exports = (app) => {
   })
 
   app.post('/users', (req, res, next) => {
-    console.log(req.body);
-
     User
       .query()
       .insertAndFetch(req.body)
@@ -42,12 +39,29 @@ module.exports = (app) => {
       .catch(next);
   })
 
+  app.post('/entries', (req, res, next) => {
+    Entry
+      .query()
+      .insertAndFetch(req.body)
+      .then((entry) => { res.send(entry)})
+      .catch(next);
+  })
+
   app.get('/itineraries', (req, res, next) => {
     Itinerary
       .query()
       .then((itineraries) => { res.send(itineraries); })
       .catch(next);
   })
+
+  app.post('/itineraries', (req, res, next) => {
+    Itinerary
+      .query()
+      .insertAndFetch(req.body)
+      .then((itinerary) => { res.send(itinerary)})
+      .catch(next);
+  })
+
 }
 
 
