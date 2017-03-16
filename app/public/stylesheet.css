@@ -37,3 +37,13 @@
   margin-top: 4px;
   font-size: 25px;
 }
+
+.entry-col-1 {
+  float: right;
+  width: 40%
+}
+
+.entry-col-2 {
+  float: right;
+  width: 60%
+}

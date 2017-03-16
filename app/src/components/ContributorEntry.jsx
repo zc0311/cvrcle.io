@@ -4,6 +4,11 @@ import axios from "axios";
 import { Card, Modal } from 'semantic-ui-react';
 import EntryModal from './EntryModal.jsx';
 
+import { Provider } from 'react-redux';
+import { createStore } from 'redux';
+import rootReducer from '../reducers/reducers_index';
+
+let store = createStore(rootReducer)
 
 class ContributorEntry extends Component {
   constructor(props) {
@@ -55,7 +60,12 @@ class ContributorEntry extends Component {
   render() {
     return (
       <div>
-        {this.state.isEditing ? <EntryModal resetFlag={this.toggleModal} updateEntry={this.updateEntry} /> : ""}
+        {this.state.isEditing ? 
+          <Provider store={store}>
+            <EntryModal resetFlag={this.toggleModal} updateEntry={this.updateEntry} /> 
+          </Provider> : 
+          ""
+        }
         <Card id={this.state.id} color="teal" className="entry" onClick={this.toggleModal}>
           <Card.Content>
             <Card.Header> 
