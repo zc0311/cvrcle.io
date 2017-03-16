@@ -19,7 +19,7 @@ import rootReducer from './reducers/reducers_index';
 
 let store = createStore(rootReducer)
 
-class AppContainer extends Component { 
+class AppContainer extends Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -57,34 +57,26 @@ class AppContainer extends Component {
   render() {
     return (
       <div>
-          <Navbar>
-            <Navbar.Header>
-              <Navbar.Brand><a href="#">Cvrcle</a></Navbar.Brand>
-            </Navbar.Header>
-            <Nav>
-              <NavItem eventKey={1} href="#">Itineraries</NavItem>
-              <NavItem className="logout" eventKey={2} href="#">Logout</NavItem>
-            </Nav>
-          </Navbar>
+        <Navbar>
+          <Navbar.Header>
+            <Navbar.Brand><a href="#">Cvrcle</a></Navbar.Brand>
+          </Navbar.Header>
+          <Nav>
+            <NavItem eventKey={1} href="#">Itineraries</NavItem>
+            <NavItem className="logout" eventKey={2} href="#">Logout</NavItem>
+          </Nav>
+        </Navbar>
         <div className="container">
-          <Provider store={store}>
-            <LocationSearchBar />
-          </Provider>
-          <GoogleMap store={store} />
-          <ContributorEntry />
-          {this.state.entries.map((entryData, i) => (
-            <ContributorEntry key={i} {...entryData} />
-          ))}
           <div className="map-view">
-            <GoogleMap store={store} locations={this.state.entries}/>
+            <GoogleMap store={store} locations={this.state.entries} />
           </div>
           <div className="add-entry">
-            <AddNewEntry data={''}/>
+            <AddNewEntry data={''} />
           </div>
           <div className="entries">
             <div className="ui two cards">
               <Card.Group className="existing-entries">
-                {this.state.entries.length ? 
+                {this.state.entries.length ?
                   (this.state.entries.map((entryData, i) => (
                     <ContributorEntry key={i} {...entryData} />))) :
                   "No entries yet!"
@@ -99,4 +91,3 @@ class AppContainer extends Component {
 }
 
 ReactDOM.render(<AppContainer />, document.getElementById('appRoot'));
-  
