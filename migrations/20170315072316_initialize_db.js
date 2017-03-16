@@ -2,7 +2,7 @@
 exports.up = function(knex, Promise) {
   return knex.schema
   // It builds the requisite core tables
-    .createTable('users', (table) => {
+    .createTable('Users', (table) => {
       table.increments('id').primary();
       table.string('firstName', 20);
       table.string('lastName', 20);
@@ -10,16 +10,16 @@ exports.up = function(knex, Promise) {
       table.string('fbID');
       table.timestamps(true);
     })
-    .createTable('itineraries', (table) => {
+    .createTable('Itineraries', (table) => {
       table.increments('id').primary();
-      table.integer('ownerID').unsigned().references('id').inTable('users').onDelete('CASCADE');
+      table.integer('ownerID').unsigned().references('id').inTable('Users').onDelete('CASCADE');
       // table.string('ownerID');
       table.string('itinName', 40);
       table.integer('isActive');
       table.integer('isPublic');
       table.timestamps(true);
     })
-    .createTable('entries', (table) => {
+    .createTable('Entries', (table) => {
       table.increments('id').primary();
       table.string('title', 50);
       table.text('body', 'mediumtext');
@@ -27,9 +27,9 @@ exports.up = function(knex, Promise) {
       table.float('lng', 10, 6);
       table.string('name', 60);
       table.string('address', 80);
-      table.integer('contributorID').unsigned().references('id').inTable('users').onDelete('CASCADE');
+      table.integer('contributorID').unsigned().references('id').inTable('Users').onDelete('CASCADE');
       //table.string('contributorID');
-      table.integer('itinID').unsigned().references('id').inTable('itineraries').onDelete('CASCADE');
+      table.integer('itinID').unsigned().references('id').inTable('Itineraries').onDelete('CASCADE');
       // table.string('itinID');
       table.timestamps(true);
     })
