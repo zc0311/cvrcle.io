@@ -71,6 +71,20 @@ class EntryModal extends Component {
   }
 
   render() {
+
+    // cssClasses and myStyles is req'd for styling location search bar
+    const cssClasses = {
+      root: 'form-group',
+      input: 'form-control',
+      autocompleteContainer: 'my-autocomplete-container'
+    }
+    const myStyles = {
+      input: { width: '100%' },
+      autocompleteContainer: { backgroundColor: 'green' },
+      autocompleteItem: { color: 'black' },
+      autocompleteItemActive: { color: 'blue' }
+    }
+
     const AutocompleteItem = ({ formattedSuggestion }) => (
       <div>
         <strong>{ formattedSuggestion.mainText }</strong>{' '}
@@ -88,11 +102,17 @@ class EntryModal extends Component {
               <FormControl name="formTitle" onChange={this.handleInputchange} componentClass="input" />
             </FormGroup>
             <FormGroup>
+              <ControlLabel>Author</ControlLabel>
+              <FormControl name="formAuthor" onChange={this.handleInputchange} componentClass="input" />
+            </FormGroup>
+            <FormGroup>
               <ControlLabel>Location</ControlLabel>
               <PlacesAutocomplete
                 value={this.state.address}
                 onChange={this.onChange}
                 autocompleteItem={AutocompleteItem}
+                classNames={cssClasses}
+                styles={myStyles}
               />
             </FormGroup>
             <FormGroup>

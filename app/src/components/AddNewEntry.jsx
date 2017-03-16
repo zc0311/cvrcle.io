@@ -60,9 +60,7 @@ class AddNewEntry extends Component {
         }
         <Card id={this.state.id} color="teal" className="entry" onClick={this.toggleModal}>
           <Card.Content>
-            <Card.Header> 
-              Add New Entry
-            </Card.Header>
+            <Card.Header>Add New Entry</Card.Header>
           </Card.Content>
         </Card>
       </div>
