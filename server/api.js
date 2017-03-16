@@ -34,6 +34,7 @@ module.exports = (app) => {
 
   app.get('/entries', (req, res, next) => {
     Entry
+      // we can add 'where' logic to filter and query results
       .query()
       .then((entries) => { res.send(entries); })
       .catch(next);
@@ -49,6 +50,7 @@ module.exports = (app) => {
 
   app.get('/itineraries', (req, res, next) => {
     Itinerary
+      // we can add 'where' logic to filter and query results
       .query()
       .then((itineraries) => { res.send(itineraries); })
       .catch(next);
