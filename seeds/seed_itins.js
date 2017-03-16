@@ -1,11 +1,11 @@
 exports.seed = function (knex, Promise) {
   return knex.raw('SET foreign_key_checks = 0;')
     .then(() => {
-      return knex('Itineraries').del()
+      return knex('itineraries').del()
         .then(function () {
           return knex.raw('SET foreign_key_checks = 0;')
             .then(() => {
-              return knex('Itineraries').insert([{
+              return knex('itineraries').insert([{
                   id: 1,
                   ownerID: '1',
                   itinName: 'Fuckin Awesome Test Itinerary #1',

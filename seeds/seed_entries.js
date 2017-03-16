@@ -1,10 +1,10 @@
 exports.seed = function (knex, Promise) {
   return knex.raw('SET foreign_key_checks = 0;')
     .then(() => {
-      return knex('Entries').del()
+      return knex('entries').del()
         .then(function () {
           // Inserts seed entries
-          return knex('Entries').insert([{
+          return knex('entries').insert([{
               id: 1,
               title: 'Go To HackReactor',
               body: 'A small descriptive paragraph goes here. Tell them what you think they should do, and why. It\'s the spectaculars.',
