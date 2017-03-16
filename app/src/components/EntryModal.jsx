@@ -14,14 +14,14 @@ import { selectFromLocationSearch } from '../actions/actions_index';
 class EntryModal extends Component {
   constructor(props) {
     super(props);
-
     this.state = {
       showModal: true,
       formTitle: "",
+      formAuthor: "",
       formBody: "",
-      address: 'Hack Reactor, CA'
+      address: 'Search Places...'
     }
-
+    // function binds
     this.close = this.close.bind(this);
     this.handleInputchange = this.handleInputchange.bind(this);
     this.handleFormSubmit = this.handleFormSubmit.bind(this);
@@ -52,9 +52,7 @@ class EntryModal extends Component {
   handleFormSubmit = (event) => {
     this.props.updateEntry(this.state.formTitle, this.state.formBody);
     event.preventDefault()
-    // const { address } = this.state
     const { address } = { address: this.state.address }
-    console.log('Submit button returns: ', {address});
 
     geocodeByAddress(address,  (err, { lat, lng }) => {
       if (err) { 
@@ -62,16 +60,24 @@ class EntryModal extends Component {
       } else {
         console.log(`The longitutde and latitude for ${address}`, { lat, lng })
 
-        // connecting data to app state
-        let location = { address, lat, lng };
-        this.props.selectFromLocationSearch(location);
+        // object that gets sent to the database + gets updated to app state
+        let location = { 
+          // entryID: ''
+          title: this.state.formTitle,
+          name: this.state.formAuthor,
+          body: this.state.formBody,
+          lat: lat,
+          lng: lng,
+          address: address
+          // contributorID: '',
+          // itinID: ''
+         };
       }
     })
     this.close();
   }
 
   render() {
-
     // cssClasses and myStyles is req'd for styling location search bar
     const cssClasses = {
       root: 'form-group',
