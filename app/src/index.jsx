@@ -17,9 +17,6 @@ import GoogleMap from './containers/map.jsx';
 import LocationSearchBar from './containers/locationSearchBar.jsx';
 
 let store = createStore(rootReducer)
-// const Router = require('react-router').Router
-// const Route = require('react-router').Route
-// const Switch = require('react-router').Switch
 
 class AppContainer extends Component { 
   constructor(props) {
@@ -31,12 +28,13 @@ class AppContainer extends Component {
     this.getEntries = this.getEntries.bind(this);
 
     this.getEntries();
+
+    Routes();
   }
 
   getEntries() {
     axios.get('http://localhost:3000/entries')
       .then((res) => {
-        console.log(res.data);
         this.setState({
           entries: res.data
         })

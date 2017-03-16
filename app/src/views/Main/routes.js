@@ -15,12 +15,23 @@ const requireAuth = (nextState, replace) => {
 }
 
 export const makeMainRoutes = () => {
+  console.log("makeroutes");
   return (
-    <Route path="/" component={Container} auth={auth}>
-      <IndexRedirect to="/home" />
-      <Route path="home" component={Home} onEnter={requireAuth} />
-      <Route path="login" component={Login} />
-    </Route>
+    <Route
+    path="/"
+    getComponent={(location, callback) => {
+      console.log("making it in");
+      require.ensure([], function (require) {
+        console.log("asdfasdfasdf");
+        // callback(null, require('./Container.jsx'));
+      });
+    }}
+  />
+    // <Route path="/" getComponent={Container} auth={auth}>
+    //   <IndexRedirect to="/home" />
+    //   <Route path="home" component={Home} onEnter={requireAuth} />
+    //   <Route path="login" component={Login} />
+    // </Route>
   )
 }
 
