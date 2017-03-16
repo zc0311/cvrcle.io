@@ -13,7 +13,6 @@ import { Provider } from 'react-redux';
 import { createStore } from 'redux';
 
 // importing components and files
-import ContributorEntry from './components/ContributorEntry.jsx';
 import GoogleMap from './containers/map.jsx';
 import AddNewEntry from './components/AddNewEntry.jsx';
 import rootReducer from './reducers/reducers_index';
