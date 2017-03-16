@@ -4,13 +4,6 @@ const Itinerary = require('./models/Itinerary');
 const Entry = require('./models/Entry');
 
 module.exports = (app) => {
-  app.post('/itineraries', (req, res, next) => {
-    Itinerary
-      .query()
-      .insertAndFetch(req.body)
-      .then((itinerary) => { res.send(itinerary); })
-      .catch(next);
-  });
 
   app.get('/users', (req, res, next) => {
     User
@@ -18,9 +11,32 @@ module.exports = (app) => {
       .then((users) => { res.send(users); })
       .catch(next);
   })
+
+  app.get('/entries', (req, res, next) => {
+    Entry
+      .query()
+      .then((entries) => { res.send(entries); })
+      .catch(next);
+  })
+
+  app.get('/itineraries', (req, res, next) => {
+    Itinerary
+      .query()
+      .then((itineraries) => { res.send(itineraries); })
+      .catch(next);
+  })
 }
 
 
+  // app.post('/itineraries', (req, res, next) => {
+  //   Itinerary
+  //     .query()
+  //     .insertAndFetch(req.body)
+  //     .then((itinerary) => {
+  //       res.send(itinerary);
+  //     })
+  //     .catch(next);
+  // });
 
 
 
