@@ -21,7 +21,7 @@ class GoogleMap extends Component {
     // create the map, marker and infoWindow after the component has
     // been rendered because we need to manipulate the DOM for Google =(
     this.map = this.createMap();
-    this.addMarkers(this.props.locations);
+    // this.addMarkers(this.props.locations);
   }
 
   createMap() {
