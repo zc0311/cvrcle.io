@@ -64,19 +64,6 @@ module.exports = (app) => {
 
 }
 
-
-  // app.post('/itineraries', (req, res, next) => {
-  //   Itinerary
-  //     .query()
-  //     .insertAndFetch(req.body)
-  //     .then((itinerary) => {
-  //       res.send(itinerary);
-  //     })
-  //     .catch(next);
-  // });
-
-
-
 // exports.createItin = function (req, res) {
 // };
 
