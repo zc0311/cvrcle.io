@@ -8,6 +8,7 @@ const knexConfig = require('../knexfile');
 const registerApi = require('./api');
 const Model = require('objection').Model;
 const cors = require('cors');
+const path = require('path');
 
 dotenv.load();
 
@@ -27,7 +28,7 @@ registerApi(app);
 // serve up React front-end client code
 // commenting out for now while I layer in a working
 // auth0 implementation
-// app.use(express.static('client'));
+app.use(express.static('./app/build'));
 
 // Error handling
 app.use((err, req, res, next) => {
