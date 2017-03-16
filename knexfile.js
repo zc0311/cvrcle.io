@@ -5,11 +5,11 @@ module.exports = {
   development: {
     client: 'mysql',
     connection: {
-      host: 'cvrcle-dev.cixe27doo37n.us-west-2.rds.amazonaws.com', 
+      host: 'cvrcle-dev.cixe27doo37n.us-west-2.rds.amazonaws.com',
       database: 'armenr',
-      user:     'rmenr',
+      user: 'rmenr',
       password: 'Vard33g!!'
-     },
+    },
     pool: {
       min: 1,
       max: 1
@@ -19,7 +19,7 @@ module.exports = {
     client: 'postgresql',
     connection: {
       database: 'my_db',
-      user:     'username',
+      user: 'username',
       password: 'password'
     },
     pool: {
