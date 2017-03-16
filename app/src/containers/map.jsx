@@ -14,14 +14,12 @@ class GoogleMap extends Component {
       zoom: 13,
       locations: this.props.locations
     }
-    // this.addMarkers = this.addMarkers.bind(this);
   }
 
   componentDidMount() {
     // create the map, marker and infoWindow after the component has
     // been rendered because we need to manipulate the DOM for Google =(
     this.map = this.createMap();
-    // this.addMarkers(this.props.locations);
   }
 
   createMap() {
@@ -45,10 +43,6 @@ class GoogleMap extends Component {
     this.props.locations.forEach((location) => {
       console.log('location', location.lat);
       console.log('location', location.lng);      
-      // let center = new google.maps.LatLng(
-      //   location.lat, 
-      //   location.lng
-      // )
       let center = {
         lat: location.lat,
         lng: location.lng
@@ -67,27 +61,7 @@ class GoogleMap extends Component {
     )
   }
 
-  // addMarkers(inputs) {
-  //   inputs.forEach((location) => {
-  //     console.log('location', location.lat);
-  //     console.log('location', location.lng);      
-  //     // let center = new google.maps.LatLng(
-  //     //   location.lat, 
-  //     //   location.lng
-  //     // )
-  //     let center = {
-  //       lat: location.lat,
-  //       lng: location.lng
-  //     }
-  //     return new google.maps.Marker({
-  //       position: center,
-  //       map: this.map
-  //     })
-  //   })
-  // }
-
   render() {
-    // this.addMarkers(this.state.locations)
     return (
       <div className="google-map" ref="mapCanvas"></div>
     );
