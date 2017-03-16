@@ -3,11 +3,16 @@ import React, { Component } from 'react';
 import ReactDOM from 'react-dom';
 import axios from "axios";
 import { Container, Header, Card, Message, Segment, Form } from 'semantic-ui-react';
+
+import ContributorEntry from './components/ContributorEntry.jsx';
+import { Navbar, Nav, NavItem } from 'react-bootstrap';
+import { Router, Route, Switch } from 'react-router'
+import Routes from './views/Main/routes.js';
+
 import { Provider } from 'react-redux';
 import { createStore } from 'redux';
 
 // importing components and files
-import ContributorEntry from './components/ContributorEntry.jsx';
 import GoogleMap from './containers/map.jsx';
 import AddNewEntry from './components/AddNewEntry.jsx';
 import rootReducer from './reducers/reducers_index';
@@ -23,6 +28,9 @@ class AppContainer extends Component {
 
     this.getEntries = this.getEntries.bind(this);
 
+    this.getEntries();
+
+    Routes();
   }
 
   getEntries() {
@@ -49,8 +57,24 @@ class AppContainer extends Component {
   render() {
     return (
       <div>
+          <Navbar>
+            <Navbar.Header>
+              <Navbar.Brand><a href="#">Cvrcle</a></Navbar.Brand>
+            </Navbar.Header>
+            <Nav>
+              <NavItem eventKey={1} href="#">Itineraries</NavItem>
+              <NavItem className="logout" eventKey={2} href="#">Logout</NavItem>
+            </Nav>
+          </Navbar>
         <div className="container">
-          <h1 className="text-center">Cvrcle</h1>
+          <Provider store={store}>
+            <LocationSearchBar />
+          </Provider>
+          <GoogleMap store={store} />
+          <ContributorEntry />
+          {this.state.entries.map((entryData, i) => (
+            <ContributorEntry key={i} {...entryData} />
+          ))}
           <div className="map-view">
             <GoogleMap store={store} locations={this.state.entries}/>
           </div>

@@ -3,6 +3,22 @@
   width: 100%
 }
 
+.navbar-default .navbar-brand {
+  line-height: 25px;
+}
+
+.container > .navbar-header {
+  float: left;
+}
+
+.navbar .nav > li {
+  display: inline-block;
+}
+
+.navbar-default .logout {
+  float: right;
+}
+
 .ui.card.entry {
   width: 80%;
   margin: auto;
