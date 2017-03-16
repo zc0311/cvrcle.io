@@ -27,7 +27,7 @@ class AppContainer extends Component {
   }
 
   getEntries() {
-    axios.get('http://localhost:4000/posts/')
+    axios.get('http://localhost:3000/entries')
       .then((res) => {
         this.setState({
           entries: res.data

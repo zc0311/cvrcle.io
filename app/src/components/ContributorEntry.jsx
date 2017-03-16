@@ -39,7 +39,8 @@ class ContributorEntry extends Component {
       author: this.props.author,
       body: this.props.body,
       date: this.props.date,
-      address: this.props.address
+      address: this.props.address,
+      contributorID: this.props.contributorID
     })
   }
 
@@ -78,7 +79,7 @@ class ContributorEntry extends Component {
             </Card.Description>
           </Card.Content>
           <Card.Content extra>
-            <span className="author">Contributed By: {this.state.author}</span>
+            <span className="author">Contributed By: {this.state.contributorID}</span>
             <span className="date">{this.state.date}</span>
           </Card.Content>
         </Card>

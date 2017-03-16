@@ -55,25 +55,45 @@ class EntryModal extends Component {
     const { address } = { address: this.state.address }
 
     geocodeByAddress(address,  (err, { lat, lng }) => {
-      if (err) { 
-        console.log('Error', err) 
-      } else {
+      if (err) { console.log('Error', err) } 
         console.log(`The longitutde and latitude for ${address}`, { lat, lng })
+      
+      const key = GOOGLE_API_KEY
+      let url = `https://maps.googleapis.com/maps/api/geocode/json?latlng=${lat},${lng}&key=${key}`
+      
+      //axios call to google maps api with lat and lng
+      axios
+        .get(url)
+        .then((response) => {
+          console.log('address is: ', response.data.results[0].formatted_address)
+          // formatting object that gets sent to the database + gets updated to app state
+          let location = { 
+            // id: 10,
+            title: this.state.formTitle,
+            body: this.state.formBody,
+            // lat: lat,
+            // lng: lng,
+            name: address,
+            address: response.data.results[0].formatted_address,
+            contributorID: '10158329375645263',
+            itinID: 1
+          };
 
-        // object that gets sent to the database + gets updated to app state
-        let location = { 
-          // entryID: ''
-          title: this.state.formTitle,
-          name: this.state.formAuthor,
-          body: this.state.formBody,
-          lat: lat,
-          lng: lng,
-          address: address
-          // contributorID: '',
-          // itinID: ''
-         };
-        this.props.selectFromLocationSearch(location);
-      }
+          // TODO: Find contributor name from contributorID in join table
+          console.log('location', location);
+          axios
+            .post('http://localhost:3000/entries', location)
+            .then((response) => {
+              console.log(response)
+            })
+            .catch((err) => {
+              if (err) {console.log(err)}
+            })
+        })
+        .catch((err) => {
+          if (err) {console.log(err)}
+        })
+      // this.props.selectFromLocationSearch(location);
     })
     this.close();
   }
