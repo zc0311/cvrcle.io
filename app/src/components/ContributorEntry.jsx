@@ -13,7 +13,6 @@ let store = createStore(rootReducer)
 class ContributorEntry extends Component {
   constructor(props) {
     super(props);
-
     this.state = {
       isEditing: false,
       id: "",

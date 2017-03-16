@@ -10,6 +10,7 @@ class GoogleMap extends Component {
         lng: -118.3907 
       },
       zoom: 13,
+      locations: this.props.locationInputs
     }
   }
 
@@ -34,16 +35,44 @@ class GoogleMap extends Component {
     )
   }
 
+  addMarkers(inputs) {
+    this.props.entriesUpdated.forEach((location) => {
+      let center = new google.maps.LatLng(
+        location.lat, 
+        location.lng
+      )
+      return new google.maps.Marker({
+        position: center,
+        map: this.map
+      })
+    })
+  }
+
+  // appStateLocations(locationInputs) {
+  //   console.log('getting into appStateLocations');
+  //   this.props.locationInputs.forEach((location) => {
+  //     let center = new google.maps.LatLng(
+  //       location.lat, 
+  //       location.lng
+  //     )
+  //     return new google.maps.Marker({
+  //       position: center,
+  //       map: this.map
+  //     })
+  //   })  
+  // }
 
   render() {
-    if (!this.props.locationInputs) {
+    console.log('inside of map render');
+    if (!this.props.locationInput) {
       return (
         <div className="google-map" ref="mapCanvas"></div>
       );
     } else {
       return (
         <div className="google-map" ref="mapCanvas">{
-          this.props.locationInputs.forEach((location) => {
+          this.props.locationInput.forEach((location) => {
+            console.log('getting into making markers')
             let center = new google.maps.LatLng(
               location.lat, 
               location.lng
@@ -61,8 +90,9 @@ class GoogleMap extends Component {
 }
 
 const mapStateToProps = (state) => {
+  console.log('inside of map state to props', state.locationInput);
   return {
-    locationInputs: state.locationInput
+    locationInput: state.locationInput
   }
 }
 
