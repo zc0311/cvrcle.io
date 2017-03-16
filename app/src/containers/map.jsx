@@ -1,5 +1,13 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
+import { createStore } from 'redux';
+import rootReducer from '../reducers/reducers_index';
+
+let store = createStore(rootReducer);
+
+store.subscribe(() =>
+  console.log('redux store', store.getState())
+)
 
 class GoogleMap extends Component {
   constructor(props) {
@@ -10,22 +18,18 @@ class GoogleMap extends Component {
         lng: -118.3907 
       },
       zoom: 13,
-      locations: this.props.locationInputs
+      locations: this.props.locations
     }
+    // this.addMarkers = this.addMarkers.bind(this);
   }
 
   componentDidMount() {
     // create the map, marker and infoWindow after the component has
     // been rendered because we need to manipulate the DOM for Google =(
-    this.map = this.createMap()
+    this.map = this.createMap();
   }
 
   createMap() {
-    // let mapOptions = {
-    //   zoom: this.state.zoom,
-    //   center: this.mapCenter()
-    // }
-    // return new google.maps.Map(this.refs.mapCanvas, mapOptions)
     let map = new google.maps.Map(this.refs.mapCanvas, {
       zoom: this.state.zoom,
       center: this.mapCenter()
@@ -52,62 +56,24 @@ class GoogleMap extends Component {
     )
   }
 
-  addMarkers(inputs) {
-    inputs.forEach((location) => {
-      let center = new google.maps.LatLng(
-        location.lat, 
-        location.lng
-      )
-      return new google.maps.Marker({
-        position: center,
-        map: this.map
-      })
-    })
-  }
-
-  entryLocations(locationInputs) {
-    console.log('getting into entryLocations');
-    this.props.locationInputs.forEach((location) => {
-      let center = new google.maps.LatLng(
-        location.lat, 
-        location.lng
-      )
-      return new google.maps.Marker({
-        position: center,
-        map: this.map
-      })
-    })  
-  }
+  // addMarkers(inputs) {
+  //   inputs.forEach((location) => {
+  //     let center = new google.maps.LatLng(
+  //       location.lat, 
+  //       location.lng
+  //     )
+  //     return new google.maps.Marker({
+  //       position: center,
+  //       map: this.map
+  //     })
+  //   })
+  // }
 
   render() {
-    addMarkers(this.props.locationInput);
+    // this.addMarkers(this.state.locations)
     return (
       <div className="google-map" ref="mapCanvas"></div>
     );
-    /*console.log('inside of map render');
-    if (!this.props.locationInput) {
-      console.log('inside of map render part 2');    
-      return (
-        <div className="google-map" ref="mapCanvas"></div>
-      );
-    } else {
-      return (
-        <div className="google-map" ref="mapCanvas">{
-          this.props.locationInput.forEach((location) => {
-            console.log('getting into making markers')
-            let center = new google.maps.LatLng(
-              location.lat, 
-              location.lng
-            )
-            return new google.maps.Marker({
-              position: center,
-              map: this.map
-            })
-          })  
-        }
-        </div>
-      );
-    }*/
   }
 }
 

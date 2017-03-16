@@ -23,7 +23,6 @@ class AppContainer extends Component {
 
     this.getEntries = this.getEntries.bind(this);
 
-    this.getEntries();
   }
 
   getEntries() {
@@ -39,6 +38,7 @@ class AppContainer extends Component {
   }
 
   componentDidMount() {
+    this.getEntries();
 
   }
 
@@ -52,7 +52,7 @@ class AppContainer extends Component {
         <div className="container">
           <h1 className="text-center">Cvrcle</h1>
           <div className="map-view">
-            <GoogleMap store={store} />
+            <GoogleMap store={store} locations={this.state.entries}/>
           </div>
           <div className="add-entry">
             <AddNewEntry data={''}/>
