@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import ReactDOM from "react-dom";
 import axios from "axios";
 import { Card, Modal } from 'semantic-ui-react';
-import EntryModal from './EntryModal.jsx';
+import EditModal from './EditModal.jsx';
 
 import { Provider } from 'react-redux';
 import { createStore } from 'redux';
@@ -50,10 +50,12 @@ class ContributorEntry extends Component {
     })
   }
 
-  updateEntry(title, body) {
+  updateEntry(incomingData) {
     this.setState({
-      title: title,
-      body: body
+      title: incomingData.title,
+      body: incomingData.body,
+      address: incomingData.address,
+      author: incomingData.author
     })
   }
 
@@ -62,7 +64,7 @@ class ContributorEntry extends Component {
       <div className="single-entry">
         {this.state.isEditing ? 
           <Provider store={store}>
-            <EntryModal resetFlag={this.toggleModal} updateEntry={this.updateEntry} /> 
+            <EditModal resetFlag={this.toggleModal} updateEntry={this.updateEntry} data={this.state}/> 
           </Provider> : 
           ""
         }

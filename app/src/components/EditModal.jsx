@@ -16,10 +16,10 @@ class EntryModal extends Component {
     super(props);
     this.state = {
       showModal: true,
-      formTitle: "",
-      formAuthor: "",
-      formBody: "",
-      address: 'Search Places...'
+      formTitle: this.props.data.title || "",
+      formAuthor: this.props.data.author || "",
+      formBody: this.props.data.body || "",
+      address: this.props.data.address || 'Search Places...'
     }
     // function binds
     this.close = this.close.bind(this);

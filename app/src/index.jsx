@@ -55,7 +55,7 @@ class AppContainer extends Component {
             <GoogleMap store={store} />
           </div>
           <div className="add-entry">
-            <AddNewEntry />
+            <AddNewEntry data={''}/>
           </div>
           <div className="entries">
             <div className="ui two cards">
