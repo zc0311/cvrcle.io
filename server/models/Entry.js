@@ -8,7 +8,7 @@ class Entry extends Model {
   static get jsonSchema () {
     return {
       type: 'object',
-      required: [ 'title', 'body','lat', 'lng', 'name', 'address', 'contributorID', 'itinID' ],
+      required: [ 'title', 'body', 'name', 'address', 'contributorID', 'itinID' ],
 
       properties: {
         id:             { type: 'integer' },
