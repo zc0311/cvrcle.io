@@ -31,11 +31,6 @@ exports.seed = function (knex, Promise) {
         })
     })
 
-
-
-
-
-
   // Inserts seed entries
 
 
