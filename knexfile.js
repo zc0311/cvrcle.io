@@ -8,8 +8,8 @@ module.exports = {
     client: 'mysql',
     connection: {
       host: "cvrcle-dev.cixe27doo37n.us-west-2.rds.amazonaws.com",
-      database: process.env.MYSQL_DEV_DB,
-      user: process.env.MYSQL_MASTER_USER,
+      database: "armenr",
+      user: "rmenr",
       password: 'Vard33g!!'
     },
     pool: {
