@@ -6,6 +6,7 @@ import axios from "axios";
 import { Container, Header, Card, Message, Segment, Form } from 'semantic-ui-react';
 import ContributorEntry from './components/ContributorEntry.jsx';
 import { Navbar, Nav, NavItem } from 'react-bootstrap';
+import { Router, Route, Switch } from 'react-router'
 
 import { Provider } from 'react-redux';
 import { createStore } from 'redux';
@@ -15,6 +16,9 @@ import GoogleMap from './containers/map.jsx';
 import LocationSearchBar from './containers/locationSearchBar.jsx';
 
 let store = createStore(rootReducer)
+// const Router = require('react-router').Router
+// const Route = require('react-router').Route
+// const Switch = require('react-router').Switch
 
 class AppContainer extends Component { 
   constructor(props) {
