@@ -3,6 +3,14 @@ const User = require('./models/User');
 const Itinerary = require('./models/Itinerary');
 const Entry = require('./models/Entry');
 
+// we should refactor this to DRY out the code and instead user
+// express.router and controllers
+// since the models come with their own validation schematic
+// we can create ONE "postOne" method for all routes
+// and then trust that the model defined in the ORM will 
+// prevent an insertOne of any given Model type object
+// that is incomplete/malformed/invalid
+
 module.exports = (app) => {
 
   app.get('/users', (req, res, next) => {
@@ -14,6 +22,16 @@ module.exports = (app) => {
       .where('lastName', req.query.lastName)
       .where('fbID', req.query.fbID)
       .then((users) => { res.send(users); })
+      .catch(next);
+  })
+
+  app.post('/users', (req, res, next) => {
+    console.log(req.body);
+
+    User
+      .query()
+      .insertAndFetch(req.body)
+      .then((user) => { res.send(user)})
       .catch(next);
   })
 
