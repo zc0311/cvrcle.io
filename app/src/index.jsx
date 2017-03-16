@@ -1,17 +1,16 @@
-
+// importing libraries
 import React, { Component } from 'react';
 import ReactDOM from 'react-dom';
-import SampleCard from './components/SampleCard.jsx';
-import $ from 'jquery';
 import axios from "axios";
 import { Container, Header, Card, Message, Segment, Form } from 'semantic-ui-react';
-import ContributorEntry from './components/ContributorEntry.jsx';
-
 import { Provider } from 'react-redux';
 import { createStore } from 'redux';
-import rootReducer from './reducers/reducers_index';
 
+// importing components and files
+import ContributorEntry from './components/ContributorEntry.jsx';
 import GoogleMap from './containers/map.jsx';
+import AddNewEntry from './components/AddNewEntry.jsx';
+import rootReducer from './reducers/reducers_index';
 
 let store = createStore(rootReducer)
 
@@ -22,22 +21,22 @@ class AppContainer extends Component {
       entries: []
     };
 
-    // this.getEntries = this.getEntries.bind(this);
+    this.getEntries = this.getEntries.bind(this);
 
-    // this.getEntries();
+    this.getEntries();
   }
 
-  // getEntries() {
-  //   axios.get('http://localhost:4000/posts/')
-  //     .then((res) => {
-  //       this.setState({
-  //         entries: res.data
-  //       })
-  //     })
-  //     .catch((err) => {
-  //       console.log(err);
-  //     })
-  // }
+  getEntries() {
+    axios.get('http://localhost:4000/posts/')
+      .then((res) => {
+        this.setState({
+          entries: res.data
+        })
+      })
+      .catch((err) => {
+        console.log(err);
+      })
+  }
 
   componentDidMount() {
 
@@ -52,14 +51,20 @@ class AppContainer extends Component {
       <div>
         <div className="container">
           <h1 className="text-center">Cvrcle</h1>
-          <div className="entry-col-1">
-            <ContributorEntry />
-            {this.state.entries.map((entryData, i) => (
-              <ContributorEntry key={i} {...entryData} />
-            ))}
-          </div>
-          <div className="entry-col-2">
+          <div className="map-view">
             <GoogleMap store={store} />
+          </div>
+          <div className="add-entry">
+            <AddNewEntry />
+          </div>
+          <div>
+            <div className="existing-entries">
+              {this.state.entries.length ? 
+                (this.state.entries.map((entryData, i) => (
+                  <ContributorEntry key={i} {...entryData} />))) :
+                "No entries yet!"
+              }
+            </div>
           </div>
         </div>
       </div>
