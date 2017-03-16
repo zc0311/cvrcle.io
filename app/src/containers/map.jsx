@@ -23,10 +23,14 @@ class GoogleMap extends Component {
   }
 
   createMap() {
+    // instantiates the map
     let map = new google.maps.Map(this.refs.mapCanvas, {
       zoom: this.state.zoom,
       center: this.mapCenter()
     });
+    let markerBounds = new google.maps.LatLngBounds();
+
+    // grabs location
     if (navigator.geolocation) {
       navigator.geolocation.getCurrentPosition((position) => {
         let pos = {
@@ -34,12 +38,10 @@ class GoogleMap extends Component {
           lng: position.coords.longitude
         };
         map.setCenter(pos);
-        return new google.maps.Marker({
-          position: pos,
-          map: map
-        })
       });
     }
+
+    // adds markers onto the page
     this.props.locations.forEach((location) => {
       console.log('location', location.lat);
       console.log('location', location.lng);      
@@ -47,11 +49,15 @@ class GoogleMap extends Component {
         lat: location.lat,
         lng: location.lng
       }
-      return new google.maps.Marker({
+      new google.maps.Marker({
         position: center,
         map: map
       })
+      markerBounds.extend(center);
     })
+
+    //resets map bounds
+    map.fitBounds(markerBounds);
   }
 
   mapCenter() {

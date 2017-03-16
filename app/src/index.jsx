@@ -19,6 +19,8 @@ import rootReducer from './reducers/reducers_index';
 
 let store = createStore(rootReducer)
 
+console.log(store.getState());
+
 class AppContainer extends Component {
   constructor(props) {
     super(props);
@@ -33,6 +35,7 @@ class AppContainer extends Component {
     Routes();
   }
 
+  // TODO: modify request to get only relevant itinerary
   getEntries() {
     axios.get('http://localhost:3000/entries')
       .then((res) => {
