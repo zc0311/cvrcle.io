@@ -20,7 +20,8 @@ class ContributorEntry extends Component {
       author: "",
       body: "",
       date: "",
-      address: ""
+      address: "",
+      name: ""
     }
 
     this.toggleModal = this.toggleModal.bind(this);
@@ -51,11 +52,13 @@ class ContributorEntry extends Component {
   }
 
   updateEntry(incomingData) {
+    console.log('getting into updateEntry');
     this.setState({
       title: incomingData.title,
       body: incomingData.body,
       address: incomingData.address,
-      author: incomingData.author
+      author: incomingData.author,
+      name: incomingData.name
     })
   }
 
@@ -81,7 +84,7 @@ class ContributorEntry extends Component {
             </Card.Description>
           </Card.Content>
           <Card.Content extra>
-            <span className="author">Contributed By: {this.state.contributorID}</span>
+            <span className="author">Contributed By: {this.state.author}</span>
             <span className="date">{this.state.date}</span>
           </Card.Content>
         </Card>

@@ -89,7 +89,7 @@ class EntryModal extends Component {
             itinID: 1
           }
           
-          this.props.updateEntry(location);
+          // this.props.updateEntry(location);
 
           // TODO: Find contributor name from contributorID in join table
           console.log('location', location);
@@ -133,7 +133,7 @@ class EntryModal extends Component {
 
     return (
       <Modal show={this.state.showModal} onHide={this.close}>
-        <Modal.Header closeButton>Edit Activity</Modal.Header>
+        <Modal.Header closeButton>Add New Activity</Modal.Header>
         <Modal.Body>
           <form>
             <FormGroup>
