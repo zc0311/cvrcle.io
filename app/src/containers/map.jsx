@@ -21,11 +21,28 @@ class GoogleMap extends Component {
   }
 
   createMap() {
-    let mapOptions = {
+    // let mapOptions = {
+    //   zoom: this.state.zoom,
+    //   center: this.mapCenter()
+    // }
+    // return new google.maps.Map(this.refs.mapCanvas, mapOptions)
+    let map = new google.maps.Map(this.refs.mapCanvas, {
       zoom: this.state.zoom,
       center: this.mapCenter()
-    }
-    return new google.maps.Map(this.refs.mapCanvas, mapOptions)
+    });
+    if (navigator.geolocation) {
+      navigator.geolocation.getCurrentPosition((position) => {
+        let pos = {
+          lat: position.coords.latitude,
+          lng: position.coords.longitude
+        };
+        map.setCenter(pos);
+        return new google.maps.Marker({
+          position: pos,
+          map: map
+        })
+      });
+    } 
   }
 
   mapCenter() {
@@ -36,7 +53,7 @@ class GoogleMap extends Component {
   }
 
   addMarkers(inputs) {
-    this.props.entriesUpdated.forEach((location) => {
+    inputs.forEach((location) => {
       let center = new google.maps.LatLng(
         location.lat, 
         location.lng
@@ -48,23 +65,28 @@ class GoogleMap extends Component {
     })
   }
 
-  // appStateLocations(locationInputs) {
-  //   console.log('getting into appStateLocations');
-  //   this.props.locationInputs.forEach((location) => {
-  //     let center = new google.maps.LatLng(
-  //       location.lat, 
-  //       location.lng
-  //     )
-  //     return new google.maps.Marker({
-  //       position: center,
-  //       map: this.map
-  //     })
-  //   })  
-  // }
+  entryLocations(locationInputs) {
+    console.log('getting into entryLocations');
+    this.props.locationInputs.forEach((location) => {
+      let center = new google.maps.LatLng(
+        location.lat, 
+        location.lng
+      )
+      return new google.maps.Marker({
+        position: center,
+        map: this.map
+      })
+    })  
+  }
 
   render() {
-    console.log('inside of map render');
+    addMarkers(this.props.locationInput);
+    return (
+      <div className="google-map" ref="mapCanvas"></div>
+    );
+    /*console.log('inside of map render');
     if (!this.props.locationInput) {
+      console.log('inside of map render part 2');    
       return (
         <div className="google-map" ref="mapCanvas"></div>
       );
@@ -85,7 +107,7 @@ class GoogleMap extends Component {
         }
         </div>
       );
-    }
+    }*/
   }
 }
 
