@@ -7,21 +7,21 @@ exports.seed = function (knex, Promise) {
             .then(() => {
               return knex('itineraries').insert([{
                   id: 1,
-                  ownerID: '10106693933724976',
+                  ownerID: '1',
                   itinName: 'Fuckin Awesome Test Itinerary #1',
                   isActive: '0',
                   isPublic: '1',
                 },
                 {
                   id: 2,
-                  ownerID: '10158329375645263',
+                  ownerID: '2',
                   itinName: 'Bloody BadAss Test Itinerary #2',
                   isActive: '0',
                   isPublic: '1',
                 },
                 {
                   id: 3,
-                  ownerID: '179529875886295',
+                  ownerID: '3',
                   itinName: 'Flippin Cool Test Itinerary #3',
                   isActive: '0',
                   isPublic: '1',

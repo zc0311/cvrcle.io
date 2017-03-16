@@ -12,7 +12,7 @@ exports.seed = function (knex, Promise) {
               lng: -118.3907289,
               name: 'Hack Reactor, Center Drive, Los Angeles, CA, United States',
               address: '6060 Center Dr, Los Angeles, CA 90045, USA',
-              contributorID: '10106693933724976',      // contributed by Armen to his own itin
+              contributorID: '1',      // contributed by Armen to his own itin
               itinID: 1                               // belongs to Armen's Fuckin Awesome Itinerary 
             },
             {
@@ -23,7 +23,7 @@ exports.seed = function (knex, Promise) {
               lng: -118.56486080000002,
               name: 'The Getty Villa, Los Angeles, CA, United States',
               address: 'Getty Villa, 17985 Pacific Coast Hwy, Pacific Palisades, CA 90272, USA',
-              contributorID: '10158329375645263',   // contributed by Regina to Armen's itin
+              contributorID: '2',   // contributed by Regina to Armen's itin
               itinID: 1                            // belongs to Armen's Fuckin Awesome Itinerary
             },
             {
@@ -34,7 +34,7 @@ exports.seed = function (knex, Promise) {
               lng: -118.2609468,
               name: 'Morton\'s The Steakhouse',
               address: "S Figueroa St, Los Angeles, CA 90017, USA",
-              contributorID: '179529875886295',   // contributed by Andrew to Armen's Itin
+              contributorID: '3',   // contributed by Andrew to Armen's Itin
               itinID: 1                            // belongs to Armen's
             },
             {
@@ -45,7 +45,7 @@ exports.seed = function (knex, Promise) {
               lng: -118.51361680000002,
               name: "O'Melveny Park, Los Angeles, CA, United States",
               address: 'Getty Villa, 17985 Pacific Coast Hwy, Pacific Palisades, CA 90272, USA',
-              contributorID: '10158329375645263',   // contributed by Regina to her own itin
+              contributorID: '2',   // contributed by Regina to her own itin
               itinID: 2                            // belongs to Regina's' Itinerary
             },
             {
@@ -56,7 +56,7 @@ exports.seed = function (knex, Promise) {
               lng: -122.4798778,
               name: "Marshall's Beach, San Francisco, CA, United States",
               address: "Marshall's Beach, San Francisco, CA 94129, USA",
-              contributorID: '10106693933724976',   // contributed by Armen to his Regina's'
+              contributorID: '1',   // contributed by Armen to his Regina's'
               itinID: 2                            // belongs to Regina's Itinerary
             },
             {
@@ -67,7 +67,7 @@ exports.seed = function (knex, Promise) {
               lng: -122.40011529999998,
               name: 'Garaje, 3rd Street, San Francisco, CA, United States',
               address: '475 3rd St, San Francisco, CA 94107, USA',
-              contributorID: '179529875886295',   // contributed by Andrew to REgina's'
+              contributorID: '3',   // contributed by Andrew to REgina's'
               itinID: 2                             // belongs to Regina's' itin
             },
             {
@@ -78,7 +78,7 @@ exports.seed = function (knex, Promise) {
               lng: -118.49357099999997,
               name: 'Philz Coffee, Santa Monica Boulevard, Santa Monica, CA, United States',
               address: '525 Santa Monica Blvd, Santa Monica, CA 90401, USA',
-              contributorID: '179529875886295',   // contributed by Andrew to his own
+              contributorID: '3',   // contributed by Andrew to his own
               itinID: 3                             // belongs to Andrew's Itinerary
             },
             {
@@ -89,7 +89,7 @@ exports.seed = function (knex, Promise) {
               lng: -118.44372340000001,
               name: 'Zankou Chicken, Los Angeles, CA, United States',
               address: '1716 S Sepulveda Blvd, Los Angeles, CA 90025, USA',
-              contributorID: '10106693933724976',   // contributed by Armen to Andrew's itin
+              contributorID: '1',   // contributed by Armen to Andrew's itin
               itinID: 3                             // belongs to Andrew's' Itinerary
             },
             {
@@ -100,7 +100,7 @@ exports.seed = function (knex, Promise) {
               lng: -118.34495170000002,
               name: "Mashti Malone's Ice Cream, North La Brea Avenue, Los Angeles, CA, United States",
               address: "1525 N La Brea Ave, Los Angeles, CA 90028, USA",
-              contributorID: '10158329375645263',   // contributed by Regina to Andrew's itin
+              contributorID: '2',   // contributed by Regina to Andrew's itin
               itinID: 3                             // belongs to Andrew's' Itinerary
             }
           ]);
