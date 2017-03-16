@@ -6,3 +6,4 @@ app/build
 .vscode
 .DS_Store
 config.js
+db.json
