@@ -68,7 +68,10 @@ class AppContainer extends Component {
         </Navbar>
         <div className="container">
           <div className="map-view">
-            <GoogleMap store={store} locations={this.state.entries} />
+            {this.state.entries.length ?
+              <GoogleMap store={store} locations={this.state.entries} /> :
+              ''
+            }
           </div>
           <div className="add-entry">
             <AddNewEntry data={''} />

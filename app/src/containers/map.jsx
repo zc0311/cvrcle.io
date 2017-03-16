@@ -3,12 +3,6 @@ import { connect } from 'react-redux';
 import { createStore } from 'redux';
 import rootReducer from '../reducers/reducers_index';
 
-let store = createStore(rootReducer);
-
-store.subscribe(() =>
-  console.log('redux store', store.getState())
-)
-
 class GoogleMap extends Component {
   constructor(props) {
     super(props);
@@ -27,6 +21,7 @@ class GoogleMap extends Component {
     // create the map, marker and infoWindow after the component has
     // been rendered because we need to manipulate the DOM for Google =(
     this.map = this.createMap();
+    this.addMarkers(this.props.locations);
   }
 
   createMap() {
@@ -46,7 +41,23 @@ class GoogleMap extends Component {
           map: map
         })
       });
-    } 
+    }
+    this.props.locations.forEach((location) => {
+      console.log('location', location.lat);
+      console.log('location', location.lng);      
+      // let center = new google.maps.LatLng(
+      //   location.lat, 
+      //   location.lng
+      // )
+      let center = {
+        lat: location.lat,
+        lng: location.lng
+      }
+      return new google.maps.Marker({
+        position: center,
+        map: map
+      })
+    })
   }
 
   mapCenter() {
@@ -58,10 +69,16 @@ class GoogleMap extends Component {
 
   // addMarkers(inputs) {
   //   inputs.forEach((location) => {
-  //     let center = new google.maps.LatLng(
-  //       location.lat, 
-  //       location.lng
-  //     )
+  //     console.log('location', location.lat);
+  //     console.log('location', location.lng);      
+  //     // let center = new google.maps.LatLng(
+  //     //   location.lat, 
+  //     //   location.lng
+  //     // )
+  //     let center = {
+  //       lat: location.lat,
+  //       lng: location.lng
+  //     }
   //     return new google.maps.Marker({
   //       position: center,
   //       map: this.map
