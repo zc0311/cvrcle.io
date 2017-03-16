@@ -19,8 +19,6 @@ import rootReducer from './reducers/reducers_index';
 
 let store = createStore(rootReducer)
 
-console.log(store.getState());
-
 class AppContainer extends Component {
   constructor(props) {
     super(props);
@@ -58,6 +56,7 @@ class AppContainer extends Component {
   }
 
   render() {
+    console.log('app store', store.getState());
     return (
       <div>
         <Navbar>

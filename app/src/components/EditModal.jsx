@@ -69,23 +69,22 @@ class EditModal extends Component {
           let locationToDatabase = { 
             title: this.state.formTitle,
             body: this.state.formBody,
-            // lat: lat,
-            // lng: lng,
+            lat: lat,
+            lng: lng,
             name: address,
             address: response.data.results[0].formatted_address,
-            contributorID: '10158329375645263',
+            contributorID: 1,
             itinID: 1
           };
 
           let locationToContributorEntry={
             title: this.state.formTitle,
             body: this.state.formBody,
-            author: this.state.formAuthor,
             lat: lat,
             lng: lng,
             name: address,
             address: response.data.results[0].formatted_address,
-            contributorID: '10158329375645263',
+            contributorID: 1,
             itinID: 1
           }
           
@@ -95,7 +94,7 @@ class EditModal extends Component {
           // TODO: CHANGE TO PUT REQUEST (MODIFYING)
           console.log('location', location);
           // axios
-          //   .post('http://localhost:3000/entries', location)
+          //   .put('http://localhost:3000/entries', location)
           //   .then((response) => {
           //     console.log(response)
           //   })

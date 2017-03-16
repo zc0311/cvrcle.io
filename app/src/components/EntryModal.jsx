@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import ReactDOM from "react-dom";
+import axios from 'axios';
 import { Button, Modal, Form, FormGroup, FormControl, ControlLabel } from 'react-bootstrap';
 import PlacesAutocomplete from 'react-places-autocomplete';
 import { geocodeByAddress, geocodeByPlaceId } from 'react-places-autocomplete';
@@ -68,11 +69,11 @@ class EntryModal extends Component {
           let locationToDatabase = { 
             title: this.state.formTitle,
             body: this.state.formBody,
-            // lat: lat,
-            // lng: lng,
+            lat: lat,
+            lng: lng,
             name: address,
             address: response.data.results[0].formatted_address,
-            contributorID: '10158329375645263',
+            contributorID: 1,
             itinID: 1
           };
 
@@ -84,7 +85,7 @@ class EntryModal extends Component {
             lng: lng,
             name: address,
             address: response.data.results[0].formatted_address,
-            contributorID: '10158329375645263',
+            contributorID: 1,
             itinID: 1
           }
           
@@ -104,7 +105,7 @@ class EntryModal extends Component {
         .catch((err) => {
           if (err) {console.log(err)}
         })
-      // this.props.selectFromLocationSearch(location);
+      this.props.selectFromLocationSearch(location);
     })
     this.close();
   }

@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { createStore } from 'redux';
-import rootReducer from '../reducers/reducers_index';
+// import { createStore } from 'redux';
+// import rootReducer from '../reducers/reducers_index';
 
 class GoogleMap extends Component {
   constructor(props) {
