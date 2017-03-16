@@ -21,7 +21,7 @@ class ContributorEntry extends Component {
       author: "",
       body: "",
       date: "",
-      location: ""
+      address: ""
     }
 
     this.toggleModal = this.toggleModal.bind(this);
@@ -40,7 +40,7 @@ class ContributorEntry extends Component {
       author: this.props.author,
       body: this.props.body,
       date: this.props.date,
-      location: this.props.location
+      address: this.props.address
     })
   }
 
@@ -59,7 +59,7 @@ class ContributorEntry extends Component {
 
   render() {
     return (
-      <div>
+      <div className="single-entry">
         {this.state.isEditing ? 
           <Provider store={store}>
             <EntryModal resetFlag={this.toggleModal} updateEntry={this.updateEntry} /> 
@@ -71,12 +71,15 @@ class ContributorEntry extends Component {
             <Card.Header> 
               {this.state.title}
             </Card.Header>
+            <Card.Meta>
+              {this.state.address}
+            </Card.Meta>
             <Card.Description>
               {this.state.body}
             </Card.Description>
           </Card.Content>
           <Card.Content extra>
-            <span className="author">{this.state.author}</span>
+            <span className="author">Contributed By: {this.state.author}</span>
             <span className="date">{this.state.date}</span>
           </Card.Content>
         </Card>

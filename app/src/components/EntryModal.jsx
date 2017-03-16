@@ -72,6 +72,7 @@ class EntryModal extends Component {
           // contributorID: '',
           // itinID: ''
          };
+        this.props.selectFromLocationSearch(location);
       }
     })
     this.close();

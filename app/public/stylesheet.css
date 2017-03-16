@@ -44,16 +44,17 @@
   position: center;
   margin: auto;
   text-align: center;
-  margin-top: 10px
+  margin-top: 10px;
 }
 
-.existing-entries {
-  width: 100px;
-  height: 100px;
-  position: center;
-  margin: auto;
+.single-entry {
+  width: 50%;
+  margin-top: 20px 
 }
 
+.entries {
+  margin-bottom: 100px;
+}
 .map-view {
   /*float: right;*/
   width: 100%;

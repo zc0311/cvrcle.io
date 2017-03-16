@@ -57,13 +57,15 @@ class AppContainer extends Component {
           <div className="add-entry">
             <AddNewEntry />
           </div>
-          <div>
-            <div className="existing-entries">
-              {this.state.entries.length ? 
-                (this.state.entries.map((entryData, i) => (
-                  <ContributorEntry key={i} {...entryData} />))) :
-                "No entries yet!"
-              }
+          <div className="entries">
+            <div className="ui two cards">
+              <Card.Group className="existing-entries">
+                {this.state.entries.length ? 
+                  (this.state.entries.map((entryData, i) => (
+                    <ContributorEntry key={i} {...entryData} />))) :
+                  "No entries yet!"
+                }
+              </Card.Group>
             </div>
           </div>
         </div>
