@@ -6,8 +6,13 @@ const Entry = require('./models/Entry');
 module.exports = (app) => {
 
   app.get('/users', (req, res, next) => {
+    console.log(req.query);
     User
       .query()
+      .skipUndefined()
+      .where('firstName', req.query.firstName)
+      .where('lastName', req.query.lastName)
+      .where('fbID', req.query.fbID)
       .then((users) => { res.send(users); })
       .catch(next);
   })
