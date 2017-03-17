@@ -30,15 +30,17 @@ class GoogleMap extends Component {
     });
     let markerBounds = new google.maps.LatLngBounds();
 
-    // grabs location
-    if (navigator.geolocation) {
-      navigator.geolocation.getCurrentPosition((position) => {
-        let pos = {
-          lat: position.coords.latitude,
-          lng: position.coords.longitude
-        };
-        map.setCenter(pos);
-      });
+    // grabs location and centers map if no locations already save
+    if (this.props.locations.length === 0) {
+      if (navigator.geolocation) {
+        navigator.geolocation.getCurrentPosition((position) => {
+          let pos = {
+            lat: position.coords.latitude,
+            lng: position.coords.longitude
+          };
+          map.setCenter(pos);
+        });
+      }
     }
 
     // adds markers onto the page
