@@ -6,8 +6,6 @@ import PlacesAutocomplete from 'react-places-autocomplete';
 import { geocodeByAddress, geocodeByPlaceId } from 'react-places-autocomplete';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
-
-//importing files
 import GOOGLE_API_KEY from '../../../config.js';
 import rootReducer from '../reducers/reducers_index';
 import store from '../store';
@@ -137,11 +135,19 @@ class EntryModal extends Component {
           <form>
             <FormGroup>
               <ControlLabel>Title</ControlLabel>
-              <FormControl name="formTitle" onChange={this.handleInputchange} componentClass="input" defaultValue={this.state.formTitle}/>
+              <FormControl 
+                name="formTitle" 
+                onChange={this.handleInputchange} 
+                componentClass="input" 
+              />
             </FormGroup>
             <FormGroup>
               <ControlLabel>Author</ControlLabel>
-              <FormControl name="formAuthor" onChange={this.handleInputchange} componentClass="input" />
+              <FormControl 
+                name="formAuthor" 
+                onChange={this.handleInputchange} 
+                componentClass="input" 
+              />
             </FormGroup>
             <FormGroup>
               <ControlLabel>Location</ControlLabel>
@@ -155,7 +161,11 @@ class EntryModal extends Component {
             </FormGroup>
             <FormGroup>
               <ControlLabel>Description</ControlLabel>
-              <FormControl name="formBody" onChange={this.handleInputchange} componentClass="textarea" />
+              <FormControl 
+                name="formBody" 
+                onChange={this.handleInputchange} 
+                componentClass="textarea" 
+              />
             </FormGroup>
           </form>
         </Modal.Body>

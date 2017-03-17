@@ -6,10 +6,7 @@ import PlacesAutocomplete from 'react-places-autocomplete';
 import { geocodeByAddress, geocodeByPlaceId } from 'react-places-autocomplete';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
-
-//importing files
 import GOOGLE_API_KEY from '../../../config.js';
-import { selectFromLocationSearch } from '../actions/actions_index';
 
 class EditModal extends Component {
   constructor(props) {
@@ -181,15 +178,4 @@ class EditModal extends Component {
   }
 }
 
-const mapStateToProps = (state) => {
-  return {
-    locationInput: state.locationInput
-  }
-}
-
-const mapDispatchToProps = (dispatch) => {
-  return bindActionCreators({ selectFromLocationSearch }, dispatch);
-}
-
-export default connect(mapStateToProps, mapDispatchToProps)(EditModal);
-
+export default EditModal;
