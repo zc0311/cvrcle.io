@@ -16,7 +16,7 @@ class Logout extends Component {
     return (
       <div>
         <Navbar />
-        Home
+        <div className="text-center">User Itineraries here.</div>
       </div>
     );
   }

@@ -54,7 +54,7 @@ class Itinerary extends Component {
   }
 
   componentWillUnmount() {
-    this.serverRequest.abort();
+    // this.serverRequest.abort();
   }
 
   render() {

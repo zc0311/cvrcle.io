@@ -25,7 +25,8 @@ class AppContainer extends Component {
           <span style={{color: '#db3236'}}>E</span>
         </h1>
 
-        <div>
+        <div className="text-center">
+          Auth will go here.
           {/* replace below div with auth0 */}
         </div>
       </div>
