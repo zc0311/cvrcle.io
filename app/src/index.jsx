@@ -35,7 +35,7 @@ class AppContainer extends Component {
             <span style={{color: '#db3236'}}>E</span>
           </h1>
           <div className="text-center">
-            Auth will go here.
+            Hi Regina.
             <Home1 lock={this.lock}/>
           </div>
         </div>
