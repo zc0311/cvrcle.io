@@ -33,12 +33,22 @@ class AppContainer extends Component {
     Routes();
   }
 
-  // TODO: modify request to get only relevant itinerary
+  // TODO: modify request to get only relevant itinerary (match itinID)
   getEntries() {
     axios.get('http://localhost:3000/entries')
       .then((res) => {
+        let filteredEntries = [];
+        res.data.forEach((entry) => {
+          if (entry.itinID === 1) {
+            console.log('match');
+            filteredEntries.push(entry);
+          }
+        })
+        return filteredEntries
+      })
+      .then((data) => {
         this.setState({
-          entries: res.data
+          entries: data
         })
       })
       .catch((err) => {
@@ -56,7 +66,7 @@ class AppContainer extends Component {
   }
 
   render() {
-    console.log('app store', store.getState());
+    // console.log('app store', store.getState());
     return (
       <div>
         <Navbar>
