@@ -3,6 +3,7 @@ import ReactDOM from 'react-dom';
 import axios from "axios";
 
 import { Card, Image } from 'semantic-ui-react';
+import Home1 from './components/Home.jsx'
 import { Router, Route, IndexRoute, hashHistory } from 'react-router'
 
 import Home from './views/home.js';
@@ -17,12 +18,19 @@ class AppContainer extends Component {
     super(props);
   }
 
+  componentWillMount() {
+    this.lock = new Auth0Lock('qpfelAKW1EAzyb3RI3pk46SD0deXrJhE', 'cvrcle.auth0.com')
+    console.log('we in here')
+  }
+  
   render() {
     return(
       <Provider store={store}>
         <div>
           <Image className="cvrcle-logo" src='../cvrcle.png' />
-          <div> {/* replace below div with auth0 */} </div>
+          <div className="text-center">
+            <Home1 lock={this.lock}/>
+          </div>
         </div>
       </Provider>
     );
