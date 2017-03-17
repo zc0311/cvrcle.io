@@ -48,8 +48,18 @@ class AddNewEntry extends Component {
     return (
       <div>
         {this.state.isClicked ? 
-          <EntryModal resetFlag={this.toggleModal} updateEntry={this.updateEntry} /> : ""}
-        <Button id={this.state.id} bsStyle="default" bsSize="large" className="entry" onClick={this.toggleModal}>Add New Entry</Button>
+          <EntryModal 
+            resetFlag={this.toggleModal} 
+            updateEntry={this.updateEntry}
+            newEntryAdded={this.props.newEntryAdded}
+          /> : ""}
+        <Button 
+          id={this.state.id} 
+          bsStyle="default" 
+          bsSize="large" 
+          className="entry" 
+          onClick={this.toggleModal}>Add New Entry
+        </Button>
       </div>
     );
   }

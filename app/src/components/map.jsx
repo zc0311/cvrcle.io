@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-// import { connect } from 'react-redux';
 
 class GoogleMap extends Component {
   constructor(props) {
@@ -28,7 +27,7 @@ class GoogleMap extends Component {
     });
     let markerBounds = new google.maps.LatLngBounds();
 
-    // grabs location and centers map if no locations already save
+    // grabs location and centers map if no locations already saved
     if (this.props.locations.length === 0) {
       if (navigator.geolocation) {
         navigator.geolocation.getCurrentPosition((position) => {
@@ -43,8 +42,6 @@ class GoogleMap extends Component {
 
     // adds markers onto the page
     this.props.locations.forEach((location) => {
-      console.log('loc-lat', location.lat);
-      console.log('loc-lng', location.lng);      
       let center = {
         lat: location.lat,
         lng: location.lng
@@ -75,12 +72,4 @@ class GoogleMap extends Component {
 }
 
 export default GoogleMap;
-
-// const mapStateToProps = (state) => {
-//   return {
-//     locationInput: state.locationInput
-//   }
-// }
-
-// export default connect(mapStateToProps)(GoogleMap);
 
