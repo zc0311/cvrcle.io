@@ -7,7 +7,6 @@ import { Container, Header, Card, Message, Segment, Form } from 'semantic-ui-rea
 import ContributorEntry from './components/ContributorEntry.jsx';
 import { Navbar, Nav, NavItem } from 'react-bootstrap';
 import { Router, Route, Switch } from 'react-router'
-import Routes from './views/Main/routes.js';
 
 import { Provider } from 'react-redux';
 import { createStore } from 'redux';
@@ -40,7 +39,6 @@ class AppContainer extends Component {
         let filteredEntries = [];
         res.data.forEach((entry) => {
           if (entry.itinID === 1) {
-            console.log('match');
             filteredEntries.push(entry);
           }
         })
