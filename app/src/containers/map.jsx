@@ -27,7 +27,7 @@ class GoogleMap extends Component {
     });
     let markerBounds = new google.maps.LatLngBounds();
 
-    // grabs location and centers map if no locations already save
+    // grabs location and centers map if no locations already saved
     if (this.props.locations.length === 0) {
       if (navigator.geolocation) {
         navigator.geolocation.getCurrentPosition((position) => {

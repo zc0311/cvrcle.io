@@ -14,10 +14,11 @@ class Itinerary extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      entries: []
+      entries: [],
+      newEntry: false
     };
-
     this.getEntries = this.getEntries.bind(this);
+    this.newEntryAdded = this.newEntryAdded.bind(this);
   }
 
   getEntries() {
@@ -49,6 +50,13 @@ class Itinerary extends Component {
     // this.serverRequest.abort();
   }
 
+  newEntryAdded() {
+    console.log('inside of add new entry');
+    this.setState({
+      newEntry: !this.state.newEntry
+    })
+  }
+
   render() {
     return (
       <Provider store={store}>
@@ -60,7 +68,7 @@ class Itinerary extends Component {
                 <GoogleMap locations={this.state.entries} /> : ''}
             </div>
             <div className="add-entry">
-              <AddNewEntry data={''} />
+              <AddNewEntry data={''} newEntryAdded={this.newEntryAdded}/>
             </div>
             <div className="entries">
               <div className="ui two cards">

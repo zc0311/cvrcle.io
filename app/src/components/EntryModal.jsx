@@ -20,7 +20,7 @@ class EntryModal extends Component {
       formTitle: "",
       formAuthor: "",
       formBody: "",
-      address: 'Search Places...'
+      address: 'Search Places...',
     }
     // function binds
     this.close = this.close.bind(this);
@@ -96,6 +96,7 @@ class EntryModal extends Component {
           if (err) {console.log(err)}
         })
     })
+    this.props.newEntryAdded();
     this.close();
   }
 
