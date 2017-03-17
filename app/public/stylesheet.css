@@ -13,6 +13,12 @@
   width: 100%
 }
 
+.itin-container .ui.card {
+  text-align: center;
+  margin: 20px auto;
+  width: 50%;
+}
+
 .container > .navbar-header {
   float: left;
   font-size: 18px;
@@ -39,25 +45,25 @@
   color: #777;
 }
 
-.ui.card.entry {
+.ui.card {
   width: 80%;
   margin: auto;
 }
 
-.ui.card.entry:hover {
+.ui.card:hover {
   cursor: pointer;
   text-decoration: none;
 }
 
-.card.entry .header {
+.card .header {
   height: 30px;
 }
 
-.card.entry .author {
+.card .author {
   float: left;
 }
 
-.card.entry .date {
+.card .date {
   float: right;
 }
 
