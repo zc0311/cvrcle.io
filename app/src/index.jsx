@@ -1,7 +1,8 @@
 import React, { Component } from 'react';
 import ReactDOM from 'react-dom';
 import axios from "axios";
-import { Card } from 'semantic-ui-react';
+
+import { Card, Image } from 'semantic-ui-react';
 import Home1 from './components/Home.jsx'
 import { Router, Route, IndexRoute, hashHistory } from 'react-router'
 
@@ -26,14 +27,7 @@ class AppContainer extends Component {
     return(
       <Provider store={store}>
         <div>
-          <h1 className="cvrcle-logo text-center">
-            <span style={{color: '#4885ed'}}>C</span>
-            <span style={{color: '#db3236'}}>V</span>
-            <span style={{color: '#f4c20d'}}>R</span>
-            <span style={{color: '#4885ed'}}>C</span>
-            <span style={{color: '#3cba54'}}>L</span>
-            <span style={{color: '#db3236'}}>E</span>
-          </h1>
+          <Image className="cvrcle-logo" src='../cvrcle.png' />
           <div className="text-center">
             Hi Regina.
             <Home1 lock={this.lock}/>

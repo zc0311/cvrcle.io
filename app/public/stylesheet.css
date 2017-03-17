@@ -1,5 +1,11 @@
-.cvrcle-logo.text-center {
-  margin-top: 50px;
+.cvrcle-logo {
+  margin: 50px auto 20px;
+  height: 125px;
+}
+
+.cvrcle-logo-icon {
+  height: 20px;
+  margin-top: 3px;
 }
 
 .google-map {
@@ -15,10 +21,6 @@
 
 .navbar-header li > a {
   float: left;
-}
-
-.container > .navbar-header > a:hover {
-  text-decoration: none;
 }
 
 .navbar.navbar-default {
