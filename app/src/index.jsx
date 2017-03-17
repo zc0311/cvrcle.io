@@ -5,9 +5,9 @@ import axios from "axios";
 import { Container, Header, Card, Message, Segment, Form } from 'semantic-ui-react';
 
 import ContributorEntry from './components/ContributorEntry.jsx';
-import { Navbar, Nav } from 'react-bootstrap';
+
+import { Navbar, Nav, NavItem} from 'react-bootstrap';
 import { Router, Route, IndexRoute, Link, hashHistory } from 'react-router'
-// import Routes from './views/Main/routes.js';
 
 import { Provider } from 'react-redux';
 import { createStore } from 'redux';
@@ -40,7 +40,6 @@ class AppContainer extends Component {
         let filteredEntries = [];
         res.data.forEach((entry) => {
           if (entry.itinID === 1) {
-            console.log('match');
             filteredEntries.push(entry);
           }
         })
