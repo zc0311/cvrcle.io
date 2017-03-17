@@ -8,17 +8,17 @@ class Entry extends Model {
   static get jsonSchema () {
     return {
       type: 'object',
-      required: [ 'title', 'body', 'name', 'address', 'contributorID', 'itinID' ],
+      required: [ 'title', 'body', 'lat', 'lng', 'name', 'address', 'contributorID', 'itinID' ],
 
       properties: {
         id:             { type: 'integer' },
         title:          { type: 'string', minLength: 1, maxLength: 255 },
         body:           { type: 'string', minLength: 1, maxLength: 255 },
-        lat:            { type: 'float', precision: 10, scale: 6 },
-        lng:            { type: 'float', precision: 10, scale: 6 },
+        lat:            { type: 'string', minLength: 1, maxLength: 255 },
+        lng:            { type: 'string', minLength: 1, maxLength: 255 },
         name:           { type: 'string', minLength: 1, maxLength: 255 },
         address:        { type: 'string', minLength: 1, maxLength: 255 },
-        contributorID:  { type: 'string', minLength: 1, maxLength:255 },
+        contributorID:  { type: 'integer', minLength: 1 },
         itinID:         { type: 'integer', minLength: 1 }
       }
     };

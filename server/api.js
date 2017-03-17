@@ -41,9 +41,24 @@ module.exports = (app) => {
   })
 
   app.post('/entries', (req, res, next) => {
+    console.log('request body is', req.body);
+    // let flat = parseInt(req.body.lat);
+    // let flng = parseInt(req.body.lng);
+    let fitinID = parseInt(req.body.itinID);
+    let fcontributorID = parseInt(req.body.contributorID)
+    let formattedEntry = {
+      title: req.body.title,
+      body:  req.body.body,
+      name:  req.body.name,
+      address: req.body.address,
+      contributorID: fcontributorID,
+      itinID: fitinID,
+      lat: req.body.lat,
+      lng: req.body.lng
+    }
     Entry
       .query()
-      .insertAndFetch(req.body)
+      .insertAndFetch(formattedEntry)
       .then((entry) => { res.send(entry)})
       .catch(next);
   })
