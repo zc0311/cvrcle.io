@@ -137,11 +137,20 @@ class EditModal extends Component {
           <form>
             <FormGroup>
               <ControlLabel>Title</ControlLabel>
-              <FormControl name="formTitle" onChange={this.handleInputchange} componentClass="input" defaultValue={this.state.formTitle}/>
+              <FormControl 
+                name="formTitle" 
+                onChange={this.handleInputchange} 
+                componentClass="input" 
+                defaultValue={this.state.formTitle}
+              />
             </FormGroup>
             <FormGroup>
               <ControlLabel>Author</ControlLabel>
-              <FormControl name="formAuthor" onChange={this.handleInputchange} componentClass="input" />
+              <FormControl 
+                name="formAuthor" 
+                onChange={this.handleInputchange} 
+                componentClass="input" 
+              />
             </FormGroup>
             <FormGroup>
               <ControlLabel>Location</ControlLabel>
@@ -155,7 +164,12 @@ class EditModal extends Component {
             </FormGroup>
             <FormGroup>
               <ControlLabel>Description</ControlLabel>
-              <FormControl name="formBody" onChange={this.handleInputchange} componentClass="textarea" />
+              <FormControl 
+                name="formBody" 
+                onChange={this.handleInputchange} 
+                componentClass="textarea"
+                defaultValue={this.state.formBody}
+              />
             </FormGroup>
           </form>
         </Modal.Body>

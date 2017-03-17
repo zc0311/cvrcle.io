@@ -1,15 +1,12 @@
 import React, { Component } from 'react';
 import ReactDOM from 'react-dom';
 import axios from "axios";
-
 import { Card, Image } from 'semantic-ui-react';
 import Home1 from './components/Home.jsx'
 import { Router, Route, IndexRoute, hashHistory } from 'react-router'
-
 import Home from './views/home.js';
 import Itinerary from './views/itinerary.js';
 import Logout from './views/logout.js';
-
 import { Provider } from 'react-redux';
 import store from './store.js';
 
