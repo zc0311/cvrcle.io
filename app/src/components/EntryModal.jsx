@@ -9,7 +9,8 @@ import { bindActionCreators } from 'redux';
 
 //importing files
 import GOOGLE_API_KEY from '../../../config.js';
-import { selectFromLocationSearch } from '../actions/actions_index';
+import rootReducer from '../reducers/reducers_index';
+import store from '../store';
 
 class EntryModal extends Component {
   constructor(props) {
@@ -57,13 +58,14 @@ class EntryModal extends Component {
       if (err) { console.log('Error', err) } 
         console.log(`The longitutde and latitude for ${address}`, { lat, lng })
       
-      const key = process.env.GOOGLE_API_KEY
+      const key = GOOGLE_API_KEY
       let url = `https://maps.googleapis.com/maps/api/geocode/json?latlng=${lat},${lng}&key=${key}`
       
       //axios call to google maps api with lat and lng
       axios
         .get(url)
         .then((response) => {
+          console.log('address: ', response.data);
           console.log('address is: ', response.data.results[0].formatted_address)
           // formatting object that gets sent to the database + gets updated to app state
           let locationToDatabase = { 
@@ -88,13 +90,11 @@ class EntryModal extends Component {
             contributorID: 1,
             itinID: 1
           }
-          
-          // this.props.updateEntry(location);
 
           // TODO: Find contributor name from contributorID in join table
-          console.log('location', location);
+          // console.log('location', location);
           axios
-            .post('http://localhost:3000/entries', location)
+            .post('http://localhost:3000/entries', locationToDatabase)
             .then((response) => {
               console.log(response)
             })
@@ -105,7 +105,6 @@ class EntryModal extends Component {
         .catch((err) => {
           if (err) {console.log(err)}
         })
-      this.props.selectFromLocationSearch(location);
     })
     this.close();
   }
@@ -168,15 +167,5 @@ class EntryModal extends Component {
   }
 }
 
-const mapStateToProps = (state) => {
-  return {
-    locationInput: state.locationInput
-  }
-}
-
-const mapDispatchToProps = (dispatch) => {
-  return bindActionCreators({ selectFromLocationSearch }, dispatch);
-}
-
-export default connect(mapStateToProps, mapDispatchToProps)(EntryModal);
+export default EntryModal;
 

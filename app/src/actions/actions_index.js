@@ -1,13 +1,22 @@
+// add post
+// export const addEntry = (entry) => {
+//   return {
+//     type: 'ADD_ENTRY',
+//     payload: post
+//   }
+// }
 
-// dispatcher(action creator) that sets the application state 
-// with location selected from user search
+// // delete post
+// export const deleteEntry = (entry) => {
+//   return {
+//     type: 'DELETE_ENTRY'
+//   }
+// }
 
-let selectFromLocationSearch = (location) => {
-  console.log('getting inside action creator');
+export const TestSession = (session) => {
   return {
-    type: 'LOCATION_SELECTED',
-    payload: location
+    type: "SAVE_SESSION",
+    payload: session
   }
 }
 
-export { selectFromLocationSearch };

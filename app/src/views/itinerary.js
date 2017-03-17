@@ -6,9 +6,6 @@ import { Container, Header, Card, Message, Segment, Form } from 'semantic-ui-rea
 
 import ContributorEntry from '../components/ContributorEntry.jsx';
 
-import { Provider } from 'react-redux';
-import { createStore } from 'redux';
-
 // importing components and files
 import GoogleMap from '../containers/map.jsx';
 import AddNewEntry from '../components/AddNewEntry.jsx';
@@ -16,7 +13,6 @@ import rootReducer from '../reducers/reducers_index';
 
 import Navbar from '../components/navbar.jsx';
 
-let store = createStore(rootReducer)
 
 class Itinerary extends Component {
   constructor(props) {
@@ -63,9 +59,12 @@ class Itinerary extends Component {
         <Navbar />
         <div className="container">
           <div className="map-view">
-            {this.state.entries.length ? <GoogleMap store={store} locations={this.state.entries} /> : ''}
+            {this.state.entries.length ? 
+              <GoogleMap locations={this.state.entries} /> : ''}
           </div>
-          <div className="add-entry"><AddNewEntry data={''} /></div>
+          <div className="add-entry">
+            <AddNewEntry data={''} />
+          </div>
           <div className="entries">
             <div className="ui two cards">
               <Card.Group className="existing-entries">
