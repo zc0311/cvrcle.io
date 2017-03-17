@@ -17,11 +17,12 @@ class Itinerary extends Component {
       entries: [],
       newEntry: false
     };
-    this.getEntries = this.getEntries.bind(this);
+
     this.newEntryAdded = this.newEntryAdded.bind(this);
+    this.getUserEntries = this.getUserEntries.bind(this);
   }
 
-  getEntries() {
+  getUserEntries() {
     axios.get('http://localhost:3000/entries')
       .then((res) => {
         let filteredEntries = [];
@@ -43,7 +44,7 @@ class Itinerary extends Component {
   }
 
   componentDidMount() {
-    this.getEntries();
+    this.getUserEntries();
   }
 
   componentWillUnmount() {
