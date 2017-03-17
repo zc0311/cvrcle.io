@@ -58,7 +58,7 @@ class Itinerary extends Component {
   }
 
   render() {
-    this.getEntries()
+    // this.getEntries()
     return (
       <Provider store={store}>
         <div>
@@ -68,7 +68,6 @@ class Itinerary extends Component {
               {this.state.entries.length ? 
                 <GoogleMap 
                   locations={this.state.entries} 
-                  onChange={this.getEntries()}
                 /> : ''}
             </div>
             <div className="add-entry">
