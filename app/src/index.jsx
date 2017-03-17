@@ -31,8 +31,6 @@ class AppContainer extends Component {
     this.getEntries = this.getEntries.bind(this);
 
     this.getEntries();
-
-    // Routes();
   }
 
   // TODO: modify request to get only relevant itinerary (match itinID)
