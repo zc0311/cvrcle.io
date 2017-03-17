@@ -7,7 +7,7 @@ const Navb = () => (
   <Navbar>
     <Navbar.Header>
         <Link to='/home'>
-          <Image src='../cvrcle-logo-icon.png' size="small" />
+          <Image className="cvrcle-logo-icon" src='../cvrcle-logo-icon.png' />
         </Link>
     </Navbar.Header>
     <Nav><li><Link to="/logout">Logout</Link></li></Nav>
