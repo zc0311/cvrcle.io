@@ -1,8 +1,12 @@
 import React, { Component } from 'react';
-import { Card, Modal } from 'semantic-ui-react';
+import { Card } from 'semantic-ui-react';
 import EntryModal from './EntryModal.jsx';
+import { Button }  from 'react-bootstrap';
 
 import { Provider } from 'react-redux';
+import { createStore } from 'redux';
+import rootReducer from '../reducers/reducers_index';
+let store = createStore(rootReducer)
 
 class AddNewEntry extends Component {
   constructor(props) {
@@ -49,16 +53,11 @@ class AddNewEntry extends Component {
     return (
       <div>
         {this.state.isClicked ? 
-          <Provider store={store}>
-            <EntryModal resetFlag={this.toggleModal} updateEntry={this.updateEntry}/> 
-          </Provider> : 
-          ""
-        }
-        <Card id={this.state.id} color="teal" className="entry" onClick={this.toggleModal}>
-          <Card.Content>
-            <Card.Header>Add New Entry</Card.Header>
-          </Card.Content>
-        </Card>
+        <Provider store={store}>
+          <EntryModal resetFlag={this.toggleModal} updateEntry={this.updateEntry} /> 
+        </Provider> : ""}
+
+        <Button id={this.state.id} bsStyle="default" bsSize="large" className="entry" onClick={this.toggleModal}>Add New Entry</Button>
       </div>
     );
   }
