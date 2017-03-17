@@ -3,6 +3,7 @@ import React, { Component } from 'react';
 import ReactDOM from 'react-dom';
 import axios from "axios";
 import { Container, Header, Card, Message, Segment, Form } from 'semantic-ui-react';
+import Home from './components/Home.jsx'
 
 import ContributorEntry from './components/ContributorEntry.jsx';
 
@@ -55,6 +56,14 @@ class AppContainer extends Component {
       })
   }
 
+  
+  componentWillMount() {
+    this.lock = new Auth0Lock('qpfelAKW1EAzyb3RI3pk46SD0deXrJhE', 'cvrcle.auth0.com')
+    console.log('we in here')
+  }
+  
+
+
   componentDidMount() {
     this.getEntries();
   }
@@ -75,6 +84,7 @@ class AppContainer extends Component {
             <li><Link to="/logout">Logout</Link></li>
           </Nav>
         </Navbar>
+        <Home lock={this.lock}/>
         <div className="container">
           <div className="map-view">
             {this.state.entries.length ?
