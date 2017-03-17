@@ -1,7 +1,5 @@
 import React, { Component } from 'react';
-import { connect } from 'react-redux';
-// import { createStore } from 'redux';
-// import rootReducer from '../reducers/reducers_index';
+// import { connect } from 'react-redux';
 
 class GoogleMap extends Component {
   constructor(props) {
@@ -45,8 +43,8 @@ class GoogleMap extends Component {
 
     // adds markers onto the page
     this.props.locations.forEach((location) => {
-      console.log('location', location.lat);
-      console.log('location', location.lng);      
+      console.log('loc-lat', location.lat);
+      console.log('loc-lng', location.lng);      
       let center = {
         lat: location.lat,
         lng: location.lng
@@ -76,12 +74,13 @@ class GoogleMap extends Component {
   }
 }
 
-const mapStateToProps = (state) => {
-  console.log('inside of map state to props', state.locationInput);
-  return {
-    locationInput: state.locationInput
-  }
-}
+export default GoogleMap;
 
-export default connect(mapStateToProps)(GoogleMap);
+// const mapStateToProps = (state) => {
+//   return {
+//     locationInput: state.locationInput
+//   }
+// }
+
+// export default connect(mapStateToProps)(GoogleMap);
 
