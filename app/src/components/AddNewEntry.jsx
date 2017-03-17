@@ -2,8 +2,6 @@ import React, { Component } from 'react';
 import { Card, Modal } from 'semantic-ui-react';
 import EntryModal from './EntryModal.jsx';
 
-import { Provider } from 'react-redux';
-
 class AddNewEntry extends Component {
   constructor(props) {
     super(props);
@@ -48,10 +46,7 @@ class AddNewEntry extends Component {
   render() {
     return (
       <div>
-        {this.state.isClicked ? 
-          <Provider store={store}>
-            <EntryModal resetFlag={this.toggleModal} updateEntry={this.updateEntry}/> 
-          </Provider> : 
+        {this.state.isClicked ? <EntryModal resetFlag={this.toggleModal} updateEntry={this.updateEntry}/> :
           ""
         }
         <Card id={this.state.id} color="teal" className="entry" onClick={this.toggleModal}>
@@ -65,3 +60,4 @@ class AddNewEntry extends Component {
 }
 
 export default AddNewEntry;
+
