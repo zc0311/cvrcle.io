@@ -5,8 +5,9 @@ import axios from "axios";
 import { Container, Header, Card, Message, Segment, Form } from 'semantic-ui-react';
 
 import ContributorEntry from './components/ContributorEntry.jsx';
-import { Navbar, Nav, NavItem } from 'react-bootstrap';
-import { Router, Route, Switch } from 'react-router'
+
+import { Navbar, Nav, NavItem} from 'react-bootstrap';
+import { Router, Route, IndexRoute, Link, hashHistory } from 'react-router'
 
 import { Provider } from 'react-redux';
 import { createStore } from 'redux';
@@ -15,6 +16,8 @@ import { createStore } from 'redux';
 import GoogleMap from './containers/map.jsx';
 import AddNewEntry from './components/AddNewEntry.jsx';
 import rootReducer from './reducers/reducers_index';
+
+import Logout from './views/logout.js';
 
 let store = createStore(rootReducer)
 
@@ -54,7 +57,6 @@ class AppContainer extends Component {
 
   componentDidMount() {
     this.getEntries();
-
   }
 
   componentWillUnmount() {
@@ -67,11 +69,10 @@ class AppContainer extends Component {
       <div>
         <Navbar>
           <Navbar.Header>
-            <Navbar.Brand><a href="#">Cvrcle</a></Navbar.Brand>
+            <Navbar.Brand><a href="/">Cvrcle</a></Navbar.Brand>
           </Navbar.Header>
           <Nav>
-            <NavItem eventKey={1} href="#">Itineraries</NavItem>
-            <NavItem className="logout" eventKey={2} href="#">Logout</NavItem>
+            <li><Link to="/logout">Logout</Link></li>
           </Nav>
         </Navbar>
         <div className="container">
@@ -90,7 +91,7 @@ class AppContainer extends Component {
                 {this.state.entries.length ?
                   (this.state.entries.map((entryData, i) => (
                     <ContributorEntry key={i} {...entryData} />))) :
-                  "No entries yet!"
+                  <div className="text-center">"No entries yet!"</div>
                 }
               </Card.Group>
             </div>
@@ -101,4 +102,10 @@ class AppContainer extends Component {
   }
 }
 
-ReactDOM.render(<AppContainer />, document.getElementById('appRoot'));
+ReactDOM.render((
+  <Router history={hashHistory}>
+    <Route path="/" component={AppContainer} />
+    {/* routes go here */}
+    <Route path="/logout" component={Logout} />
+  </Router>
+), document.getElementById('appRoot'))

@@ -3,20 +3,16 @@
   width: 100%
 }
 
-.navbar-default .navbar-brand {
-  line-height: 25px;
-}
-
 .container > .navbar-header {
   float: left;
 }
 
-.navbar .nav > li {
-  display: inline-block;
+.nav.navbar-nav {
+  float: right;
 }
 
-.navbar-default .logout {
-  float: right;
+.navbar .nav > li {
+  display: inline-block;
 }
 
 .ui.card.entry {
