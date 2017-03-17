@@ -135,14 +135,6 @@ class EntryModal extends Component {
               />
             </FormGroup>
             <FormGroup>
-              <ControlLabel>Author</ControlLabel>
-              <FormControl 
-                name="formAuthor" 
-                onChange={this.handleInputchange} 
-                componentClass="input" 
-              />
-            </FormGroup>
-            <FormGroup>
               <ControlLabel>Location</ControlLabel>
               <PlacesAutocomplete
                 value={this.state.address}

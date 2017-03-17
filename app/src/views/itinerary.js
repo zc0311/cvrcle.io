@@ -3,7 +3,7 @@ import ReactDOM from 'react-dom';
 import axios from "axios";
 import { Container, Header, Card, Message, Segment, Form } from 'semantic-ui-react';
 import ContributorEntry from '../components/ContributorEntry.jsx';
-import GoogleMap from '../containers/map.jsx';
+import GoogleMap from '../components/map.jsx';
 import AddNewEntry from '../components/AddNewEntry.jsx';
 import rootReducer from '../reducers/reducers_index';
 import { Provider } from 'react-redux';
@@ -58,6 +58,7 @@ class Itinerary extends Component {
   }
 
   render() {
+    this.getEntries()
     return (
       <Provider store={store}>
         <div>
@@ -65,13 +66,19 @@ class Itinerary extends Component {
           <div className="container">
             <div className="map-view">
               {this.state.entries.length ? 
-                <GoogleMap locations={this.state.entries} /> : ''}
+                <GoogleMap 
+                  locations={this.state.entries} 
+                  onChange={this.getEntries()}
+                /> : ''}
             </div>
             <div className="add-entry">
-              <AddNewEntry data={''} newEntryAdded={this.newEntryAdded}/>
+              <AddNewEntry 
+                data={''} 
+                newEntryAdded={this.newEntryAdded}
+              />
             </div>
             <div className="entries">
-              <div className="ui two cards">
+              <div>
                 <Card.Group className="existing-entries">
                   {this.state.entries.length ?
                     (this.state.entries.map((entryData, i) => (
