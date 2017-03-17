@@ -43,8 +43,8 @@ class GoogleMap extends Component {
 
     // adds markers onto the page
     this.props.locations.forEach((location) => {
-      console.log('location', location.lat);
-      console.log('location', location.lng);      
+      console.log('loc-lat', location.lat);
+      console.log('loc-lng', location.lng);      
       let center = {
         lat: location.lat,
         lng: location.lng

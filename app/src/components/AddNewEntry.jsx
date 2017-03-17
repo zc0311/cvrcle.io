@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
-import { Card, Modal } from 'semantic-ui-react';
+import { Card } from 'semantic-ui-react';
 import EntryModal from './EntryModal.jsx';
+import { Button }  from 'react-bootstrap';
 
 class AddNewEntry extends Component {
   constructor(props) {
@@ -46,14 +47,9 @@ class AddNewEntry extends Component {
   render() {
     return (
       <div>
-        {this.state.isClicked ? <EntryModal resetFlag={this.toggleModal} updateEntry={this.updateEntry}/> :
-          ""
-        }
-        <Card id={this.state.id} color="teal" className="entry" onClick={this.toggleModal}>
-          <Card.Content>
-            <Card.Header>Add New Entry</Card.Header>
-          </Card.Content>
-        </Card>
+        {this.state.isClicked ? 
+          <EntryModal resetFlag={this.toggleModal} updateEntry={this.updateEntry} /> : ""}
+        <Button id={this.state.id} bsStyle="default" bsSize="large" className="entry" onClick={this.toggleModal}>Add New Entry</Button>
       </div>
     );
   }
