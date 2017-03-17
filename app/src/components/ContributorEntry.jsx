@@ -2,13 +2,11 @@ import React, { Component } from 'react';
 import ReactDOM from "react-dom";
 import axios from "axios";
 import { Card, Modal } from 'semantic-ui-react';
-import EntryModal from './EntryModal.jsx';
-
+import EditModal from './EditModal.jsx';
 
 class ContributorEntry extends Component {
   constructor(props) {
     super(props);
-
     this.state = {
       isEditing: false,
       id: "",
@@ -16,7 +14,8 @@ class ContributorEntry extends Component {
       author: "",
       body: "",
       date: "",
-      location: ""
+      address: "",
+      name: ""
     }
 
     this.toggleModal = this.toggleModal.bind(this);
@@ -35,7 +34,8 @@ class ContributorEntry extends Component {
       author: this.props.author,
       body: this.props.body,
       date: this.props.date,
-      location: this.props.location
+      address: this.props.address,
+      contributorID: this.props.contributorID
     })
   }
 
@@ -45,28 +45,37 @@ class ContributorEntry extends Component {
     })
   }
 
-  updateEntry(title, body) {
+  updateEntry(incomingData) {
     this.setState({
-      title: title,
-      body: body
+      title: incomingData.title,
+      body: incomingData.body,
+      address: incomingData.address,
+      author: incomingData.author,
+      name: incomingData.name
     })
   }
 
   render() {
     return (
-      <div>
-        {this.state.isEditing ? <EntryModal resetFlag={this.toggleModal} updateEntry={this.updateEntry} /> : ""}
+      <div className="single-entry">
+        {this.state.isEditing ? 
+          <EditModal resetFlag={this.toggleModal} updateEntry={this.updateEntry} data={this.state}/> :
+          ""
+        }
         <Card id={this.state.id} color="teal" className="entry" onClick={this.toggleModal}>
           <Card.Content>
             <Card.Header> 
               {this.state.title}
             </Card.Header>
+            <Card.Meta>
+              {this.state.address}
+            </Card.Meta>
             <Card.Description>
               {this.state.body}
             </Card.Description>
           </Card.Content>
           <Card.Content extra>
-            <span className="author">{this.state.author}</span>
+            <span className="author">Contributed By: {this.state.author}</span>
             <span className="date">{this.state.date}</span>
           </Card.Content>
         </Card>
@@ -76,3 +85,4 @@ class ContributorEntry extends Component {
 }
 
 export default ContributorEntry;
+ 

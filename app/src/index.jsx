@@ -1,71 +1,47 @@
-
 import React, { Component } from 'react';
 import ReactDOM from 'react-dom';
-import SampleCard from './components/SampleCard.jsx';
-import $ from 'jquery';
 import axios from "axios";
-import { Container, Header, Card, Message, Segment, Form } from 'semantic-ui-react';
-import ContributorEntry from './components/ContributorEntry.jsx';
+
+import { Card, Image } from 'semantic-ui-react';
+import Home1 from './components/Home.jsx'
+import { Router, Route, IndexRoute, hashHistory } from 'react-router'
+
+import Home from './views/home.js';
+import Itinerary from './views/itinerary.js';
+import Logout from './views/logout.js';
 
 import { Provider } from 'react-redux';
-import { createStore } from 'redux';
-import rootReducer from './reducers/reducers_index';
+import store from './store.js';
 
-import GoogleMap from './containers/map.jsx';
-import LocationSearchBar from './containers/locationSearchBar.jsx';
-
-let store = createStore(rootReducer)
-
-class AppContainer extends Component { 
+class AppContainer extends Component {
   constructor(props) {
     super(props);
-    this.state = {
-      entries: []
-    };
-
-    this.getEntries = this.getEntries.bind(this);
-
-    this.getEntries();
   }
 
-  getEntries() {
-    axios.get('http://localhost:4000/posts/')
-      .then((res) => {
-        this.setState({
-          entries: res.data
-        })
-      })
-      .catch((err) => {
-        console.log(err);
-      })
+  componentWillMount() {
+    this.lock = new Auth0Lock('qpfelAKW1EAzyb3RI3pk46SD0deXrJhE', 'cvrcle.auth0.com')
+    console.log('we in here')
   }
-
-  componentDidMount() {
-
-  }
-
-  componentWillUnmount() {
-    this.serverRequest.abort();
-  }
-
+  
   render() {
-    return (
-      <div>
-        <div className="container">
-          <h1 className="text-center">Cvrcle</h1>
-          <Provider store={store}>
-            <LocationSearchBar />
-          </Provider>
-          <GoogleMap store={store} />
-          <ContributorEntry />
-          {this.state.entries.map((entryData, i) => (
-            <ContributorEntry key={i} {...entryData} />
-          ))}
+    return(
+      <Provider store={store}>
+        <div>
+          <Image className="cvrcle-logo" src='../cvrcle.png' />
+          <div className="text-center">
+            <Home1 lock={this.lock}/>
+          </div>
         </div>
-      </div>
+      </Provider>
     );
   }
 }
 
-ReactDOM.render(<AppContainer />, document.getElementById('appRoot'));
-  
+ReactDOM.render((
+  <Router history={hashHistory}>
+    <Route path="/" component={AppContainer} />
+    <Route path="/home" component={Home} />
+    <Route path="/itinerary" component={Itinerary} />
+    <Route path="/logout" component={Logout} />
+  </Router>
+), document.getElementById('appRoot'))

@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import ReactDOM from "react-dom";
-import axios from 'axios';
+import axios from "axios";
 import { Button, Modal, Form, FormGroup, FormControl, ControlLabel } from 'react-bootstrap';
 import PlacesAutocomplete from 'react-places-autocomplete';
 import { geocodeByAddress, geocodeByPlaceId } from 'react-places-autocomplete';
@@ -9,18 +9,17 @@ import { bindActionCreators } from 'redux';
 
 //importing files
 import GOOGLE_API_KEY from '../../../config.js';
-import rootReducer from '../reducers/reducers_index';
-import store from '../store';
+import { selectFromLocationSearch } from '../actions/actions_index';
 
-class EntryModal extends Component {
+class EditModal extends Component {
   constructor(props) {
     super(props);
     this.state = {
       showModal: true,
-      formTitle: "",
-      formAuthor: "",
-      formBody: "",
-      address: 'Search Places...'
+      formTitle: this.props.data.title || "",
+      formAuthor: this.props.data.author || "",
+      formBody: this.props.data.body || "",
+      address: this.props.data.address || 'Search Places...'
     }
     // function binds
     this.close = this.close.bind(this);
@@ -65,7 +64,6 @@ class EntryModal extends Component {
       axios
         .get(url)
         .then((response) => {
-          console.log('address: ', response.data);
           console.log('address is: ', response.data.results[0].formatted_address)
           // formatting object that gets sent to the database + gets updated to app state
           let locationToDatabase = { 
@@ -79,10 +77,9 @@ class EntryModal extends Component {
             itinID: 1
           };
 
-          let locationToForm={
+          let locationToContributorEntry={
             title: this.state.formTitle,
             body: this.state.formBody,
-            author: this.state.formAuthor,
             lat: lat,
             lng: lng,
             name: address,
@@ -90,17 +87,20 @@ class EntryModal extends Component {
             contributorID: 1,
             itinID: 1
           }
+          
+          this.props.updateEntry(locationToContributorEntry);
 
           // TODO: Find contributor name from contributorID in join table
-          // console.log('location', location);
-          axios
-            .post('http://localhost:3000/entries', locationToDatabase)
-            .then((response) => {
-              console.log(response)
-            })
-            .catch((err) => {
-              if (err) {console.log(err)}
-            })
+          // TODO: CHANGE TO PUT REQUEST (MODIFYING)
+          console.log('location', location);
+          // axios
+          //   .put('http://localhost:3000/entries', location)
+          //   .then((response) => {
+          //     console.log(response)
+          //   })
+          //   .catch((err) => {
+          //     if (err) {console.log(err)}
+          //   })
         })
         .catch((err) => {
           if (err) {console.log(err)}
@@ -132,7 +132,7 @@ class EntryModal extends Component {
 
     return (
       <Modal show={this.state.showModal} onHide={this.close}>
-        <Modal.Header closeButton>Add New Activity</Modal.Header>
+        <Modal.Header closeButton>Edit Activity</Modal.Header>
         <Modal.Body>
           <form>
             <FormGroup>
@@ -167,5 +167,15 @@ class EntryModal extends Component {
   }
 }
 
-export default EntryModal;
+const mapStateToProps = (state) => {
+  return {
+    locationInput: state.locationInput
+  }
+}
+
+const mapDispatchToProps = (dispatch) => {
+  return bindActionCreators({ selectFromLocationSearch }, dispatch);
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(EditModal);
 

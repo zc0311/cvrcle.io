@@ -1,6 +1,42 @@
+.cvrcle-logo {
+  margin: 50px auto 20px;
+  height: 125px;
+}
+
+.cvrcle-logo-icon {
+  height: 20px;
+  margin-top: 3px;
+}
+
 .google-map {
   height: 500px;
-  width: 500px
+  width: 100%
+}
+
+.container > .navbar-header {
+  float: left;
+  font-size: 18px;
+  margin-top: 12px;
+}
+
+.navbar-header li > a {
+  float: left;
+}
+
+.navbar.navbar-default {
+  background-color: #333;
+}
+
+.nav.navbar-nav {
+  float: right;
+}
+
+.navbar .nav > li {
+  display: inline-block;
+}
+
+.navbar-default .nav.navbar-nav > li > a:hover {
+  color: #777;
 }
 
 .ui.card.entry {
@@ -36,4 +72,31 @@
 .modal-header .close {
   margin-top: 4px;
   font-size: 25px;
+}
+
+.add-entry {
+  width: 300px;
+  height: 100px;
+  position: center;
+  margin: auto;
+  text-align: center;
+  margin-top: 10px;
+}
+
+.single-entry {
+  width: 50%;
+  margin-top: 20px 
+}
+
+.entries {
+  margin-bottom: 100px;
+}
+.map-view {
+  /*float: right;*/
+  width: 100%;
+  position: center absolute;
+  margin: 0 auto;
+  /*position: relative;
+  left: 56%;
+  overflow: hidden;*/
 }

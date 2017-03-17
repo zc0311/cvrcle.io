@@ -1,10 +1,10 @@
 //combining all reducers into one rootReducer
 
 import { combineReducers } from 'redux';
-import LocationReducer from './reducer_locationSearch';
+import SessionReducer from './reducer_sessions';
 
 const rootReducer = combineReducers({
-  locationInput: LocationReducer,
+  userSession: SessionReducer,
 });
 
 export default rootReducer;
