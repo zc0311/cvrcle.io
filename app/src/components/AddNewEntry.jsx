@@ -3,10 +3,6 @@ import { Card, Modal } from 'semantic-ui-react';
 import EntryModal from './EntryModal.jsx';
 
 import { Provider } from 'react-redux';
-import { createStore } from 'redux';
-import rootReducer from '../reducers/reducers_index';
-
-let store = createStore(rootReducer)
 
 class AddNewEntry extends Component {
   constructor(props) {

@@ -1,13 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { createStore } from 'redux';
-import rootReducer from '../reducers/reducers_index';
-
-let store = createStore(rootReducer);
-
-store.subscribe(() =>
-  console.log('redux store', store.getState())
-)
+// import { createStore } from 'redux';
+// import rootReducer from '../reducers/reducers_index';
 
 class GoogleMap extends Component {
   constructor(props) {
@@ -20,7 +14,6 @@ class GoogleMap extends Component {
       zoom: 13,
       locations: this.props.locations
     }
-    // this.addMarkers = this.addMarkers.bind(this);
   }
 
   componentDidMount() {
@@ -30,10 +23,14 @@ class GoogleMap extends Component {
   }
 
   createMap() {
+    // instantiates the map
     let map = new google.maps.Map(this.refs.mapCanvas, {
       zoom: this.state.zoom,
       center: this.mapCenter()
     });
+    let markerBounds = new google.maps.LatLngBounds();
+
+    // grabs location
     if (navigator.geolocation) {
       navigator.geolocation.getCurrentPosition((position) => {
         let pos = {
@@ -41,12 +38,26 @@ class GoogleMap extends Component {
           lng: position.coords.longitude
         };
         map.setCenter(pos);
-        return new google.maps.Marker({
-          position: pos,
-          map: map
-        })
       });
-    } 
+    }
+
+    // adds markers onto the page
+    this.props.locations.forEach((location) => {
+      console.log('location', location.lat);
+      console.log('location', location.lng);      
+      let center = {
+        lat: location.lat,
+        lng: location.lng
+      }
+      new google.maps.Marker({
+        position: center,
+        map: map
+      })
+      markerBounds.extend(center);
+    })
+
+    //resets map bounds
+    map.fitBounds(markerBounds);
   }
 
   mapCenter() {
@@ -56,21 +67,7 @@ class GoogleMap extends Component {
     )
   }
 
-  // addMarkers(inputs) {
-  //   inputs.forEach((location) => {
-  //     let center = new google.maps.LatLng(
-  //       location.lat, 
-  //       location.lng
-  //     )
-  //     return new google.maps.Marker({
-  //       position: center,
-  //       map: this.map
-  //     })
-  //   })
-  // }
-
   render() {
-    // this.addMarkers(this.state.locations)
     return (
       <div className="google-map" ref="mapCanvas"></div>
     );
