@@ -1,8 +1,8 @@
 import React, { Component } from 'react';
 import ReactDOM from 'react-dom';
 import axios from "axios";
-
 import { Card } from 'semantic-ui-react';
+import Home1 from './components/Home.jsx'
 import { Router, Route, IndexRoute, hashHistory } from 'react-router'
 
 import Home from './views/home.js';
@@ -17,6 +17,11 @@ class AppContainer extends Component {
     super(props);
   }
 
+  componentWillMount() {
+    this.lock = new Auth0Lock('qpfelAKW1EAzyb3RI3pk46SD0deXrJhE', 'cvrcle.auth0.com')
+    console.log('we in here')
+  }
+  
   render() {
     return(
       <Provider store={store}>
@@ -29,10 +34,9 @@ class AppContainer extends Component {
             <span style={{color: '#3cba54'}}>L</span>
             <span style={{color: '#db3236'}}>E</span>
           </h1>
-
           <div className="text-center">
             Auth will go here.
-            {/* replace below div with auth0 */}
+            <Home1 lock={this.lock}/>
           </div>
         </div>
       </Provider>
