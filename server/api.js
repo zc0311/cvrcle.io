@@ -42,8 +42,6 @@ module.exports = (app) => {
 
   app.post('/entries', (req, res, next) => {
     console.log('request body is', req.body);
-    // let flat = parseInt(req.body.lat);
-    // let flng = parseInt(req.body.lng);
     let fitinID = parseInt(req.body.itinID);
     let fcontributorID = parseInt(req.body.contributorID)
     let formattedEntry = {
