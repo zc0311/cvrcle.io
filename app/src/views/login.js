@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import ReactDOM from "react-dom";
 
-class Navbar extends Component {
+class Login extends Component {
   constructor() {
     super();
   }
@@ -9,8 +9,10 @@ class Navbar extends Component {
   render() {
     return (
       <div>
-        
+        Login Here
       </div>
     );
   }
 }
+
+export default Login
