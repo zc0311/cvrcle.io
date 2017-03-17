@@ -6,10 +6,7 @@ import PlacesAutocomplete from 'react-places-autocomplete';
 import { geocodeByAddress, geocodeByPlaceId } from 'react-places-autocomplete';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
-
-//importing files
 import GOOGLE_API_KEY from '../../../config.js';
-import { selectFromLocationSearch } from '../actions/actions_index';
 
 class EditModal extends Component {
   constructor(props) {
@@ -76,23 +73,11 @@ class EditModal extends Component {
             contributorID: 1,
             itinID: 1
           };
-
-          let locationToContributorEntry={
-            title: this.state.formTitle,
-            body: this.state.formBody,
-            lat: lat,
-            lng: lng,
-            name: address,
-            address: response.data.results[0].formatted_address,
-            contributorID: 1,
-            itinID: 1
-          }
           
-          this.props.updateEntry(locationToContributorEntry);
+          this.props.updateEntry(locationToDatabase);
 
           // TODO: Find contributor name from contributorID in join table
           // TODO: CHANGE TO PUT REQUEST (MODIFYING)
-          console.log('location', location);
           // axios
           //   .put('http://localhost:3000/entries', location)
           //   .then((response) => {
@@ -137,11 +122,12 @@ class EditModal extends Component {
           <form>
             <FormGroup>
               <ControlLabel>Title</ControlLabel>
-              <FormControl name="formTitle" onChange={this.handleInputchange} componentClass="input" defaultValue={this.state.formTitle}/>
-            </FormGroup>
-            <FormGroup>
-              <ControlLabel>Author</ControlLabel>
-              <FormControl name="formAuthor" onChange={this.handleInputchange} componentClass="input" />
+              <FormControl 
+                name="formTitle" 
+                onChange={this.handleInputchange} 
+                componentClass="input" 
+                defaultValue={this.state.formTitle}
+              />
             </FormGroup>
             <FormGroup>
               <ControlLabel>Location</ControlLabel>
@@ -155,7 +141,12 @@ class EditModal extends Component {
             </FormGroup>
             <FormGroup>
               <ControlLabel>Description</ControlLabel>
-              <FormControl name="formBody" onChange={this.handleInputchange} componentClass="textarea" />
+              <FormControl 
+                name="formBody" 
+                onChange={this.handleInputchange} 
+                componentClass="textarea"
+                defaultValue={this.state.formBody}
+              />
             </FormGroup>
           </form>
         </Modal.Body>
@@ -167,15 +158,4 @@ class EditModal extends Component {
   }
 }
 
-const mapStateToProps = (state) => {
-  return {
-    locationInput: state.locationInput
-  }
-}
-
-const mapDispatchToProps = (dispatch) => {
-  return bindActionCreators({ selectFromLocationSearch }, dispatch);
-}
-
-export default connect(mapStateToProps, mapDispatchToProps)(EditModal);
-
+export default EditModal;
