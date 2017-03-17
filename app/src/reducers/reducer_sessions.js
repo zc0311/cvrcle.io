@@ -18,8 +18,9 @@
 // export default LocationReducer;
 
 const SessionReducer = (state={}, action) => {
+  console.log('in SessionReducer')
   if (action.type === 'SAVE_SESSION') {
-    return state;
+    return action.payload;
   }
   console.log("initial state is: ", state)
   return state;
