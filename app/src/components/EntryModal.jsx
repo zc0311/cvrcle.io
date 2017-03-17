@@ -10,6 +10,8 @@ import GOOGLE_API_KEY from '../../../config.js';
 import rootReducer from '../reducers/reducers_index';
 import store from '../store';
 
+const qs = require('qs');
+
 class EntryModal extends Component {
   constructor(props) {
     super(props);
@@ -63,8 +65,6 @@ class EntryModal extends Component {
       axios
         .get(url)
         .then((response) => {
-          console.log('address: ', response.data);
-          console.log('address is: ', response.data.results[0].formatted_address)
           // formatting object that gets sent to the database + gets updated to app state
           let locationToDatabase = { 
             title: this.state.formTitle,
@@ -77,30 +77,22 @@ class EntryModal extends Component {
             itinID: 1
           };
 
-          let locationToForm={
-            title: this.state.formTitle,
-            body: this.state.formBody,
-            author: this.state.formAuthor,
-            lat: lat,
-            lng: lng,
-            name: address,
-            address: response.data.results[0].formatted_address,
-            contributorID: 1,
-            itinID: 1
-          }
+          console.log('location to database', locationToDatabase)
 
           // TODO: Find contributor name from contributorID in join table
           // console.log('location', location);
           axios
-            .post('http://localhost:3000/entries', locationToDatabase)
+            .post('http://localhost:3000/entries', qs.stringify(locationToDatabase))
             .then((response) => {
               console.log(response)
             })
             .catch((err) => {
+              console.log('error1')
               if (err) {console.log(err)}
             })
         })
         .catch((err) => {
+          console.log('error2')
           if (err) {console.log(err)}
         })
     })
@@ -170,7 +162,10 @@ class EntryModal extends Component {
           </form>
         </Modal.Body>
         <Modal.Footer>
-          <Button className="btn btn-primary" onClick={this.handleFormSubmit}>Save</Button>
+          <Button 
+            className="btn btn-primary" 
+            onClick={this.handleFormSubmit}
+          >Save</Button>
         </Modal.Footer>
       </Modal>
     );
