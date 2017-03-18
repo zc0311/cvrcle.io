@@ -10,8 +10,7 @@ import rootReducer from '../reducers/reducers_index';
 import { connect, Provider } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import store from '../store.js';
-import { updateMarkers } from '../actions/actions_index';
-import Redux from 'redux';
+import { updateLocations } from '../actions/actions_index';
 
 class Itinerary extends Component {
   constructor(props) {
@@ -55,64 +54,77 @@ class Itinerary extends Component {
       })
   }
 
-  componentDidMount() {
+  componentWillMount() {
     this.getUserEntries();
   }
 
-  componentWillUnmount() {
-    // this.serverRequest.abort();
-  }
-
-  newEntryAdded() {
+  newEntryAdded(newLocation) {
     console.log('inside of add new entry');
+    let tmp = this.state.entries
+    tmp.push(newLocation)
+    // debugger;
     this.setState({
-      newEntry: !this.state.newEntry
+      entries: tmp
     })
+
+    let center = {
+      lat: newLocation.lat,
+      lng: newLocation.lng
+    }
+    return new google.maps.Marker({
+      position: center,
+      map: window.map
+    })
+    window.markerBounds.extend(center)
+
+    console.log('google maps?!', window.google.maps);
   }
 
   render() {
     return (
-      <Provider store={store}>
-        <div>
-          <Navbar />
-          <div className="container">
-            <div className="map-view">
-              {this.state.entries.length ? 
-                <GoogleMap 
-                  locations={this.state.entries} 
-                /> : ''}
-            </div>
-            <div className="add-entry">
-              <AddNewEntry 
-                data={''} 
-                newEntryAdded={this.newEntryAdded}
-              />
-            </div>
-            <div className="entries">
-              <div className="text-center">
-                <Card.Group className="existing-entries">
-                  {this.state.entries.length ?
-                    (this.state.entries.map((entryData, i) => (
-                      <ContributorEntry key={i} {...entryData} />))) :
-                    <div style={{margin: 'auto'}}>No Entries Yet!</div>
-                  }
-                </Card.Group>
-              </div>
+      <div>
+        <Navbar />
+        <div className="container">
+          <div className="map-view">
+            {this.state.entries.length ?
+              <GoogleMap
+                locations={this.state.entries}
+              /> : ''}
+          </div>
+          <div className="add-entry">
+            <AddNewEntry
+              data={''}
+              newEntryAdded={this.newEntryAdded}
+            />
+          </div>
+          <div className="entries">
+            <div>
+              <Card.Group className="existing-entries">
+                {this.state.entries.length ?
+                  (this.state.entries.map((entryData, i) => (
+                    <ContributorEntry key={i} {...entryData} />))) :
+                  <div className="text-center">No entries yet!</div>
+                }
+              </Card.Group>
             </div>
           </div>
         </div>
-      </Provider>
+      </div>
     );
   }
 }
 
-export default Itinerary
+const mapStateToProps = (state) => {
+  return {
+    storeLocations: state.storeLocations
+  }
+}
 
-// const mapStateToProps = (state) => {
-//   return {
-//     markerChecker: state.markerChecker
-//   }
-// }
+const mapDispatchToProps = (dispatch) => {
+  return bindActionCreators({
+    updateLocations: updateLocations
+  }, dispatch);
+}
 
-// export default connect(mapStateToProps)(Itinerary);
+export default connect(mapStateToProps, mapDispatchToProps)(Itinerary);
 
