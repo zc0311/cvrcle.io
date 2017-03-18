@@ -21,6 +21,7 @@ module.exports = (app) => {
       .where('firstName', req.query.firstName)
       .where('lastName', req.query.lastName)
       .where('fbID', req.query.fbID)
+      .where('id', req.query.id)
       .then((users) => { res.send(users); })
       .catch(next);
   })
