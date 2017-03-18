@@ -22,26 +22,32 @@ class Itinerary extends Component {
 
     this.newEntryAdded = this.newEntryAdded.bind(this);
     this.getUserEntries = this.getUserEntries.bind(this);
+    this.getQueryParams = this.getQueryParams.bind(this);
+
+    this.itinID = this.getQueryParams('itinID');
+  }
+
+  getQueryParams(param) {
+    var query = window.location.hash.substring(1);
+    var vars = query.split("?");
+    for (var i=0;i<vars.length;i++) {
+      var pair = vars[i].split("=");
+      if(pair[0] == param){return pair[1];}
+    }
+    return(false);
   }
 
   getUserEntries() {
-    console.log('get entries 1', this.props.storeLocations)
-    axios.get('http://localhost:3000/entries')
+    axios.get('http://localhost:3000/entries?itinID='+this.itinID)
       .then((res) => {
         let filteredEntries = [];
         res.data.forEach((entry) => {
-          if (entry.itinID === 1) {
-            filteredEntries.push(entry);
-          }
+          filteredEntries.push(entry);
         })
         return filteredEntries
       })
       .then((data) => {
-        this.setState({
-          entries: data
-        })
-        this.props.updateLocations(data)
-        console.log('get entries 2', this.props.storeLocations)    
+        this.setState({ entries: data })
       })
       .catch((err) => {
         console.log(err);
