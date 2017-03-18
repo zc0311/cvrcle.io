@@ -14,8 +14,10 @@ export const MarkerReducer = (state=[], action) => {
   console.log('MarkerReducer will handle refreshing markers on map')
   console.log(state, action)
   if (action.type === 'ENTRY_ADDED') {
+    console.log('1');
     return count++;
   }
+  console.log('2')
   return 'hi'
 }
 

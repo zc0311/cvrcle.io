@@ -1,5 +1,4 @@
 import { createStore, compose } from 'redux';
-// import { syncHistoryWithStore } from 'react-router-redux';
 import { browerHistory } from 'react-router';
 
 //import root reducer
@@ -10,6 +9,5 @@ const store = createStore(
   window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__()
 );
 
-// export const history = syncHistoryWithStore(browerHistory, store);
 
 export default store;

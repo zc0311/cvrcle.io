@@ -11,7 +11,6 @@ import { connect, Provider } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import store from '../store.js';
 import { updateMarkers } from '../actions/actions_index';
-import Redux from 'redux';
 
 class Itinerary extends Component {
   constructor(props) {
@@ -63,7 +62,7 @@ class Itinerary extends Component {
 
   render() {
     return (
-      <Provider store={store}>
+      // <Provider store={store}>
         <div>
           <Navbar />
           <div className="container">
@@ -92,18 +91,18 @@ class Itinerary extends Component {
             </div>
           </div>
         </div>
-      </Provider>
+      // </Provider>
     );
   }
 }
 
-export default Itinerary
+// export default Itinerary
 
-// const mapStateToProps = (state) => {
-//   return {
-//     markerChecker: state.markerChecker
-//   }
-// }
+const mapStateToProps = (state) => {
+  return {
+    markerChecker: state.markerChecker
+  }
+}
 
-// export default connect(mapStateToProps)(Itinerary);
+export default connect(mapStateToProps)(Itinerary);
 
