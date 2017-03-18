@@ -16,8 +16,10 @@ class AppContainer extends Component {
   }
 
   componentWillMount() {
-    this.lock = new Auth0Lock('qpfelAKW1EAzyb3RI3pk46SD0deXrJhE', 'cvrcle.auth0.com')
-    console.log('we in here')
+    this.lock = new Auth0Lock('qpfelAKW1EAzyb3RI3pk46SD0deXrJhE', 'cvrcle.auth0.com', {
+      redirectUrl: 'http://localhost:8080/home',
+      responseType: 'token'
+    })
   }
   
   render() {
