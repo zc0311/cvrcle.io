@@ -22,8 +22,8 @@ exports.up = function(knex, Promise) {
       table.increments('id').primary();
       table.string('title', 50);
       table.text('body', 'mediumtext');
-      table.string('lat');
-      table.string('lng');
+      table.decimal('lat', 24, 12);
+      table.decimal('lng', 24, 12);
       table.string('name', 60);
       table.string('address', 80);
       table.integer('contributorID').unsigned().references('id').inTable('users').onDelete('CASCADE');
