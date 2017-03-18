@@ -15,16 +15,16 @@ class AppContainer extends Component {
     super(props);
   }
 
-  // componentWillMount() {
-  //   this.lock = new Auth0Lock('qpfelAKW1EAzyb3RI3pk46SD0deXrJhE', 'cvrcle.auth0.com', {
-  //     redirectUrl: 'http://localhost:8080/',
-  //     responseType: 'token',
-  //   }, browserHistory.replace('/#/home'))
-  // }
-
   componentWillMount() {
-    this.lock = new Auth0Lock('qpfelAKW1EAzyb3RI3pk46SD0deXrJhE', 'cvrcle.auth0.com')
+    this.lock = new Auth0Lock('qpfelAKW1EAzyb3RI3pk46SD0deXrJhE', 'cvrcle.auth0.com', {
+      redirectUrl: 'http://localhost:8080/',
+      responseType: 'token',
+    }, browserHistory.replace('/#/home'))
   }
+
+  // componentWillMount() {
+  //   this.lock = new Auth0Lock('qpfelAKW1EAzyb3RI3pk46SD0deXrJhE', 'cvrcle.auth0.com')
+  // }
 
   
   render() {
