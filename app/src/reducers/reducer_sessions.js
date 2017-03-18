@@ -13,11 +13,6 @@
 
 // export default LocationReducer;
 
-export const SessionReducer = (state={}, action) => {
-  console.log('in SessionReducer')
-  if (action.type === 'SAVE_SESSION') {
-    return action.payload;
-
 export const MarkerReducer = (state=[], action) => {
   console.log('MarkerReducer will handle refreshing markers on map')
   console.log(state, action)

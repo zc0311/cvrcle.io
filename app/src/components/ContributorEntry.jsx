@@ -79,7 +79,7 @@ class ContributorEntry extends Component {
             </Card.Description>
           </Card.Content>
           <Card.Content extra>
-            <span className="author">Contributed By: {console.log('looking for props', this.props.userSession[0].id)}</span>
+            <span className="author">Contributed By:</span>
             <span className="date">{this.state.date}</span>
           </Card.Content>
         </Card>
