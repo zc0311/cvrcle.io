@@ -12,14 +12,16 @@ const Entry = require('./models/Entry');
 // that is incomplete/malformed/invalid
 
 module.exports = (app) => {
-
   app.get('/users', (req, res, next) => {
     User
       .query()
+      .allowEager('[itineraries, entries]')
+      .eager(req.query.eager)
       .skipUndefined()
       .where('firstName', req.query.firstName)
       .where('lastName', req.query.lastName)
       .where('fbID', req.query.fbID)
+      .where('id', req.query.id)
       .then((users) => { res.send(users); })
       .catch(next);
   })
@@ -36,6 +38,9 @@ module.exports = (app) => {
     Entry
       // we can add 'where' logic to filter and query results
       .query()
+      .skipUndefined()
+      .where('itinID', req.query.itinID)
+      .where('contributorID', req.query.contributorID)
       .then((entries) => { res.send(entries); })
       .catch(next);
   })
@@ -67,6 +72,11 @@ module.exports = (app) => {
     Itinerary
       // we can add 'where' logic to filter and query results
       .query()
+      .allowEager('[entries]')
+      .eager(req.query.eager)
+      .skipUndefined()
+      .where('id', req.query.id)
+      .where('ownerID', req.query.ownerID)
       .then((itineraries) => { res.send(itineraries); })
       .catch(next);
   })
@@ -79,7 +89,7 @@ module.exports = (app) => {
       .catch(next);
   })
 
-}
+};
 
 // exports.createItin = function (req, res) {
 // };
