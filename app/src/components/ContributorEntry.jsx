@@ -4,10 +4,6 @@ import axios from "axios";
 import { Card, Modal } from 'semantic-ui-react';
 import EditModal from './EditModal.jsx';
 
-import { connect } from 'react-redux'
-import { bindActionCreators } from 'redux'
-import Redux from 'redux'
-
 class ContributorEntry extends Component {
   constructor(props) {
     super(props);
@@ -79,7 +75,7 @@ class ContributorEntry extends Component {
             </Card.Description>
           </Card.Content>
           <Card.Content extra>
-            <span className="author">Contributed By:</span>
+            <span className="author">Contributed By: {this.state.author}</span>
             <span className="date">{this.state.date}</span>
           </Card.Content>
         </Card>
@@ -88,17 +84,5 @@ class ContributorEntry extends Component {
   }
 }
 
-// export default ContributorEntry;
-
-const mapStateToProps = (state) => {
-  console.log('in mapStateToProps', state.userSession)
-  return {
-    userSession: state.userSession
-  }
-}
-
-// const mapDispatchToProps = (dispatch) => {
-//   return bindActionCreators({ TestSession }, dispatch);
-// }
-
-export default connect(mapStateToProps)(ContributorEntry);
+export default ContributorEntry;
+ 
