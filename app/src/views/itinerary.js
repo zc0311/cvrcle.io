@@ -6,12 +6,12 @@ import ContributorEntry from '../components/ContributorEntry.jsx';
 import GoogleMap from '../components/map.jsx';
 import AddNewEntry from '../components/AddNewEntry.jsx';
 import Navbar from '../components/navbar.jsx';
-// import rootReducer from '../reducers/reducers_index';
+import rootReducer from '../reducers/reducers_index';
 import { connect, Provider } from 'react-redux';
-// import { bindActionCreators } from 'redux';
+import { bindActionCreators } from 'redux';
 import store from '../store.js';
-// import { updateMarkers } from '../actions/actions_index';
-// import Redux from 'redux';
+import { updateMarkers } from '../actions/actions_index';
+import Redux from 'redux';
 
 class Itinerary extends Component {
   constructor(props) {
@@ -98,3 +98,12 @@ class Itinerary extends Component {
 }
 
 export default Itinerary
+
+// const mapStateToProps = (state) => {
+//   return {
+//     markerChecker: state.markerChecker
+//   }
+// }
+
+// export default connect(mapStateToProps)(Itinerary);
+

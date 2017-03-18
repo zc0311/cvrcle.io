@@ -20,7 +20,7 @@ class EntryModal extends Component {
       formTitle: "",
       formAuthor: "",
       formBody: "",
-      address: 'Search Places...',
+      address: '',
     }
     // function binds
     this.close = this.close.bind(this);
@@ -142,6 +142,7 @@ class EntryModal extends Component {
                 autocompleteItem={AutocompleteItem}
                 classNames={cssClasses}
                 styles={myStyles}
+                placeholder={"Search Places..."}
               />
             </FormGroup>
             <FormGroup>
