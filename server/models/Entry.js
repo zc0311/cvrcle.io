@@ -1,4 +1,6 @@
 const Model = require('objection').Model;
+const User = require('./User')
+const Itinerary = require('./Itinerary')
 
 class Entry extends Model {
   static get tableName() {
@@ -23,6 +25,32 @@ class Entry extends Model {
       }
     };
   }
+
+  static get relationMappings() {
+    return {
+      
+      // Each entry uniquely belongs to one parent itinerary 
+      parentItin: {
+        relation: Model.BelongsToOneRelation,
+        modelClass: __dirname + '/Itinerary',
+        join: {
+          from: 'entries.itinID',
+          to: 'itineraries.id'
+        }
+      },
+
+      // Each entry is uniquely contributed by one user
+      contributor: {
+        relation: Model.BelongsToOneRelation,
+        modelClass: __dirname + '/User',
+        join: {
+          from: 'entries.contributorID',
+          to: 'users.id'
+        }
+      }
+    }
+  }
+
 }
 
 module.exports = Entry;
