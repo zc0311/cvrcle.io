@@ -26,7 +26,9 @@ class Entry extends Model {
 
   static get relationMappings() {
     return {
-      owner: {
+      
+      // Each entry uniquely belongs to one parent itinerary 
+      parentItin: {
         relation: Model.BelongsToOneRelation,
         modelClass: __dirname + '/Itinerary',
         join: {
@@ -34,7 +36,9 @@ class Entry extends Model {
           to: 'itineraries.id'
         }
       },
-      owner: {
+
+      // Each entry is uniquely contributed by one user
+      contributor: {
         relation: Model.BelongsToOneRelation,
         modelClass: __dirname + '/User',
         join: {
