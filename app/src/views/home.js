@@ -39,7 +39,7 @@ class Logout extends Component {
         <Navbar />
           <div>
             <Header as='h2' icon textAlign='center'>
-              <Image shape='circular' src='./cvrcle_circle_480.png' size='small'/>
+              <Image shape='circular' src='./cvrcle_circle_480.png' size='small' />
               <Header.Content>
                 Your Itineraries...Where shall we go?
               </Header.Content>

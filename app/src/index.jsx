@@ -3,7 +3,7 @@ import ReactDOM from 'react-dom';
 import axios from "axios";
 import { Card, Image } from 'semantic-ui-react';
 import AuthLock from './components/AuthLock.jsx'
-import { Router, Route, IndexRoute, hashHistory } from 'react-router'
+import { Router, Route, IndexRoute, hashHistory, browserHistory } from 'react-router'
 import Home from './views/home.js';
 import Itinerary from './views/itinerary.js';
 import Logout from './views/logout.js';
@@ -15,12 +15,17 @@ class AppContainer extends Component {
     super(props);
   }
 
+  // componentWillMount() {
+  //   this.lock = new Auth0Lock('qpfelAKW1EAzyb3RI3pk46SD0deXrJhE', 'cvrcle.auth0.com', {
+  //     redirectUrl: 'http://localhost:8080/',
+  //     responseType: 'token',
+  //   }, browserHistory.replace('/#/home'))
+  // }
+
   componentWillMount() {
-    this.lock = new Auth0Lock('qpfelAKW1EAzyb3RI3pk46SD0deXrJhE', 'cvrcle.auth0.com', {
-      redirectUrl: 'http://localhost:8080/home',
-      responseType: 'token'
-    })
+    this.lock = new Auth0Lock('qpfelAKW1EAzyb3RI3pk46SD0deXrJhE', 'cvrcle.auth0.com')
   }
+
   
   render() {
     return(

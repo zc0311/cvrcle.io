@@ -62,7 +62,7 @@ class ContributorEntry extends Component {
           <EditModal resetFlag={this.toggleModal} updateEntry={this.updateEntry} data={this.state}/> :
           ""
         }
-        <Card id={this.state.id} color="teal" className="entry" onClick={this.toggleModal}>
+        <Card id={this.state.id} color="teal" className="entry" onClick={this.toggleModal} raised='true'>
           <Card.Content>
             <Card.Header> 
               {this.state.title}
