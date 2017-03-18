@@ -23,6 +23,28 @@ class Entry extends Model {
       }
     };
   }
+
+  static get relationMappings() {
+    return {
+      owner: {
+        relation: Model.BelongsToOneRelation,
+        modelClass: __dirname + '/Itinerary',
+        join: {
+          from: 'entries.itinID',
+          to: 'itineraries.id'
+        }
+      },
+      owner: {
+        relation: Model.BelongsToOneRelation,
+        modelClass: __dirname + '/User',
+        join: {
+          from: 'entries.contributorID',
+          to: 'users.id'
+        }
+      }
+    }
+  }
+
 }
 
 module.exports = Entry;

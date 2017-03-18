@@ -12,7 +12,6 @@ const Entry = require('./models/Entry');
 // that is incomplete/malformed/invalid
 
 module.exports = (app) => {
-
   app.get('/users', (req, res, next) => {
     User
       .query()
@@ -59,6 +58,12 @@ module.exports = (app) => {
       .insertAndFetch(formattedEntry)
       .then((entry) => { res.send(entry)})
       .catch(next);
+  })
+
+  app.get('/itineraries', (req, res, next) => {
+    Itinerary
+      .query()
+      .then(() => {res.send(itineraries);})
   })
 
   app.get('/itineraries', (req, res, next) => {

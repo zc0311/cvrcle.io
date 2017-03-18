@@ -19,6 +19,20 @@ class Itinerary extends Model {
       }
     };
   }
+
+  static get relationMappings() {
+    return {
+      owner: {
+        relation: Model.BelongsToOneRelation,
+        modelClass: __dirname + '/User',
+        join: {
+          from: 'itineraries.ownerID',
+          to: 'users.id'
+        }
+      }
+    }
+  }
+
 }
 
 module.exports = Itinerary;
