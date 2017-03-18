@@ -12,6 +12,7 @@ class GoogleMap extends Component {
       },
       zoom: 13,
     }
+    console.log('jfkds;akjsfa');
   }
 
   componentDidMount() {
@@ -65,9 +66,26 @@ class GoogleMap extends Component {
     )
   }
 
+  // createMarker() {
+  //   this.props.locations.forEach((location) => {
+  //     let center = {
+  //       lat: location.lat,
+  //       lng: location.lng
+  //     }
+  //     new google.maps.Marker({
+  //       position: center,
+  //       map: this.map
+  //     })
+  //     markerBounds.extend(center);
+  //   })
+  //   return new google.maps.Marker({
+  //     position: this.mapCenter(),
+  //     map: this.map
+  //   })
+	// }
+
   render() {
-    console.log('first store location', this.props.storeLocations[0])
-    // google.maps.event.trigger(map, 'resize');
+    // this.createMap();
     return (
       <div className="google-map" ref="mapCanvas"></div>
     );

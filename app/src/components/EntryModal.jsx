@@ -86,7 +86,8 @@ class EntryModal extends Component {
             .post('http://localhost:3000/entries', qs.stringify(locationToDatabase))
             .then((response) => {
               console.log(response)
-              this.props.updateLocations(locationToDatabase)
+              // this.props.updateLocations(locationToDatabase)
+              this.props.newEntryAdded(locationToDatabase);
             })
             .catch((err) => {
               console.log('error1')
@@ -98,7 +99,6 @@ class EntryModal extends Component {
           if (err) {console.log(err)}
         })
     })
-    this.props.newEntryAdded();
     this.close();
   }
 

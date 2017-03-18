@@ -55,18 +55,26 @@ class Itinerary extends Component {
   }
 
   componentDidMount() {
-    this.getUserEntries();
   }
 
   componentWillUnmount() {
     // this.serverRequest.abort();
   }
 
-  newEntryAdded() {
+  componentWillMount() {
+    this.getUserEntries();
+
+  }
+
+  newEntryAdded(newLocation) {
     console.log('inside of add new entry');
+    let tmp = this.state.entries
+    tmp.push(newLocation)
+    // debugger;
     this.setState({
-      newEntry: !this.state.newEntry
+      entries: tmp
     })
+    // this.forceUpdate();
   }
 
   render() {
