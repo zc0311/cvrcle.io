@@ -15,6 +15,8 @@ module.exports = (app) => {
   app.get('/users', (req, res, next) => {
     User
       .query()
+      .allowEager('[itineraries, entries]')
+      .eager(req.query.eager)
       .skipUndefined()
       .where('firstName', req.query.firstName)
       .where('lastName', req.query.lastName)
@@ -69,6 +71,8 @@ module.exports = (app) => {
     Itinerary
       // we can add 'where' logic to filter and query results
       .query()
+      .allowEager('[entries]')
+      .eager(req.query.eager)
       .skipUndefined()
       .where('id', req.query.id)
       .where('ownerID', req.query.ownerID)
@@ -84,7 +88,7 @@ module.exports = (app) => {
       .catch(next);
   })
 
-}
+};
 
 // exports.createItin = function (req, res) {
 // };

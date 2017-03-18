@@ -1,4 +1,7 @@
 const Model = require('objection').Model;
+const Itinerary = require('./Itinerary')
+const Entry = require('./Entry')
+
 
 class User extends Model {
   static get tableName() {
@@ -27,17 +30,17 @@ class User extends Model {
 
       // A user will create multiple itineraries over time
       itineraries: {
-        relation: Model.HasManyRelations,
+        relation: Model.HasManyRelation,
         modelClass: __dirname + '/Itinerary',
         join: {
           from: 'users.id',
-          to: 'itineraries.itinID'
+          to: 'itineraries.ownerID'
         }
       },
-      
+
       //A user contributes many entries (to their own itineraires, and to those of others)
       entries: {
-        relation: Model.HasManyRelations,
+        relation: Model.HasManyRelation,
         modelClass: __dirname + '/Entry',
         join: {
           from: 'users.id',

@@ -1,4 +1,6 @@
 const Model = require('objection').Model;
+const User = require('./User')
+const Itinerary = require('./Itinerary')
 
 class Entry extends Model {
   static get tableName() {
