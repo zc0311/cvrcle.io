@@ -16,7 +16,7 @@ class EditModal extends Component {
       formTitle: this.props.data.title || "",
       formAuthor: this.props.data.author || "",
       formBody: this.props.data.body || "",
-      address: this.props.data.address || 'Search Places...'
+      address: this.props.data.address || ""
     }
     // function binds
     this.close = this.close.bind(this);
@@ -132,11 +132,12 @@ class EditModal extends Component {
             <FormGroup>
               <ControlLabel>Location</ControlLabel>
               <PlacesAutocomplete
-                value={this.state.address}
                 onChange={this.onChange}
                 autocompleteItem={AutocompleteItem}
                 classNames={cssClasses}
                 styles={myStyles}
+                value={this.state.address}
+                placeholder={"Search Places..."}
               />
             </FormGroup>
             <FormGroup>
