@@ -35,6 +35,9 @@ module.exports = (app) => {
     Entry
       // we can add 'where' logic to filter and query results
       .query()
+      .skipUndefined()
+      .where('itinID', req.query.itinID)
+      .where('contributorID', req.query.contributorID)
       .then((entries) => { res.send(entries); })
       .catch(next);
   })
@@ -62,14 +65,11 @@ module.exports = (app) => {
 
   app.get('/itineraries', (req, res, next) => {
     Itinerary
-      .query()
-      .then(() => {res.send(itineraries);})
-  })
-
-  app.get('/itineraries', (req, res, next) => {
-    Itinerary
       // we can add 'where' logic to filter and query results
       .query()
+      .skipUndefined()
+      .where('id', req.query.id)
+      .where('ownerID', req.query.ownerID)
       .then((itineraries) => { res.send(itineraries); })
       .catch(next);
   })
