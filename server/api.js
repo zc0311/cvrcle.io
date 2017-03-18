@@ -68,6 +68,16 @@ module.exports = (app) => {
       .catch(next);
   })
 
+  app.delete('/itineraries', (req, res, next) => {
+    Itinerary
+      .query()
+      .delete()
+      .where('id', req.query.id)
+      .where('ownerID', req.query.ownerID)
+      .then(() => res.send(202))
+      .catch(next);
+  })
+
   app.get('/itineraries', (req, res, next) => {
     Itinerary
       // we can add 'where' logic to filter and query results
