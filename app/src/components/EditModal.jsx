@@ -136,6 +136,7 @@ class EditModal extends Component {
                 autocompleteItem={AutocompleteItem}
                 classNames={cssClasses}
                 styles={myStyles}
+                value={this.state.address}
                 placeholder={"Search Places..."}
               />
             </FormGroup>
@@ -159,5 +160,3 @@ class EditModal extends Component {
 }
 
 export default EditModal;
-
-                {/*value={this.state.address}*/}

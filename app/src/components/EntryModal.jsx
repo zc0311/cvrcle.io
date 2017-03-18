@@ -7,7 +7,7 @@ import { geocodeByAddress, geocodeByPlaceId } from 'react-places-autocomplete';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import GOOGLE_API_KEY from '../../../config.js';
-import rootReducer from '../reducers/reducers_index';
+// import rootReducer from '../reducers/reducers_index';
 import store from '../store';
 
 const qs = require('qs');
