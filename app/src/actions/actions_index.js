@@ -20,3 +20,10 @@ export const TestSession = (session) => {
   }
 }
 
+export const updateMarkers = (count) => {
+  return {
+    type: "ENTRY_ADDED",
+    count
+  }
+}
+

@@ -22,7 +22,7 @@ class AppContainer extends Component {
   
   render() {
     return(
-      <Provider store={store}>
+      // <Provider store={store}>
         <div>
           <Image className="cvrcle-logo" src='../cvrcle.png' />
           <div className="text-center">
@@ -30,7 +30,7 @@ class AppContainer extends Component {
             <AuthLock lock={this.lock}/>
           </div>
         </div>
-      </Provider>
+      // </Provider>
     );
   }
 }

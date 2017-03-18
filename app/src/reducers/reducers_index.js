@@ -1,10 +1,11 @@
 //combining all reducers into one rootReducer
 
 import { combineReducers } from 'redux';
-import SessionReducer from './reducer_sessions';
+import { MarkerReducer } from './reducer_sessions';
 
 const rootReducer = combineReducers({
-  userSession: SessionReducer,
+  // userSession: SessionReducer,
+  markerChecker: MarkerReducer
 });
 
 export default rootReducer;
