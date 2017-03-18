@@ -54,16 +54,8 @@ class Itinerary extends Component {
       })
   }
 
-  componentDidMount() {
-  }
-
-  componentWillUnmount() {
-    // this.serverRequest.abort();
-  }
-
   componentWillMount() {
     this.getUserEntries();
-
   }
 
   newEntryAdded(newLocation) {
@@ -74,7 +66,18 @@ class Itinerary extends Component {
     this.setState({
       entries: tmp
     })
-    // this.forceUpdate();
+
+    let center = {
+      lat: newLocation.lat,
+      lng: newLocation.lng
+    }
+    return new google.maps.Marker({
+      position: center,
+      map: window.map
+    })
+    window.markerBounds.extend(center)
+
+    console.log('google maps?!', window.google.maps);
   }
 
   render() {
