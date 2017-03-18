@@ -15,7 +15,9 @@ class Logout extends Component {
     }
 
     this.getUserItineraries = this.getUserItineraries.bind(this);
-    this.openItinerary = this.openItinerary.bind(this);
+
+    //using this fake data until redux state is ready
+    this.fakeReduxStateUserId = 1;
   }
 
   componentDidMount() {
@@ -23,14 +25,9 @@ class Logout extends Component {
   }
 
   getUserItineraries() {
-    axios.get('http://localhost:3000/itineraries')
+    axios.get('http://localhost:3000/itineraries?ownerID='+this.fakeReduxStateUserId)
       .then((res) => this.setState({ itins: res.data } ))
       .catch(err => console.log(err))
-  }
-
-  openItinerary() {
-    // console.log("open user itin");
-    // console.log(this.props);
   }
 
   render() {
@@ -39,8 +36,7 @@ class Logout extends Component {
         <Navbar />
         <div className="itin-container">
           {this.state.itins ? this.state.itins.map((itin) => {
-            // console.log(itin);
-            return <Card id={itin.id} color="teal" href="/#/itinerary">
+            return <Card color="teal" href={`/#/itinerary?itinID=${itin.id}`}>
                 <Card.Header>{itin.itinName}</Card.Header>
                 <Card.Content extra>Created: {itin.created_at.substring(0, 10)}</Card.Content>
               </Card>
