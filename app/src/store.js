@@ -1,11 +1,13 @@
 import { createStore, compose } from 'redux';
 import { browerHistory } from 'react-router';
+// import { applyMiddleware } from 'redux';
+// import thunk from 'redux-thunk';
 
 //import root reducer
 import rootReducer from './reducers/reducers_index'
 
 const defaultState = {
-  markerChecker: false
+  storeLocations: []
 }
 
 const store = createStore(

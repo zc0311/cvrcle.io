@@ -20,10 +20,11 @@
 //   }
 // }
 
-export const updateMarkers = (input) => {
+export const updateLocations = (locations) => {
+  console.log('this will take care of updating markers')
   return {
     type: "ENTRY_ADDED",
-    payload: !input
+    payload: locations
   }
 }
 

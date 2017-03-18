@@ -1,4 +1,6 @@
 import React, { Component } from 'react';
+// import store from '../store.js';
+import { connect } from 'react-redux';
 
 class GoogleMap extends Component {
   constructor(props) {
@@ -9,7 +11,6 @@ class GoogleMap extends Component {
         lng: -118.3907 
       },
       zoom: 13,
-      locations: this.props.locations
     }
   }
 
@@ -40,7 +41,7 @@ class GoogleMap extends Component {
       }
     }
 
-    // adds markers onto the page
+    // grabs existing locations from database and renders them onto the map
     this.props.locations.forEach((location) => {
       let center = {
         lat: location.lat,
@@ -65,11 +66,20 @@ class GoogleMap extends Component {
   }
 
   render() {
+    console.log('first store location', this.props.storeLocations[0])
+    // google.maps.event.trigger(map, 'resize');
     return (
       <div className="google-map" ref="mapCanvas"></div>
     );
   }
 }
 
-export default GoogleMap;
+// export default GoogleMap;
 
+const mapStateToProps = (state) => {
+  return {
+    storeLocations: state.storeLocations
+  }
+}
+
+export default connect(mapStateToProps)(GoogleMap);
