@@ -10,15 +10,14 @@
 //   return state;
 // }
 
-export const MarkerReducer = (state=[], action) => {
-  console.log('MarkerReducer will handle refreshing markers on map')
+export const MarkerReducer = (state = false, action) => {
   console.log(state, action)
   if (action.type === 'ENTRY_ADDED') {
     console.log('1');
-    return count++;
+    return action.payload;
   }
   console.log('2')
-  return 'hi'
+  return state
 }
 
 // export default {

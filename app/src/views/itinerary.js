@@ -58,11 +58,11 @@ class Itinerary extends Component {
     this.setState({
       newEntry: !this.state.newEntry
     })
+    this.props.updateMarkers(this.props.markerChecker)
   }
 
   render() {
     return (
-      // <Provider store={store}>
         <div>
           <Navbar />
           <div className="container">
@@ -91,12 +91,9 @@ class Itinerary extends Component {
             </div>
           </div>
         </div>
-      // </Provider>
     );
   }
 }
-
-// export default Itinerary
 
 const mapStateToProps = (state) => {
   return {
@@ -104,5 +101,11 @@ const mapStateToProps = (state) => {
   }
 }
 
-export default connect(mapStateToProps)(Itinerary);
+const mapDispatchToProps = (dispatch) => {
+  return bindActionCreators({
+    updateMarkers: updateMarkers
+  }, dispatch);
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(Itinerary);
 

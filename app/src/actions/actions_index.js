@@ -13,17 +13,17 @@
 //   }
 // }
 
-export const TestSession = (session) => {
-  return {
-    type: "SAVE_SESSION",
-    payload: session
-  }
-}
+// export const TestSession = (session) => {
+//   return {
+//     type: "SAVE_SESSION",
+//     payload: session
+//   }
+// }
 
-export const updateMarkers = (count) => {
+export const updateMarkers = (input) => {
   return {
     type: "ENTRY_ADDED",
-    count
+    payload: !input
   }
 }
 
