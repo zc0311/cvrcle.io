@@ -14,3 +14,5 @@ const LandingContainer = connect(
 mapDispatchToProps)(Landing)
 
 export default LandingContainer
+
+//for regina
