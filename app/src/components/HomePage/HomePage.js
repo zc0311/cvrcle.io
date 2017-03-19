@@ -1,132 +1,77 @@
 import React, { Component } from 'react';
-import ReactDOM from 'react-dom';
-import axios from "axios";
-import { Container, Header, Card, Message, Segment, Form } from 'semantic-ui-react';
-import ContributorEntry from '../ContributorEntry.jsx';
-import GoogleMap from '../map.jsx';
-import AddNewEntry from '../AddNewEntry.jsx';
+import ReactDOM from "react-dom";
+import axios from 'axios';
+import NavBar from '../NavBar/NavBar.js'; 
+import { Card } from 'semantic-ui-react';
+import { browserHistory } from 'react-router';
+import { Link } from 'react-router'
 
-import { connect, Provider } from 'react-redux';
-import { bindActionCreators } from 'redux';
+class HomePage extends Component {
+  constructor() {
+    super();
 
-
-
-class Itinerary extends Component {
-  constructor(props) {
-    super(props);
     this.state = {
-      entries: [],
-      newEntry: false
-    };
-
-    this.newEntryAdded = this.newEntryAdded.bind(this);
-    this.getUserEntries = this.getUserEntries.bind(this);
-    //this.getQueryParams = this.getQueryParams.bind(this);
-
-    //this.itinID = this.getQueryParams('itinID');
-    this.itinID = '1'
-  }
-
-  // getQueryParams(param) {
-  //   var query = window.location.hash.substring(1);
-  //   var vars = query.split("?");
-  //   for (var i=0;i<vars.length;i++) {
-  //     var pair = vars[i].split("=");
-  //     if(pair[0] == param){return pair[1];}
-  //   }
-  //   return(false);
-  // }
-
-  getUserEntries() {
-    axios.get('http://localhost:3000/entries?itinID='+this.itinID)
-      .then((res) => {
-        let filteredEntries = [];
-        res.data.forEach((entry) => {
-          filteredEntries.push(entry);
-        })
-        return filteredEntries
-      })
-      .then((data) => {
-        this.setState({ entries: data })
-      })
-      .catch((err) => {
-        console.log(err);
-      })
-  }
-
-  componentWillMount() {
-    this.getUserEntries();
-  }
-
-  newEntryAdded(newLocation) {
-    console.log('inside of add new entry');
-    let tmp = this.state.entries
-    tmp.push(newLocation)
-    // debugger;
-    this.setState({
-      entries: tmp
-    })
-
-    let center = {
-      lat: newLocation.lat,
-      lng: newLocation.lng
+      itins: [],
+      deleted: null
     }
-    return new google.maps.Marker({
-      position: center,
-      map: window.map
-    })
-    window.markerBounds.extend(center)
 
-    console.log('google maps?!', window.google.maps);
+    this.getUserItineraries = this.getUserItineraries.bind(this);
+    this.deleteItinerary = this.deleteItinerary.bind(this);
+
+    //using this fake data until redux state is ready
+    this.fakeReduxStateUserId = 1;
+  }
+
+  componentDidMount() {
+    this.getUserItineraries();
+  }
+
+  getUserItineraries() {
+    axios.get('http://localhost:3000/itineraries')
+      .then((res) => this.setState({ itins: res.data } ))
+      .catch(err => console.log(err))
+
+    // axios.get('http://localhost:3000/itineraries?ownerID='+this.fakeReduxStateUserId)
+    //   .then((res) => this.setState({ itins: res.data } ))
+    //   .catch(err => console.log(err))
+  }
+
+  deleteItinerary(e) {
+    e.preventDefault();
+    
+    const id = e.target.dataset.id;
+    const oid = e.target.dataset.ownerid;
+    
+    axios.delete(`http://localhost:3000/itineraries?id=${id}&ownerID=${oid}`)
+      .then((res) => {
+        console.log("deleted", res);
+        this.setState({
+          delete: res
+        })
+      })
+      .catch(err => console.log(err))
   }
 
   render() {
     return (
       <div>
-
-        <div className="container">
-          <div className="map-view">
-            {this.state.entries.length ?
-              <GoogleMap
-                locations={this.state.entries}
-              /> : ''}
-          </div>
-          <div className="add-entry">
-            <AddNewEntry
-              data={''}
-              newEntryAdded={this.newEntryAdded}
-            />
-          </div>
-          <div className="entries">
-            <div>
-              <Card.Group className="existing-entries">
-                {this.state.entries.length ?
-                  (this.state.entries.map((entryData, i) => (
-                    <ContributorEntry key={i} {...entryData} />))) :
-                  <div className="text-center">No entries yet!</div>
-                }
-              </Card.Group>
-            </div>
-          </div>
+        <NavBar />
+        <div className="itin-container">
+          {this.state.itins ? this.state.itins.map((itin) => (
+            <Card color="teal" href={`/#/itinerary?itinID=${itin.id}`}>
+              <Card.Content>
+                <span className="glyphicon glyphicon-remove" data-id={itin.id} data-ownerid={itin.ownerID} onClick={this.deleteItinerary}></span>
+                <Card.Header>{itin.itinName}</Card.Header>
+              </Card.Content>
+              <Card.Content extra>
+                Created: {itin.created_at.substring(0, 10)}
+              </Card.Content>
+            </Card>
+          )) : ""}
         </div>
       </div>
     );
   }
 }
 
-export default Itinerary
-
-// const mapStateToProps = (state) => {
-//   return {
-//     storeLocations: state.storeLocations
-//   }
-// }
-
-// const mapDispatchToProps = (dispatch) => {
-//   return bindActionCreators({
-//     updateLocations: updateLocations
-//   }, dispatch);
-// }
-
-// export default connect(mapStateToProps, mapDispatchToProps)(Itinerary);
-
+export default HomePage
