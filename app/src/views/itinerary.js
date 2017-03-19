@@ -30,15 +30,15 @@ class Itinerary extends Component {
   getQueryParams(param) {
     var query = window.location.hash.substring(1);
     var vars = query.split("?");
-    for (var i=0;i<vars.length;i++) {
+    for (var i = 0; i < vars.length; i++) {
       var pair = vars[i].split("=");
-      if(pair[0] == param){return pair[1];}
+      if (pair[0] == param) { return pair[1]; }
     }
-    return(false);
+    return (false);
   }
 
   getUserEntries() {
-    axios.get('http://localhost:3000/entries?itinID='+this.itinID)
+    axios.get('http://localhost:3000/entries?itinID=' + this.itinID)
       .then((res) => {
         let filteredEntries = [];
         res.data.forEach((entry) => {
@@ -63,17 +63,17 @@ class Itinerary extends Component {
 
   createMarkers(data) {
     // grabs existing locations from database and renders them onto the map
-      data.forEach((location) => {
-        let center = {
-          lat: location.lat,
-          lng: location.lng
-        }
-        new google.maps.Marker({
-          position: center,
-          map: window.map
-        })
-        window.markerBounds.extend(center);
+    data.forEach((location) => {
+      let center = {
+        lat: location.lat,
+        lng: location.lng
+      }
+      new google.maps.Marker({
+        position: center,
+        map: window.map
       })
+      window.markerBounds.extend(center);
+    })
 
     //resets map bounds
     window.map.fitBounds(window.markerBounds);

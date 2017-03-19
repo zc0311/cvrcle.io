@@ -35,10 +35,10 @@ class AppContainer extends Component {
             }}>
             <div className="parallax-content1">
               <h3 style={{
-                color: '161D26',
                 fontWeight: 300,
                 fontSize: 50
               }}>Where are you headed next?</h3>
+              <Image className="window-seat" src="../../window_seat.png"/>
             </div>
           </div>
         </Parallax>
@@ -52,7 +52,7 @@ class AppContainer extends Component {
               marginTop: 2,
               marginBottom: 40
             }}>
-            <h3>With cvrcle, make your circles come full circle. Only allow the people who know you best help you plan your getaway. </h3>
+            <h3>With cvrcle, make your circles come full circle. Allow the people who know you best help you plan your getaway. </h3>
           </div>
           <div style={
             {
