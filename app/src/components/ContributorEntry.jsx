@@ -21,6 +21,7 @@ class ContributorEntry extends Component {
     this.toggleModal = this.toggleModal.bind(this);
     this.updateEntry = this.updateEntry.bind(this);
     this.updateState = this.updateState.bind(this);
+    this.deleteEntry = this.deleteEntry.bind(this);
   }
 
   componentDidMount() {
@@ -55,15 +56,26 @@ class ContributorEntry extends Component {
     })
   }
 
+  deleteEntry(e) {
+    e.preventDefault();
+    e.stopPropagation();
+    
+    axios.delete(`http://localhost:3000/entries?id=${this.state.id}&itinID=1`)
+      .then((res) => {
+        console.log("reserser", res);
+      })
+      .catch(err => console.log(err))
+  }
+
   render() {
     return (
       <div className="single-entry">
         {this.state.isEditing ? 
-          <EditModal resetFlag={this.toggleModal} updateEntry={this.updateEntry} data={this.state}/> :
-          ""
-        }
-        <Card id={this.state.id} color="teal" className="entry" onClick={this.toggleModal} raised='true'>
+          <EditModal resetFlag={this.toggleModal} updateEntry={this.updateEntry} data={this.state}/> 
+          : "" }
+        <Card id={this.state.id} color="teal" className="entry" onClick={this.toggleModal}>
           <Card.Content>
+            <span className="remove-btn glyphicon glyphicon-remove" id={this.state.id} onClick={this.deleteEntry}></span>
             <Card.Header> 
               {this.state.title}
             </Card.Header>

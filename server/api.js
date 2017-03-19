@@ -46,7 +46,6 @@ module.exports = (app) => {
   })
 
   app.post('/entries', (req, res, next) => {
-    console.log('request body is', req.body);
     let fitinID = parseInt(req.body.itinID);
     let fcontributorID = parseInt(req.body.contributorID);
     let flat = parseFloat(req.body.lat);
@@ -67,6 +66,26 @@ module.exports = (app) => {
       .then((entry) => { res.send(entry)})
       .catch(next);
   })
+
+  app.delete('/entries', (req, res, next) => {
+    Entry
+      .query()
+      .where('itinID', req.query.itinID)
+      .where('id', req.query.id)
+      .deleteById(req.query.id)
+      .then((deleted) => { res.send(202, deleted); })
+      .catch(next);
+  })
+
+  app.delete('/itineraries', function (req, res, next) {
+    Itinerary
+      .query()
+      .where('ownerID', req.query.ownerID)
+      .where('id', req.query.id)
+      .deleteById(req.query.id)
+      .then((deleted) => { res.send(200, deleted); })
+      .catch(next);
+  });
 
   app.get('/itineraries', (req, res, next) => {
     Itinerary
