@@ -8,11 +8,6 @@
   margin-top: 3px;
 }
 
-.google-map {
-  height: 500px;
-  width: 100%
-}
-
 .itin-container .ui.card {
   text-align: center;
   margin: 20px auto;
@@ -53,6 +48,10 @@
 .ui.card:hover {
   cursor: pointer;
   text-decoration: none;
+}
+
+.card .remove-btn {
+  float: right;
 }
 
 .card .header {
@@ -97,12 +96,19 @@
 .entries {
   margin-bottom: 100px;
 }
-.map-view {
-  /*float: right;*/
+
+.google-map {
+  height: 450px;
   width: 100%;
-  position: center absolute;
-  margin: 0 auto;
-  /*position: relative;
-  left: 56%;
-  overflow: hidden;*/
+}
+
+.map-view {
+  height: 450px;
+  width: 81%;
+  margin: 10px auto 50px;
+}
+
+.map-view button.entry {
+  float: right;
+  border-radius: 0px;
 }

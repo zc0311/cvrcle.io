@@ -44,7 +44,7 @@ class AddNewEntry extends Component {
 
   render() {
     return (
-      <div>
+      <span>
         {this.state.isClicked ? 
           <EntryModal 
             resetFlag={this.toggleModal} 
@@ -54,11 +54,11 @@ class AddNewEntry extends Component {
         <Button 
           id={this.state.id} 
           bsStyle="default" 
-          bsSize="large" 
-          className="entry" 
+          bsSize="medium"
+          className="entry btn-primary"
           onClick={this.toggleModal}>Add New Entry
         </Button>
-      </div>
+      </span>
     );
   }
 }

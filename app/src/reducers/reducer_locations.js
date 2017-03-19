@@ -12,7 +12,6 @@ export const LocationReducer = (state = [], action) => {
     // console.log('state and action', state)
     return locations
   }
-  console.log('2')
   return state
 }
 
