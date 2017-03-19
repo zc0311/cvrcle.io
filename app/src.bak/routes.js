@@ -8,7 +8,7 @@ export default function createRoutes() {
   return(
     <Route path='/' component={AppContainer}>
       <IndexRoute component={HomePage} />
-      <Route path='/#/about' component={AboutPage} />
+      <Route path='/about' component={AboutPage} />
       <Route path='*' component={NotFoundPage} />
     </Route>
   )

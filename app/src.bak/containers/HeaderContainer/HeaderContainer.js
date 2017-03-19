@@ -1,7 +1,6 @@
 import { connect } from 'react-redux'
-import { loginRequest, logoutSuccess } from '../../actions/auth'
+import { loginRequest, logoutSuccess } from '../../actions'
 import { Header } from '../../components'
-import { browserHistory } from 'react-router'
 
 const mapStateToProps = (state) => {
   const { isAuthenticated, profile, error } = state.auth
@@ -14,14 +13,8 @@ const mapStateToProps = (state) => {
 
 const mapDispatchToProps = (dispatch) => {
   return {
-    onLoginClick: () => {
-      dispatch(loginRequest())
-    },
-    onLogoutClick: () => {
-      dispatch(logoutSuccess())
-      browserHistory.push('/')
-      location.reload()
-    }
+    onLoginClick: () => dispatch(loginRequest()),
+    onLogoutClick: () => dispatch(logoutSuccess())
   }
 }
 

@@ -6,12 +6,7 @@ export const LOGIN_SUCCESS = 'LOGIN_SUCCESS'
 export const LOGIN_ERROR = 'LOGIN_ERROR'
 export const LOGOUT_SUCCESS = 'LOGOUT_SUCCESS'
 
-// AUTH0_CLIENT_ID=qpfelAKW1EAzyb3RI3pk46SD0deXrJhE
-// AUTH0_CLIENT_SECRET=_pps_7k9PizjlAYup6vI6pUqL2NhSNsttwUQ_F64FwPfSqhLUZXV17I-ocLRpAI9
-// AUTH0_DOMAIN=cvrcle.auth0.com
-
-
-const authService = new AuthService('qpfelAKW1EAzyb3RI3pk46SD0deXrJhE', 'cvrcle.auth0.com')
+const authService = new AuthService(process.env.AUTH0_CLIENT_ID, process.env.AUTH0_DOMAIN)
 
 // Listen to authenticated event from AuthService and get the profile of the user
 // Done on every page startup
@@ -40,8 +35,7 @@ export function loginRequest() {
 }
 
 export function loginSuccess(profile) {
-  browserHistory.push('/#/about')
-  location.reload()
+  browserHistory.push('/')
   return {
     type: LOGIN_SUCCESS,
     profile
