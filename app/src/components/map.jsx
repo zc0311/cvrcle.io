@@ -17,18 +17,6 @@ class GoogleMap extends Component {
   componentDidMount() {
     // create the map, marker and infoWindow after the component has
     // been rendered because we need to manipulate the DOM for Google =(
-    this.createMap();
-  }
-
-  componentDidUpdate(prevProps, prevState) {
-    if (prevProps.google !== this.props.google) {
-    this.loadMap();
-    this.forceUpdate()
-    }
-  }
-
-  createMap() {
-    // instantiates the map
     window.map = new google.maps.Map(this.refs.mapCanvas, {
       zoom: this.state.zoom,
       center: this.mapCenter()
@@ -47,22 +35,6 @@ class GoogleMap extends Component {
         });
       }
     }
-
-    // grabs existing locations from database and renders them onto the map
-    this.props.locations.forEach((location) => {
-      let center = {
-        lat: location.lat,
-        lng: location.lng
-      }
-      new google.maps.Marker({
-        position: center,
-        map: map
-      })
-      markerBounds.extend(center);
-    })
-
-    //resets map bounds
-    map.fitBounds(markerBounds);
   }
 
   mapCenter() {

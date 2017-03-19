@@ -48,6 +48,9 @@ class Itinerary extends Component {
       })
       .then((data) => {
         this.setState({ entries: data })
+        if (data.length) {
+          this.createMarkers(data);
+        }
       })
       .catch((err) => {
         console.log(err);
@@ -58,11 +61,27 @@ class Itinerary extends Component {
     this.getUserEntries();
   }
 
+  createMarkers(data) {
+    // grabs existing locations from database and renders them onto the map
+      data.forEach((location) => {
+        let center = {
+          lat: location.lat,
+          lng: location.lng
+        }
+        new google.maps.Marker({
+          position: center,
+          map: window.map
+        })
+        window.markerBounds.extend(center);
+      })
+
+    //resets map bounds
+    window.map.fitBounds(window.markerBounds);
+  }
+
   newEntryAdded(newLocation) {
-    console.log('inside of add new entry');
     let tmp = this.state.entries
     tmp.push(newLocation)
-    // debugger;
     this.setState({
       entries: tmp
     })
@@ -76,11 +95,8 @@ class Itinerary extends Component {
       map: window.map
     })
     window.markerBounds.extend(center)
-
-    console.log('google maps?!', window.google.maps);
   }
 
-            // <AddNewEntry className="add-entry" data={''} newEntryAdded={this.newEntryAdded} />
   render() {
     return (
       <div>
@@ -88,7 +104,7 @@ class Itinerary extends Component {
         <div className="container">
           <div className="map-view">
             <AddNewEntry className="add-entry" data={''} newEntryAdded={this.newEntryAdded} />
-            {this.state.entries.length ? <GoogleMap locations={this.state.entries} /> : ''}
+            <GoogleMap locations={this.state.entries} />
           </div>
           <div className="entries">
             <div>
