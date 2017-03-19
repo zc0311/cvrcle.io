@@ -17,18 +17,6 @@ class GoogleMap extends Component {
   componentDidMount() {
     // create the map, marker and infoWindow after the component has
     // been rendered because we need to manipulate the DOM for Google =(
-    this.createMap();
-  }
-
-  componentDidUpdate(prevProps, prevState) {
-    if (prevProps.google !== this.props.google) {
-    this.loadMap();
-    this.forceUpdate()
-    }
-  }
-
-  createMap() {
-    // instantiates the map
     window.map = new google.maps.Map(this.refs.mapCanvas, {
       zoom: this.state.zoom,
       center: this.mapCenter()
@@ -36,33 +24,17 @@ class GoogleMap extends Component {
     window.markerBounds = new google.maps.LatLngBounds();
 
     // grabs location and centers map if no locations already saved
-    if (this.props.locations.length === 0) {
-      if (navigator.geolocation) {
-        navigator.geolocation.getCurrentPosition((position) => {
-          let pos = {
-            lat: position.coords.latitude,
-            lng: position.coords.longitude
-          };
-          map.setCenter(pos);
-        });
-      }
-    }
-
-    // grabs existing locations from database and renders them onto the map
-    this.props.locations.forEach((location) => {
-      let center = {
-        lat: location.lat,
-        lng: location.lng
-      }
-      new google.maps.Marker({
-        position: center,
-        map: map
-      })
-      markerBounds.extend(center);
-    })
-
-    //resets map bounds
-    map.fitBounds(markerBounds);
+    // if (this.props.locations.length === 0) {
+    //   if (navigator.geolocation) {
+    //     navigator.geolocation.getCurrentPosition((position) => {
+    //       let pos = {
+    //         lat: position.coords.latitude,
+    //         lng: position.coords.longitude
+    //       };
+    //       map.setCenter(pos);
+    //     });
+    //   }
+    // }
   }
 
   mapCenter() {
@@ -73,7 +45,6 @@ class GoogleMap extends Component {
   }
 
   render() {
-    // this.createMap();
     return (
       <div className="google-map" ref="mapCanvas"></div>
     );

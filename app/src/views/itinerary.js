@@ -30,15 +30,15 @@ class Itinerary extends Component {
   getQueryParams(param) {
     var query = window.location.hash.substring(1);
     var vars = query.split("?");
-    for (var i=0;i<vars.length;i++) {
+    for (var i = 0; i < vars.length; i++) {
       var pair = vars[i].split("=");
-      if(pair[0] == param){return pair[1];}
+      if (pair[0] == param) { return pair[1]; }
     }
-    return(false);
+    return (false);
   }
 
   getUserEntries() {
-    axios.get('http://localhost:3000/entries?itinID='+this.itinID)
+    axios.get('http://localhost:3000/entries?itinID=' + this.itinID)
       .then((res) => {
         let filteredEntries = [];
         res.data.forEach((entry) => {
@@ -48,6 +48,20 @@ class Itinerary extends Component {
       })
       .then((data) => {
         this.setState({ entries: data })
+        if (data.length) {
+          this.createMarkers(data);
+        } else {
+          if (navigator.geolocation) {
+            navigator.geolocation.getCurrentPosition((position) => {
+              let pos = {
+                lat: position.coords.latitude,
+                lng: position.coords.longitude
+              };
+              map.setCenter(pos);
+            });
+          }
+
+        }
       })
       .catch((err) => {
         console.log(err);
@@ -58,11 +72,27 @@ class Itinerary extends Component {
     this.getUserEntries();
   }
 
+  createMarkers(data) {
+    // grabs existing locations from database and renders them onto the map
+    data.forEach((location) => {
+      let center = {
+        lat: location.lat,
+        lng: location.lng
+      }
+      new google.maps.Marker({
+        position: center,
+        map: window.map
+      })
+      window.markerBounds.extend(center);
+    })
+
+    //resets map bounds
+    window.map.fitBounds(window.markerBounds);
+  }
+
   newEntryAdded(newLocation) {
-    console.log('inside of add new entry');
     let tmp = this.state.entries
     tmp.push(newLocation)
-    // debugger;
     this.setState({
       entries: tmp
     })
@@ -71,13 +101,13 @@ class Itinerary extends Component {
       lat: newLocation.lat,
       lng: newLocation.lng
     }
+    window.markerBounds.extend(center)
+    window.map.fitBounds(window.markerBounds);
+    
     return new google.maps.Marker({
       position: center,
       map: window.map
     })
-    window.markerBounds.extend(center)
-
-    console.log('google maps?!', window.google.maps);
   }
 
   render() {
@@ -86,7 +116,7 @@ class Itinerary extends Component {
         <Navbar />
         <div className="container">
           <div className="map-view">
-            {this.state.entries.length ? <GoogleMap locations={this.state.entries} /> : ''}
+            <GoogleMap locations={this.state.entries} />
             <AddNewEntry className="add-entry" data={''} newEntryAdded={this.newEntryAdded} />
           </div>
           <div className="entries">
