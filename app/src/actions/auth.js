@@ -40,7 +40,7 @@ export function loginRequest() {
 }
 
 export function loginSuccess(profile) {
-  browserHistory.push('/#/about')
+  browserHistory.push('/#/itineraries')
   location.reload()
   return {
     type: LOGIN_SUCCESS,
