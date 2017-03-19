@@ -10,7 +10,6 @@ const mapDispatchToProps = (dispatch) => {
 
 const AppContainer = connect(
   null, // no mapStateToProps
-  mapDispatchToProps
-)(App)
+mapDispatchToProps)(App)
 
 export default AppContainer
