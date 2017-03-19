@@ -50,6 +50,17 @@ class Itinerary extends Component {
         this.setState({ entries: data })
         if (data.length) {
           this.createMarkers(data);
+        } else {
+          if (navigator.geolocation) {
+            navigator.geolocation.getCurrentPosition((position) => {
+              let pos = {
+                lat: position.coords.latitude,
+                lng: position.coords.longitude
+              };
+              map.setCenter(pos);
+            });
+          }
+
         }
       })
       .catch((err) => {
@@ -90,11 +101,13 @@ class Itinerary extends Component {
       lat: newLocation.lat,
       lng: newLocation.lng
     }
+    window.markerBounds.extend(center)
+    window.map.fitBounds(window.markerBounds);
+    
     return new google.maps.Marker({
       position: center,
       map: window.map
     })
-    window.markerBounds.extend(center)
   }
 
   render() {

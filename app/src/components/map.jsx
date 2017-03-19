@@ -24,17 +24,17 @@ class GoogleMap extends Component {
     window.markerBounds = new google.maps.LatLngBounds();
 
     // grabs location and centers map if no locations already saved
-    if (this.props.locations.length === 0) {
-      if (navigator.geolocation) {
-        navigator.geolocation.getCurrentPosition((position) => {
-          let pos = {
-            lat: position.coords.latitude,
-            lng: position.coords.longitude
-          };
-          map.setCenter(pos);
-        });
-      }
-    }
+    // if (this.props.locations.length === 0) {
+    //   if (navigator.geolocation) {
+    //     navigator.geolocation.getCurrentPosition((position) => {
+    //       let pos = {
+    //         lat: position.coords.latitude,
+    //         lng: position.coords.longitude
+    //       };
+    //       map.setCenter(pos);
+    //     });
+    //   }
+    // }
   }
 
   mapCenter() {
@@ -45,7 +45,6 @@ class GoogleMap extends Component {
   }
 
   render() {
-    // this.createMap();
     return (
       <div className="google-map" ref="mapCanvas"></div>
     );
