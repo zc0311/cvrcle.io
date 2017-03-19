@@ -4,8 +4,9 @@
 }
 
 .cvrcle-logo-icon {
-  height: 20px;
-  margin-top: 3px;
+  height: 35px;
+  margin-top: -5px;
+  margin-bottom: 8px;
 }
 
 .itin-container .ui.card {
@@ -26,6 +27,7 @@
 
 .navbar.navbar-default {
   background-color: #333;
+  padding: 1px
 }
 
 .nav.navbar-nav {
@@ -111,4 +113,27 @@
 .map-view button.entry {
   float: right;
   border-radius: 0px;
+}
+
+.parallax-bg-image {
+  background-repeat: no-repeat;
+  width: 100%;
+  margin-top: -30px
+}
+
+.parallax-bg-image2 {
+  background-repeat: no-repeat;
+  width: 100%;
+  margin-top: -30px
+}
+
+.react-parallax {
+  background-size: cover;
+  height: 600px;
+  text-align: center
+}
+
+.react-parallax-content {
+  display: inline-block;
+  margin-top: 250px
 }
