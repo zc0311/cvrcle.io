@@ -59,6 +59,7 @@
     "react-bootstrap": "^0.30.8",
     "react-dom": "^15.4.2",
     "react-loading": "0.0.9",
+    "react-parallax": "^1.2.6",
     "react-places-autocomplete": "^4.0.5",
     "react-redux": "^5.0.3",
     "react-router": "^3.0.2",

@@ -14,6 +14,24 @@
   width: 50%;
 }
 
+.itin-container .ui.card .glyphicon-remove {
+  top: -5px;
+  left: 5px;
+  float: right;
+}
+
+.ui.card .glyphicon-remove:hover {
+  color: #777;
+}
+
+.itin-container .ui.teal.card .content .header {
+  font-weight: 400;
+  font-size: 18px;
+  margin-top: 20px;
+  color: #333;
+  height: 45px;
+}
+
 .container > .navbar-header {
   float: left;
   font-size: 18px;
@@ -37,7 +55,7 @@
 }
 
 .navbar-default .nav.navbar-nav > li > a:hover {
-  color: #777;
+  color: #e6e6e6;
 }
 
 .ui.card {
@@ -111,4 +129,34 @@
 .map-view button.entry {
   float: right;
   border-radius: 0px;
+}
+
+.parallax-bg-image {
+  background-repeat: no-repeat;
+  width: 100%;
+  margin-top: -30px
+}
+
+.parallax-bg-image2 {
+  background-repeat: no-repeat;
+  width: 100%;
+  margin-top: -30px
+}
+
+.react-parallax {
+  background-size: cover;
+  height: 600px;
+  text-align: center
+}
+
+.react-parallax-content {
+  display: inline-block;
+  margin-top: 250px;
+  color: black;
+}
+
+.window-seat {
+  height: 100px;
+  margin: auto;
+  margin-top: 20px
 }

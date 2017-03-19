@@ -6,9 +6,9 @@ import { HomePage, AboutPage, NotFoundPage, Landing } from './components'
 
 export default function createRoutes() {
   return(
-    <Route path='/' component={AppContainer}>
+    <Route path='/' component={LandingContainer}>
       <IndexRoute component={HomePage} />
-      <Route path='/#/itineraries' component={AppContainer}/>
+      <Route path='/#/itineraries' component={LandingContainer}/>
       <Route path='*' component={NotFoundPage} />
       <Route path='/#/logout' component={LandingContainer} />
     </Route>
