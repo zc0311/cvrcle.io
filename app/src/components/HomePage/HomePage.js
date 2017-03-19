@@ -21,20 +21,21 @@ class Itinerary extends Component {
 
     this.newEntryAdded = this.newEntryAdded.bind(this);
     this.getUserEntries = this.getUserEntries.bind(this);
-    this.getQueryParams = this.getQueryParams.bind(this);
+    //this.getQueryParams = this.getQueryParams.bind(this);
 
-    this.itinID = this.getQueryParams('itinID');
+    //this.itinID = this.getQueryParams('itinID');
+    this.itinID = '1'
   }
 
-  getQueryParams(param) {
-    var query = window.location.hash.substring(1);
-    var vars = query.split("?");
-    for (var i=0;i<vars.length;i++) {
-      var pair = vars[i].split("=");
-      if(pair[0] == param){return pair[1];}
-    }
-    return(false);
-  }
+  // getQueryParams(param) {
+  //   var query = window.location.hash.substring(1);
+  //   var vars = query.split("?");
+  //   for (var i=0;i<vars.length;i++) {
+  //     var pair = vars[i].split("=");
+  //     if(pair[0] == param){return pair[1];}
+  //   }
+  //   return(false);
+  // }
 
   getUserEntries() {
     axios.get('http://localhost:3000/entries?itinID='+this.itinID)
