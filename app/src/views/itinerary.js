@@ -116,8 +116,8 @@ class Itinerary extends Component {
         <Navbar />
         <div className="container">
           <div className="map-view">
-            <AddNewEntry className="add-entry" data={''} newEntryAdded={this.newEntryAdded} />
             <GoogleMap locations={this.state.entries} />
+            <AddNewEntry className="add-entry" data={''} newEntryAdded={this.newEntryAdded} />
           </div>
           <div className="entries">
             <div>

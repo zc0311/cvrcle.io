@@ -15,6 +15,24 @@
   width: 50%;
 }
 
+.itin-container .ui.card .glyphicon-remove {
+  top: -5px;
+  left: 5px;
+  float: right;
+}
+
+.ui.card .glyphicon-remove:hover {
+  color: #777;
+}
+
+.itin-container .ui.teal.card .content .header {
+  font-weight: 400;
+  font-size: 18px;
+  margin-top: 20px;
+  color: #333;
+  height: 45px;
+}
+
 .container > .navbar-header {
   float: left;
   font-size: 18px;
@@ -39,7 +57,7 @@
 }
 
 .navbar-default .nav.navbar-nav > li > a:hover {
-  color: #777;
+  color: #e6e6e6;
 }
 
 .ui.card {
