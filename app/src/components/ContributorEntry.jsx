@@ -74,8 +74,8 @@ class ContributorEntry extends Component {
           <EditModal resetFlag={this.toggleModal} updateEntry={this.updateEntry} data={this.state}/> 
           : "" }
         <Card id={this.state.id} color="teal" className="entry" onClick={this.toggleModal}>
-          <span className="text-right glyphicon glyphicon-remove" id={this.state.id} onClick={this.deleteEntry}></span>
           <Card.Content>
+            <span className="remove-btn glyphicon glyphicon-remove" id={this.state.id} onClick={this.deleteEntry}></span>
             <Card.Header> 
               {this.state.title}
             </Card.Header>

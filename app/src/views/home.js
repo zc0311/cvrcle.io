@@ -11,7 +11,8 @@ class Logout extends Component {
     super();
 
     this.state = {
-      itins: []
+      itins: [],
+      deleted: null
     }
 
     this.getUserItineraries = this.getUserItineraries.bind(this);
@@ -38,9 +39,15 @@ class Logout extends Component {
   deleteItinerary(e) {
     e.preventDefault();
     
-    axios.delete('http://localhost:3000/itineraries?id=1&ownerID=1')
+    const id = e.target.dataset.id;
+    const oid = e.target.dataset.ownerid;
+    
+    axios.delete(`http://localhost:3000/itineraries?id=${id}&ownerID=${oid}`)
       .then((res) => {
-        console.log("reserser", res);
+        console.log("deleted", res);
+        this.setState({
+          delete: res
+        })
       })
       .catch(err => console.log(err))
   }
@@ -50,14 +57,13 @@ class Logout extends Component {
       <div>
         <Navbar />
         <div className="itin-container">
-          {this.state.itins ? this.state.itins.map((itin) => {
-            return <Card color="teal" href={`/#/itinerary?itinID=${itin.id}`}>
-            {console.log(itin)}
-                <span className="text-right glyphicon glyphicon-remove" id={itin.id} onClick={this.deleteItinerary}></span>
-                <Card.Header>{itin.itinName}</Card.Header>
-                <Card.Content extra>Created: {itin.created_at.substring(0, 10)}</Card.Content>
-              </Card>
-          }) : ""}
+          {this.state.itins ? this.state.itins.map((itin) => (
+            <Card color="teal" href={`/#/itinerary?itinID=${itin.id}`}>
+              <span className="text-right glyphicon glyphicon-remove" data-id={itin.id} data-ownerid={itin.ownerID} onClick={this.deleteItinerary}></span>
+              <Card.Header>{itin.itinName}</Card.Header>
+              <Card.Content extra>Created: {itin.created_at.substring(0, 10)}</Card.Content>
+            </Card>
+          )) : ""}
         </div>
       </div>
     );

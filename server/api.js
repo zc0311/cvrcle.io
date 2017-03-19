@@ -73,7 +73,7 @@ module.exports = (app) => {
       .where('itinID', req.query.itinID)
       .where('id', req.query.id)
       .deleteById(req.query.id)
-      .then(function () { res.send(202); })
+      .then((deleted) => { res.send(202, deleted); })
       .catch(next);
   })
 
@@ -83,7 +83,7 @@ module.exports = (app) => {
       .where('ownerID', req.query.ownerID)
       .where('id', req.query.id)
       .deleteById(req.query.id)
-      .then(function () { res.send(202); })
+      .then((deleted) => { res.send(200, deleted); })
       .catch(next);
   });
 
