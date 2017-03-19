@@ -1,5 +1,5 @@
 import React from 'react'
-import { HeaderContainer } from '../../containers'
+import { NavBarContainer } from '../../containers'
 
 class App extends React.Component {
   constructor(props) {
@@ -10,7 +10,7 @@ class App extends React.Component {
   render() {
     return(
       <div>
-        <HeaderContainer />
+        <NavBarContainer />
         {this.props.children}
       </div>
     )
