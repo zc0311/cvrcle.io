@@ -38,7 +38,6 @@ class AppContainer extends Component {
                 fontWeight: 300,
                 fontSize: 50
               }}>Where are you headed next?</h3>
-              <Image className="window-seat" src="../../window_seat.png"/>
             </div>
           </div>
         </Parallax>
