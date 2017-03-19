@@ -19,34 +19,29 @@ class AppContainer extends Component {
     this.lock = new Auth0Lock('qpfelAKW1EAzyb3RI3pk46SD0deXrJhE', 'cvrcle.auth0.com', {
       redirectUrl: 'http://localhost:8080/',
       responseType: 'token',
-    }, browserHistory.replace('/#/home'))
+    })
   }
 
-  // componentWillMount() {
-  //   this.lock = new Auth0Lock('qpfelAKW1EAzyb3RI3pk46SD0deXrJhE', 'cvrcle.auth0.com')
-  // }
-
-  
   render() {
-    return(
-      // <Provider store={store}>
-        <div>
-          <Image className="cvrcle-logo" src='../cvrcle.png' />
-          <div className="text-center">
-            Hi Regina.
-            <AuthLock lock={this.lock}/>
-          </div>
+    return (
+      <div>
+        <Image className="cvrcle-logo" src='../cvrcle.png' />
+        <div className="text-center">
+          Hi Regina.
+            <AuthLock lock={this.lock} />
         </div>
-      // </Provider>
+      </div>
     );
   }
 }
 
 ReactDOM.render((
-  <Router history={hashHistory}>
-    <Route path="/" component={AppContainer} />
-    <Route path="/home" component={Home} />
-    <Route path="/itinerary" component={Itinerary} />
-    <Route path="/logout" component={Logout} />
-  </Router>
+  <Provider store={store}>
+    <Router history={hashHistory}>
+      <Route path="/" component={AppContainer} />
+      <Route path="/home" component={Home} />
+      <Route path="/itinerary" component={Itinerary} />
+      <Route path="/logout" component={Logout} />
+    </Router>
+  </Provider>
 ), document.getElementById('appRoot'))
