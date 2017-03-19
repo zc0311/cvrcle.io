@@ -59,9 +59,13 @@ class Logout extends Component {
         <div className="itin-container">
           {this.state.itins ? this.state.itins.map((itin) => (
             <Card color="teal" href={`/#/itinerary?itinID=${itin.id}`}>
-              <span className="text-right glyphicon glyphicon-remove" data-id={itin.id} data-ownerid={itin.ownerID} onClick={this.deleteItinerary}></span>
-              <Card.Header>{itin.itinName}</Card.Header>
-              <Card.Content extra>Created: {itin.created_at.substring(0, 10)}</Card.Content>
+              <Card.Content>
+                <span className="glyphicon glyphicon-remove" data-id={itin.id} data-ownerid={itin.ownerID} onClick={this.deleteItinerary}></span>
+                <Card.Header>{itin.itinName}</Card.Header>
+              </Card.Content>
+              <Card.Content extra>
+                Created: {itin.created_at.substring(0, 10)}
+              </Card.Content>
             </Card>
           )) : ""}
         </div>

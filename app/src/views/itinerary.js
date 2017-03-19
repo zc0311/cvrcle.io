@@ -80,15 +80,14 @@ class Itinerary extends Component {
     console.log('google maps?!', window.google.maps);
   }
 
-            // <AddNewEntry className="add-entry" data={''} newEntryAdded={this.newEntryAdded} />
   render() {
     return (
       <div>
         <Navbar />
         <div className="container">
           <div className="map-view">
-            <AddNewEntry className="add-entry" data={''} newEntryAdded={this.newEntryAdded} />
             {this.state.entries.length ? <GoogleMap locations={this.state.entries} /> : ''}
+            <AddNewEntry className="add-entry" data={''} newEntryAdded={this.newEntryAdded} />
           </div>
           <div className="entries">
             <div>
