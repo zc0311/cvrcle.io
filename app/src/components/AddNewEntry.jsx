@@ -54,7 +54,7 @@ class AddNewEntry extends Component {
         <Button 
           id={this.state.id} 
           bsStyle="default" 
-          bsSize="medium"
+          bsSize="small"
           className="entry btn-primary"
           onClick={this.toggleModal}>Add New Entry
         </Button>
