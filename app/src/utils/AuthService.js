@@ -1,6 +1,7 @@
 import Auth0Lock from 'auth0-lock'
 import jwtDecode from 'jwt-decode'
 
+
 // import LogoImg from 'images/test-icon.png';
 
 export default class AuthService {
@@ -8,7 +9,7 @@ export default class AuthService {
     // Configure Auth0 lock
     this.lock = new Auth0Lock(clientId, domain, {
       auth: {
-        redirectUrl: 'http://localhost:8080/#/itineraries',
+        redirectUrl: 'http://localhost:8080/#/home',
         responseType: 'token'
       },
       // theme: {

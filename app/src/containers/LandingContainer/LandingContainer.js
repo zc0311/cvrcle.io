@@ -1,7 +1,7 @@
 import { connect } from 'react-redux'
 import { loginRequest, logoutSuccess } from '../../actions/auth'
 import { Landing } from '../../components'
-import { browserHistory } from 'react-router'
+import { hashHistory } from 'react-router'
 import { checkLogin } from '../../actions/auth'
 
 
@@ -22,7 +22,7 @@ const mapDispatchToProps = (dispatch) => {
     },
     onLogoutClick: () => {
       dispatch(logoutSuccess())
-      browserHistory.push('/')
+      hashHistory.push('/')
       location.reload()
     },
     checkLogin: () => {

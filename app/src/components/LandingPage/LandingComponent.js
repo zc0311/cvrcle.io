@@ -14,7 +14,6 @@ class Landing extends React.Component {
   render() {
     return (
       <div>
-        <NavBarContainer />
         <Parallax className="parallax-bg-image" bgImage="./images/25806094933_c023fe0036_h.jpg" strength={600}>
           <div style={
             {
@@ -26,13 +25,6 @@ class Landing extends React.Component {
                 fontWeight: 300,
                 fontSize: 50
               }}>Where is your next adventure?</h3>
-            </div>
-            <div>
-              {!this.props.isAuthenticated ? (
-                <button onClick={this.props.onLoginClick}>Login</button>
-              ) : (
-                  <button onClick={this.props.onLogoutClick}>Logout</button>
-                )}
             </div>
           </div>
         </Parallax>

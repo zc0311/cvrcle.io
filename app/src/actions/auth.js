@@ -1,4 +1,4 @@
-import { browserHistory } from 'react-router'
+import { hashHistory } from 'react-router'
 import AuthService from '../utils/AuthService'
 
 export const LOGIN_REQUEST = 'LOGIN_REQUEST'
@@ -19,7 +19,6 @@ export function checkLogin() {
   return (dispatch) => {
     // Add callback for lock's `authenticated` event
     authService.lock.on('authenticated', (authResult) => {
-      console.log('WE FUCKIN HERE BRO!', authResult)
       authService.lock.getProfile(authResult.idToken, (error, profile) => {
         if (error)
           return dispatch(loginError(error))
@@ -41,6 +40,8 @@ export function loginRequest() {
 }
 
 export function loginSuccess(profile) {
+  hashHistory.push('/home')
+  location.reload()
   return {
     type: LOGIN_SUCCESS,
     profile
@@ -56,7 +57,6 @@ export function loginError(error) {
 
 export function logoutSuccess() {
   authService.logout()
-  browserHistory.push('/')
   return {
     type: LOGOUT_SUCCESS
   }

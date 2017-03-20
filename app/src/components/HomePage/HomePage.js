@@ -3,7 +3,7 @@ import ReactDOM from "react-dom";
 import axios from 'axios';
 import NavBar from '../NavBar/NavBar.js';
 import { Card } from 'semantic-ui-react';
-import { browserHistory } from 'react-router';
+import { hashHistory } from 'react-router';
 import { Link } from 'react-router';
 import $ from 'jquery';
 
@@ -59,7 +59,6 @@ class HomePage extends Component {
   render() {
     return (
       <div>
-        <NavBar />
         <div className="itin-container">
           {this.state.itins ? this.state.itins.map((itin) => (
             <Card id={"id-" + itin.id} color="teal" href={`/#/itinerary?itinID=${itin.id}`}>
