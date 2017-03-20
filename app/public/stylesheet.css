@@ -186,3 +186,7 @@
 .navbar-links:hover {
   color: #fff;
 }
+
+.itin-name {
+  text-align: center
+}

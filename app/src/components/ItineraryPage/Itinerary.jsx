@@ -15,12 +15,14 @@ class Itinerary extends Component {
       newEntry: false,
       markers: [],
       itinID: '',
+      itinName: '',
     };
 
     this.newEntryAdded = this.newEntryAdded.bind(this);
     this.getUserEntries = this.getUserEntries.bind(this);
     this.deleteEntry = this.deleteEntry.bind(this);
     this.getQueryParams = this.getQueryParams.bind(this);
+    this.getItinName = this.getItinName.bind(this)
 
     this.itinID = Number(this.getQueryParams('itinID'));
   }
@@ -67,6 +69,21 @@ class Itinerary extends Component {
 
   componentWillMount() {
     this.getUserEntries();
+    this.getItinName();
+  }
+
+  getItinName() {
+    console.log('itinid', this.itinID);
+    axios.get('http://localhost:3000/itineraries?id=' + this.itinID)
+      .then((res) => {
+        console.log('RESPONSE', res)
+        this.setState({
+          itinName: res.data[0].itinName
+        })
+      })
+      .catch((err) => {
+        console.log(err)
+      })
   }
 
   createMarkers(data) {
@@ -169,6 +186,7 @@ class Itinerary extends Component {
     return (
       <div>
         <div className="container">
+          <h3 className="itin-name">{this.state.itinName}</h3>
           <div className="map-view">
             <GoogleMap locations={this.state.entries} />
             <AddNewEntry className="add-entry" data={''} newEntryAdded={this.newEntryAdded} />
