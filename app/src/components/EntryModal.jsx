@@ -8,7 +8,8 @@ import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import GOOGLE_API_KEY from '../../../config.js';
 // import rootReducer from '../reducers/reducers_index';
-import store from '../store';
+
+
 
 const qs = require('qs');
 
@@ -85,6 +86,8 @@ class EntryModal extends Component {
             .post('http://localhost:3000/entries', qs.stringify(locationToDatabase))
             .then((response) => {
               console.log(response)
+              // this.props.updateLocations(locationToDatabase)
+              this.props.newEntryAdded(locationToDatabase);
             })
             .catch((err) => {
               console.log('error1')
@@ -96,7 +99,6 @@ class EntryModal extends Component {
           if (err) {console.log(err)}
         })
     })
-    this.props.newEntryAdded();
     this.close();
   }
 
@@ -167,4 +169,20 @@ class EntryModal extends Component {
 }
 
 export default EntryModal;
+
+// const mapStateToProps = (state) => {
+//   return {
+//     storeLocations: state.storeLocations
+//   }
+// }
+
+// const mapDispatchToProps = (dispatch) => {
+//   return bindActionCreators({
+//     updateLocations: updateLocations
+//   }, dispatch);
+// }
+
+// export default connect(mapStateToProps, mapDispatchToProps)(EntryModal);
+
+
 

@@ -11,7 +11,6 @@ class ContributorEntry extends Component {
       isEditing: false,
       id: "",
       title: "",
-      author: "",
       body: "",
       date: "",
       address: "",
@@ -21,6 +20,7 @@ class ContributorEntry extends Component {
     this.toggleModal = this.toggleModal.bind(this);
     this.updateEntry = this.updateEntry.bind(this);
     this.updateState = this.updateState.bind(this);
+    this.end = this.end.bind(this);
   }
 
   componentDidMount() {
@@ -31,7 +31,6 @@ class ContributorEntry extends Component {
     this.setState({
       id: this.props.id,
       title: this.props.title,
-      author: this.props.author,
       body: this.props.body,
       date: this.props.date,
       address: this.props.address,
@@ -50,20 +49,23 @@ class ContributorEntry extends Component {
       title: incomingData.title,
       body: incomingData.body,
       address: incomingData.address,
-      author: incomingData.author,
       name: incomingData.name
     })
+  }
+
+  end(e) {
+    e.stopPropagation()
   }
 
   render() {
     return (
       <div className="single-entry">
         {this.state.isEditing ? 
-          <EditModal resetFlag={this.toggleModal} updateEntry={this.updateEntry} data={this.state}/> :
-          ""
-        }
+          <EditModal resetFlag={this.toggleModal} updateEntry={this.updateEntry} data={this.state}/> 
+          : "" }
         <Card id={this.state.id} color="teal" className="entry" onClick={this.toggleModal}>
           <Card.Content>
+            <span className="remove-btn glyphicon glyphicon-remove" id={this.state.id} onClick={(e) => {this.props.deleteEntry(this.state); this.end(e)}}></span>
             <Card.Header> 
               {this.state.title}
             </Card.Header>

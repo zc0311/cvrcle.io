@@ -1,45 +1,21 @@
-import React, { Component } from 'react';
-import ReactDOM from 'react-dom';
-import axios from "axios";
-import { Card, Image } from 'semantic-ui-react';
-import AuthLock from './components/AuthLock.jsx'
-import { Router, Route, IndexRoute, hashHistory } from 'react-router'
-import Home from './views/home.js';
-import Itinerary from './views/itinerary.js';
-import Logout from './views/logout.js';
-import { Provider } from 'react-redux';
-import store from './store.js';
+import React from 'react'
+import { render } from 'react-dom'
+import { Router, hashHistory } from 'react-router'
+import { Provider } from 'react-redux'
+import { syncHistoryWithStore, routerReducer } from 'react-router-redux'
 
-class AppContainer extends Component {
-  constructor(props) {
-    super(props);
-  }
+import configureStore from './store/configureStore'
+import createRoutes from './routes'
 
-  componentWillMount() {
-    this.lock = new Auth0Lock('qpfelAKW1EAzyb3RI3pk46SD0deXrJhE', 'cvrcle.auth0.com')
-    console.log('we in here')
-  }
-  
-  render() {
-    return(
-      // <Provider store={store}>
-        <div>
-          <Image className="cvrcle-logo" src='../cvrcle.png' />
-          <div className="text-center">
-            Hi Regina.
-            <AuthLock lock={this.lock}/>
-          </div>
-        </div>
-      // </Provider>
-    );
-  }
-}
+const store = configureStore()
+const history = syncHistoryWithStore(hashHistory, store)
 
-ReactDOM.render((
-  <Router history={hashHistory}>
-    <Route path="/" component={AppContainer} />
-    <Route path="/home" component={Home} />
-    <Route path="/itinerary" component={Itinerary} />
-    <Route path="/logout" component={Logout} />
-  </Router>
-), document.getElementById('appRoot'))
+render(
+  <Provider store={store}>
+    <Router history={history} routes={createRoutes()} />
+  </Provider>,
+  document.getElementById('appRoot')
+)
+
+      //hashHistory.push('/')
+      //location.reload()

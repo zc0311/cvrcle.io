@@ -6,11 +6,9 @@ import { Button }  from 'react-bootstrap';
 class AddNewEntry extends Component {
   constructor(props) {
     super(props);
-
     this.state = {
       isClicked: false,
     }
-
     this.toggleModal = this.toggleModal.bind(this);
     this.updateEntry = this.updateEntry.bind(this);
     this.updateState = this.updateState.bind(this);
@@ -46,7 +44,7 @@ class AddNewEntry extends Component {
 
   render() {
     return (
-      <div>
+      <span>
         {this.state.isClicked ? 
           <EntryModal 
             resetFlag={this.toggleModal} 
@@ -56,11 +54,11 @@ class AddNewEntry extends Component {
         <Button 
           id={this.state.id} 
           bsStyle="default" 
-          bsSize="large" 
-          className="entry" 
+          bsSize="small"
+          className="entry btn-primary"
           onClick={this.toggleModal}>Add New Entry
         </Button>
-      </div>
+      </span>
     );
   }
 }
