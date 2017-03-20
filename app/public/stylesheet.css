@@ -133,7 +133,7 @@
 }
 
 .map-view {
-  height: 450px;
+  height: 480px;
   width: 81%;
   margin: 10px auto 50px;
 }
@@ -197,7 +197,8 @@
 }
 
 .itin-name {
-  text-align: center
+  text-align: center;
+  margin: 20px;
 }
 
 .typewriter h4 {
