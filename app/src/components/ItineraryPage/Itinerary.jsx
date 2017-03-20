@@ -99,21 +99,24 @@ class Itinerary extends Component {
     return marker;
   }
 
-  // TODO: itinID is HARDCODED IN
   deleteEntry(entry) {
+    event.preventDefault();
+    event.stopPropagation();
     console.log('getting in here', this.state.entries)
     let arr = this.state.entries
     arr.forEach((item, i) => {
       if (item.id === entry.id) {
         arr.splice(i, 1);
         this.state.markers[i].setMap(null);
-        axios.delete(`http://localhost:3000/entries?id=${entry.id}&itinID=1`)
+        axios.delete(`http://localhost:3000/entries?id=${entry.id}&itinID=${this.itinID}`)
           .then((res) => {
-            this.setState({
-              entries: arr
-            })
             console.log('fkjdks', res)
           })
+          .then(() => (
+            this.setState({
+              entries: arr
+            }))
+          )
           .catch(err => console.log(err))
       }
     })
