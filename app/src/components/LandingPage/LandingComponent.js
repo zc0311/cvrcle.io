@@ -9,6 +9,10 @@ class Landing extends React.Component {
     super(props)
     this.props.checkLogin() // check is Auth0 lock is authenticating after login callback
 
+    // let fbID = this.props.profile.user_id
+// let id = fbID.split('|')
+// console.log('fbid', fbID);
+// console.log('id', id[1]);
   }
 
   render() {
@@ -24,7 +28,7 @@ class Landing extends React.Component {
               <h3 style={{
                 fontWeight: 300,
                 fontSize: 50
-              }}>Where is your next adventure?</h3>
+              }}>Where's your next adventure?</h3>
             </div>
           </div>
         </Parallax>
@@ -38,7 +42,7 @@ class Landing extends React.Component {
               marginTop: 2,
               marginBottom: 40
             }}>
-            <h3>With cvrcle, make your circles come full circle. Allow the people who know you best help you plan your getaway. </h3>
+            <h3>With cvrcle, allow the people who know you best help you plan your getaway. </h3>
           </div>
           <div style={
             {
