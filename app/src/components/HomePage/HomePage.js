@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import ReactDOM from "react-dom";
 import axios from 'axios';
 import NavBar from '../NavBar/NavBar.js';
-import { Card } from 'semantic-ui-react';
+import { Card, Header, Icon, Image } from 'semantic-ui-react';
 import { hashHistory } from 'react-router';
 import { Link } from 'react-router';
 import $ from 'jquery';
@@ -59,6 +59,14 @@ class HomePage extends Component {
   render() {
     return (
       <div>
+          <div>
+            <Header as='h2' icon textAlign='center'>
+              <Image shape='circular' src='http://i.imgur.com/na128Pj.png' size='small'/>
+              <Header.Content>
+                Your Itineraries...Where shall we go?
+              </Header.Content>
+          </Header>
+        </div>
         <div className="itin-container">
           {this.state.itins ? this.state.itins.map((itin) => (
             <Card id={"id-" + itin.id} color="teal" href={`/#/itinerary?itinID=${itin.id}`}>
