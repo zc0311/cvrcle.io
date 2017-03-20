@@ -118,7 +118,7 @@ class EntryModal extends Component {
           // TODO: Find contributor name from contributorID in join table
           // console.log('location', location);
           axios
-            .post('http://localhosarcane-shore-51156.herokuapp.comt/entries', qs.stringify(locationToDatabase))
+            .post('http://arcane-shore-51156.herokuapp.comt/entries', qs.stringify(locationToDatabase))
             .then((response) => {
               console.log(response)
               // this.props.updateLocations(locationToDatabase)
