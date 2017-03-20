@@ -14,7 +14,8 @@ class Itinerary extends Component {
     super(props);
     this.state = {
       entries: [],
-      newEntry: false
+      newEntry: false,
+      markers: []
     };
 
     this.newEntryAdded = this.newEntryAdded.bind(this);
@@ -77,10 +78,11 @@ class Itinerary extends Component {
         lat: location.lat,
         lng: location.lng
       }
-      new google.maps.Marker({
+      let marker = new google.maps.Marker({
         position: center,
         map: window.map
       })
+      this.state.markers.push(marker);
       window.markerBounds.extend(center);
     })
 
@@ -116,6 +118,7 @@ class Itinerary extends Component {
     arr.forEach((item, i) => {
       if (item.id === entry.id) { 
         arr.splice(i, 1);
+        this.state.markers[i].setMap(null);
         axios.delete(`http://localhost:3000/entries?id=${entry.id}&itinID=1`)
           .then((res) => {
             console.log("reserser", res);
