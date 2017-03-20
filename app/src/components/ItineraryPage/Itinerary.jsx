@@ -144,7 +144,7 @@ class Itinerary extends Component {
             <AddNewEntry className="add-entry" data={''} newEntryAdded={this.newEntryAdded} />
           </div>
           <div className="entries">
-            <div className="text-center">
+            <div>
               <Card.Group className="existing-entries">
                 {this.state.entries.length ?
                   (this.state.entries.map((entryData, i) => (
