@@ -20,14 +20,16 @@ class Landing extends React.Component {
               height: 300
             }}>
             <Image style={{margin: 'auto', height: 190, width: 680 }} src='../../../cvrcle.png' />
-            <div className="parallax-content1">
-              <h3 style={{
+            <div className="parallax-content1 typewriter">
+              <h4 style={{
                 fontWeight: 300,
                 fontSize: 50
-              }}>When's your next adventure?</h3>
+              }}>Where is your next adventure?</h4>
             </div>
           </div>
         </Parallax>
+
+
         <div className="container" style={{
           marginTop: 40,
           marginBottom: 80
@@ -85,6 +87,8 @@ class Landing extends React.Component {
             </Row>
           </Grid>
         </div>
+
+
         <Parallax className="parallax-bg-image2" bgImage="./images/21689775811_446ed525c0_k.jpg" strength={600}>
           <Col xs={6} md={4}>
             <div style={{
@@ -93,6 +97,68 @@ class Landing extends React.Component {
             }}></div>
           </Col>
         </Parallax>
+
+        <div className="container" style={{
+          marginTop: 40,
+          marginBottom: 80
+        }}>
+          <div style={
+            {
+              textAlign: 'center',
+              marginTop: 2,
+              marginBottom: 40
+            }}>
+            <h3>Meet the Cvrcle Team</h3>
+          </div>
+          <div style={
+            {
+              textAlign: 'center',
+              marginTop: 2,
+              marginBottom: 40
+            }}>
+          </div>
+          <Grid>
+            <Row>
+              <Col xs={6} md={4}>
+                <Image src='../../../../andrew-img.jpg' className="img-circle" />
+                <div style={
+                  {
+                    textAlign: 'center',
+                  }}>
+                  <h3 style={{
+                    fontWeight: 200
+                  }}>Andrew Yi</h3>
+                  <h4>Code Monkey</h4>
+                </div>
+              </Col>
+              <Col xs={6} md={4}>
+                <Image src='../../../../regina-img.jpg' className="img-circle" />
+                <div style={
+                  {
+                    textAlign: 'center'
+                  }}>
+                  <h3 style={{
+                    fontWeight: 200
+                  }}>Regina Lee</h3>
+                  <h4>Doctor Regina</h4>
+                </div>
+              </Col>
+              <Col xsHidden md={4}>
+                <Image src='../../../../armen-img.jpg' className="img-circle" />
+                <div style={
+                  {
+                    textAlign: 'center'
+                  }}>
+                  <h3 style={{
+                    fontWeight: 200
+                  }}>Armen Rostam</h3>
+                  <h4>DevOps Server God</h4>
+                </div>
+              </Col>
+            </Row>
+          </Grid>
+        </div>
+
       </div>
     )
   }
