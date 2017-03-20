@@ -55,7 +55,6 @@ class HomePage extends Component {
   render() {
     return (
       <div>
-        <NavBar />
         <div className="itin-container">
           {this.state.itins ? this.state.itins.map((itin) => (
             <Card color="teal" href={`/#/itinerary?itinID=${itin.id}`}>

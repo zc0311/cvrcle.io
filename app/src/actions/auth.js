@@ -40,6 +40,7 @@ export function loginRequest() {
 }
 
 export function loginSuccess(profile) {
+  browserHistory.push('/#/home')
   return {
     type: LOGIN_SUCCESS,
     profile
@@ -55,7 +56,7 @@ export function loginError(error) {
 
 export function logoutSuccess() {
   authService.logout()
-  browserHistory.push('/')
+  browserHistory.push('/#/logout')
   return {
     type: LOGOUT_SUCCESS
   }

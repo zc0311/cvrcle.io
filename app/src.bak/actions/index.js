@@ -1,1 +1,2 @@
-//export * from './auth'
+import * as Auth from './auth'
+const _actions = {}

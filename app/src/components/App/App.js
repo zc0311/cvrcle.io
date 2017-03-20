@@ -12,6 +12,7 @@ class App extends React.Component {
       <div>
         <NavBarContainer />
         {this.props.children}
+        {console.log(this.props.children)}
       </div>
     )
   }
