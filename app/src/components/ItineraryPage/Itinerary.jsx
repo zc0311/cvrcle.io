@@ -131,12 +131,12 @@ class Itinerary extends Component {
             <AddNewEntry className="add-entry" data={''} newEntryAdded={this.newEntryAdded} />
           </div>
           <div className="entries">
-            <div>
+            <div className="text-center">
               <Card.Group className="existing-entries">
                 {this.state.entries.length ?
                   (this.state.entries.map((entryData, i) => (
                     <ContributorEntry key={i} {...entryData} deleteEntry={this.deleteEntry} />))) :
-                  <div className="text-center">No entries yet!</div>
+                  <div style={{'margin':'auto'}} className="text-center">No entries yet!</div>
                 }
               </Card.Group>
             </div>
