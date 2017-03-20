@@ -11,7 +11,6 @@ class ContributorEntry extends Component {
       isEditing: false,
       id: "",
       title: "",
-      author: "",
       body: "",
       date: "",
       address: "",
@@ -21,7 +20,7 @@ class ContributorEntry extends Component {
     this.toggleModal = this.toggleModal.bind(this);
     this.updateEntry = this.updateEntry.bind(this);
     this.updateState = this.updateState.bind(this);
-    this.deleteEntry = this.deleteEntry.bind(this);
+    // this.deleteEntry = this.deleteEntry.bind(this);
   }
 
   componentDidMount() {
@@ -32,7 +31,6 @@ class ContributorEntry extends Component {
     this.setState({
       id: this.props.id,
       title: this.props.title,
-      author: this.props.author,
       body: this.props.body,
       date: this.props.date,
       address: this.props.address,
@@ -51,20 +49,8 @@ class ContributorEntry extends Component {
       title: incomingData.title,
       body: incomingData.body,
       address: incomingData.address,
-      author: incomingData.author,
       name: incomingData.name
     })
-  }
-
-  deleteEntry(e) {
-    e.preventDefault();
-    e.stopPropagation();
-    
-    axios.delete(`http://localhost:3000/entries?id=${this.state.id}&itinID=1`)
-      .then((res) => {
-        console.log("reserser", res);
-      })
-      .catch(err => console.log(err))
   }
 
   render() {
@@ -75,7 +61,7 @@ class ContributorEntry extends Component {
           : "" }
         <Card id={this.state.id} color="teal" className="entry" onClick={this.toggleModal}>
           <Card.Content>
-            <span className="remove-btn glyphicon glyphicon-remove" id={this.state.id} onClick={this.deleteEntry}></span>
+            <span className="remove-btn glyphicon glyphicon-remove" id={this.state.id} onClick={()=>this.props.deleteEntry(this.state)}></span>
             <Card.Header> 
               {this.state.title}
             </Card.Header>
