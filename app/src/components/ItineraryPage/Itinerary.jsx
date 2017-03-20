@@ -125,7 +125,6 @@ class Itinerary extends Component {
   render() {
     return (
       <div>
-        <NavBar />
         <div className="container">
           <div className="map-view">
             <GoogleMap locations={this.state.entries} />

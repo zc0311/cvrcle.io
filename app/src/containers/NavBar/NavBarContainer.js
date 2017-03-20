@@ -1,7 +1,7 @@
 import { connect } from 'react-redux'
 import { loginRequest, logoutSuccess } from '../../actions/auth'
 import { NavBar } from '../../components'
-import { browserHistory } from 'react-router'
+import { hashHistory } from 'react-router'
 
 const mapStateToProps = (state) => {
   const { isAuthenticated, profile, error } = state.auth
@@ -19,7 +19,7 @@ const mapDispatchToProps = (dispatch) => {
     },
     onLogoutClick: () => {
       dispatch(logoutSuccess())
-      browserHistory.push('/')
+      hashHistory.push('/')
       location.reload()
     }
   }

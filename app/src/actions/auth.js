@@ -1,4 +1,4 @@
-import { browserHistory } from 'react-router'
+import { hashHistory } from 'react-router'
 import AuthService from '../utils/AuthService'
 
 export const LOGIN_REQUEST = 'LOGIN_REQUEST'
@@ -40,7 +40,8 @@ export function loginRequest() {
 }
 
 export function loginSuccess(profile) {
-  browserHistory.push('/home')
+  hashHistory.push('/home')
+  location.reload()
   return {
     type: LOGIN_SUCCESS,
     profile

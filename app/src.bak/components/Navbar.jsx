@@ -6,7 +6,7 @@ import { Link } from 'react-router'
 const Navb = () => (
   <Navbar>
     <Navbar.Header>
-        <Link to='/home'>
+        <Link to='/#/home'>
           <Image className="cvrcle-logo-icon" src='../cvrcle-logo-icon.png' />
         </Link>
     </Navbar.Header>
