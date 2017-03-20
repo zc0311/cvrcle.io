@@ -20,21 +20,15 @@ class HomePage extends Component {
     this.getUserItineraries = this.getUserItineraries.bind(this);
     this.deleteItinerary = this.deleteItinerary.bind(this);
     this.addUserItinerary = this.addUserItinerary.bind(this);
-
-
   }
 
   componentDidMount() {
-    console.log('props in homepage', this.props)
     if (this.props.isAuthenticated) {
       let fbID = this.props.profile.user_id
       let id = fbID.split('|')
-      console.log('fbid', fbID);
-      console.log('id', id[1]); // returns fbid number
       axios.get(`http://localhost:3000/users?fbID=${id[1]}`)
         .then((res) => {
           let tmp = res.data[0]["id"]
-          console.log('tmp', tmp)
           this.setState({
             oid: tmp
           })
@@ -49,17 +43,9 @@ class HomePage extends Component {
   }
 
   getUserItineraries() {
-    // let fbID = this.props.profile.user_id
-    // let id = fbID.split('|')
-    // console.log('fbid', fbID);
-    // console.log('id', id[1]); // returns fbid number
-
-    // let url = `localhost:3000/users?fbID=${id}`
-
     axios.get(`http://localhost:3000/itineraries?ownerID=${this.state.oid}`)
       .then((res) => this.setState({ itins: res.data }))
       .catch(err => console.log(err))
-
   }
 
   deleteItinerary(e) {
