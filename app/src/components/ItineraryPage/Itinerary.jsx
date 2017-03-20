@@ -9,7 +9,6 @@ import { connect, Provider } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import NavBar from '../NavBar/NavBar.js'; 
 
-
 class Itinerary extends Component {
   constructor(props) {
     super(props);
