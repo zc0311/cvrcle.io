@@ -19,7 +19,6 @@ class NewItinModal extends Component {
     this.close = this.close.bind(this);
     this.onChange = this.onChange.bind(this);
     this.handleInputchange = this.handleInputchange.bind(this);
-    // this.handleFormSubmit = this.handleFormSubmit.bind(this);
     this.addUserItinerary = this.addUserItinerary.bind(this);
   }
 
@@ -48,7 +47,7 @@ class NewItinModal extends Component {
   addUserItinerary() {
     event.preventDefault()
     const itinData = {
-      ownerID: "1",
+      ownerID: this.props.oid.toString(),
       itinName: this.state.formTitle,
       isActive: 1,
       isPublic: 0

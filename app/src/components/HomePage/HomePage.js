@@ -81,7 +81,9 @@ class HomePage extends Component {
           </Header>
         </div>
         {this.state.isClicked ? 
-          <NewItinModal resetFlag={this.toggleModal} 
+          <NewItinModal 
+            resetFlag={this.toggleModal} 
+            oid={this.state.oid}
             /> : ""}
         {this.state.itins ? this.state.itins.map((itin) => (
           <Card id={"id-" + itin.id} color="red" href={`/#/itinerary?itinID=${itin.id}`}>
