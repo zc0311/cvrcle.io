@@ -54,7 +54,7 @@ class HomePage extends Component {
       <div>
         <div className="itin-container">
           {this.state.itins ? this.state.itins.map((itin) => (
-            <Card id={"id-"+itin.id} color="teal" href={`/#/itinerary?itinID=${itin.id}`}>
+            <Card id={"id-"+itin.id} color="teal" href={`/itinerary?itinID=${itin.id}`}>
               <Card.Content>
                 <span 
                   className="glyphicon glyphicon-remove" 

@@ -41,7 +41,6 @@ export function loginRequest() {
 
 export function loginSuccess(profile) {
   browserHistory.push('/home')
-  // store.dispatch(push('/#/home'))
   return {
     type: LOGIN_SUCCESS,
     profile
