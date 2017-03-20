@@ -11,8 +11,7 @@ class Logout extends Component {
     super();
 
     this.state = {
-      itins: [],
-      deleted: null
+      itins: []
     }
 
     this.getUserItineraries = this.getUserItineraries.bind(this);
