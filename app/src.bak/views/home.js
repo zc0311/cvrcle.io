@@ -41,14 +41,14 @@ class Logout extends Component {
     const id = e.target.dataset.id;
     const oid = e.target.dataset.ownerid;
     
-    // axios.delete(`http://localhost:3000/itineraries?id=${id}&ownerID=${oid}`)
-    //   .then((res) => {
-    //     console.log("deleted", res);
-    //     this.setState({
-    //       delete: res
-    //     })
-    //   })
-    //   .catch(err => console.log(err))
+    axios.delete(`http://localhost:3000/itineraries?id=${id}&ownerID=${oid}`)
+      .then((res) => {
+        console.log("deleted", res);
+        this.setState({
+          delete: res
+        })
+      })
+      .catch(err => console.log(err))
   }
 
   render() {
