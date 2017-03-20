@@ -8,11 +8,6 @@ class Landing extends React.Component {
   constructor(props) {
     super(props)
     this.props.checkLogin() // check is Auth0 lock is authenticating after login callback
-
-    // let fbID = this.props.profile.user_id
-    // let id = fbID.split('|')
-    // console.log('fbid', fbID);
-    // console.log('id', id[1]);
   }
 
   render() {
