@@ -12,7 +12,7 @@ class Landing extends React.Component {
 
   render() {
     return (
-      <div>
+      <div style={{"marginTop": '29px'}}>
         <Parallax className="parallax-bg-image" bgImage="./images/25806094933_c023fe0036_h.jpg" strength={600}>
           <div style={
             {

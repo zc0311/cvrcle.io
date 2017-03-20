@@ -109,9 +109,6 @@ class HomePage extends Component {
   }
 }
 
-// export default HomePage
-
-
 const mapStateToProps = (state) => {
   const { isAuthenticated, profile, error } = state.auth
   return {
