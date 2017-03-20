@@ -8,6 +8,7 @@ class Landing extends React.Component {
   constructor(props) {
     super(props)
     this.props.checkLogin() // check is Auth0 lock is authenticating after login callback
+
   }
 
   render() {
@@ -106,11 +107,3 @@ Landing.propTypes = {
 }
 
 export default Landing
-
-            // <div>
-            //   {!this.props.isAuthenticated ? (
-            //     <button onClick={this.props.onLoginClick}>Login</button>
-            //   ) : (
-            //       <button onClick={this.props.onLogoutClick}>Logout</button>
-            //     )}
-            // </div>

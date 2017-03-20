@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import ReactDOM from "react-dom";
 import axios from 'axios';
-import NavBar from '../NavBar/NavBar.js'; 
+import NavBar from '../NavBar/NavBar.js';
 import { Card } from 'semantic-ui-react';
 import { hashHistory } from 'react-router';
 import { Link } from 'react-router';
@@ -27,8 +27,15 @@ class HomePage extends Component {
   }
 
   getUserItineraries() {
-    axios.get('http://localhost:3000/itineraries')
-      .then((res) => this.setState({ itins: res.data } ))
+    let fbID = this.props.profile.user_id
+    let id = fbID.split('|')
+    console.log('fbid', fbID);
+    console.log('id', id[1]); // returns fbid number
+
+    let url = `localhost:3000/users?fbID=${id}`
+
+    axios.get(url)
+      .then((res) => this.setState({ itins: res.data }))
       .catch(err => console.log(err))
 
     // axios.get('http://localhost:3000/itineraries?ownerID='+this.fakeReduxStateUserId)
@@ -38,13 +45,13 @@ class HomePage extends Component {
 
   deleteItinerary(e) {
     e.preventDefault();
-    
+
     const id = e.target.dataset.id;
     const oid = e.target.dataset.ownerid;
-    
+
     axios.delete(`http://localhost:3000/itineraries?id=${id}&ownerID=${oid}`)
       .then((res) => {
-        $('#id-'+id).remove();
+        $('#id-' + id).remove();
       })
       .catch(err => console.log(err))
   }
@@ -54,11 +61,11 @@ class HomePage extends Component {
       <div>
         <div className="itin-container">
           {this.state.itins ? this.state.itins.map((itin) => (
-            <Card id={"id-"+itin.id} color="teal" href={`/#/itinerary?itinID=${itin.id}`}>
+            <Card id={"id-" + itin.id} color="teal" href={`/#/itinerary?itinID=${itin.id}`}>
               <Card.Content>
-                <span 
-                  className="glyphicon glyphicon-remove" 
-                  data-id={itin.id} data-ownerid={itin.ownerID} 
+                <span
+                  className="glyphicon glyphicon-remove"
+                  data-id={itin.id} data-ownerid={itin.ownerID}
                   onClick={this.deleteItinerary}
                 ></span>
                 <Card.Header>{itin.itinName}</Card.Header>

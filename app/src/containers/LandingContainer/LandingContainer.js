@@ -17,6 +17,7 @@ const mapStateToProps = (state) => {
 const mapDispatchToProps = (dispatch) => {
   return {
      onLoginClick: () => {
+       console.log('1');
       dispatch(loginRequest())
     },
     onLogoutClick: () => {
@@ -24,7 +25,9 @@ const mapDispatchToProps = (dispatch) => {
       hashHistory.push('/')
       location.reload()
     },
-    checkLogin: () => dispatch(checkLogin())
+    checkLogin: () => {
+      console.log('2');
+      dispatch(checkLogin())}
   }
 }
 

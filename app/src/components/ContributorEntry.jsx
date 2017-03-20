@@ -20,7 +20,7 @@ class ContributorEntry extends Component {
     this.toggleModal = this.toggleModal.bind(this);
     this.updateEntry = this.updateEntry.bind(this);
     this.updateState = this.updateState.bind(this);
-    // this.deleteEntry = this.deleteEntry.bind(this);
+    this.end = this.end.bind(this);
   }
 
   componentDidMount() {
@@ -53,6 +53,10 @@ class ContributorEntry extends Component {
     })
   }
 
+  end(e) {
+    e.stopPropagation()
+  }
+
   render() {
     return (
       <div className="single-entry">
@@ -61,7 +65,7 @@ class ContributorEntry extends Component {
           : "" }
         <Card id={this.state.id} color="teal" className="entry" onClick={this.toggleModal}>
           <Card.Content>
-            <span className="remove-btn glyphicon glyphicon-remove" id={this.state.id} onClick={()=>this.props.deleteEntry(this.state)}></span>
+            <span className="remove-btn glyphicon glyphicon-remove" id={this.state.id} onClick={(e) => {this.props.deleteEntry(this.state); this.end(e)}}></span>
             <Card.Header> 
               {this.state.title}
             </Card.Header>
