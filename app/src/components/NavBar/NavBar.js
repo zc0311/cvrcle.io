@@ -11,11 +11,13 @@ const NavBar = ({ isAuthenticated, profile, error, onLoginClick, onLogoutClick }
           <Image className="cvrcle-logo-icon" src='../cvrcle-logo-icon.png' />
         </Link>
     </Navbar.Header>
-    { !isAuthenticated ? (
-      <button onClick={onLoginClick}>Login</button>
-    ) : (
-        <button onClick={onLogoutClick}>Logout</button>
-    )}
+    <Nav>
+      { !isAuthenticated ? (
+        <button onClick={onLoginClick} className="navbar-links">Login</button>
+      ) : (
+          <button onClick={onLogoutClick} className="navbar-links">Logout</button>
+      )}
+    </Nav>
   </Navbar>
   </div>
     // <Nav><li><Link to="/logout">Logout</Link></li></Nav>

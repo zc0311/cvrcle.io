@@ -160,3 +160,10 @@
   margin: auto;
   margin-top: 20px
 }
+
+.navbar-links {
+  color: white;
+  float: right;
+  margin-top: 13px;
+  background-color: #333;
+}

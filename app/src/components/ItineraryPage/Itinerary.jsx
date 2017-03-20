@@ -5,10 +5,9 @@ import { Container, Header, Card, Message, Segment, Form } from 'semantic-ui-rea
 import ContributorEntry from '../ContributorEntry.jsx';
 import GoogleMap from '../map.jsx';
 import AddNewEntry from '../AddNewEntry.jsx';
-
 import { connect, Provider } from 'react-redux';
 import { bindActionCreators } from 'redux';
-
+import NavBar from '../NavBar/NavBar.js'; 
 
 
 class Itinerary extends Component {
@@ -83,7 +82,7 @@ class Itinerary extends Component {
   render() {
     return (
       <div>
-
+        <NavBar />
         <div className="container">
           <div className="map-view">
             {this.state.entries.length ?
