@@ -8,16 +8,11 @@ class Landing extends React.Component {
   constructor(props) {
     super(props)
     this.props.checkLogin() // check is Auth0 lock is authenticating after login callback
-
-    // let fbID = this.props.profile.user_id
-// let id = fbID.split('|')
-// console.log('fbid', fbID);
-// console.log('id', id[1]);
   }
 
   render() {
     return (
-      <div>
+      <div style={{"marginTop": '29px'}}>
         <Parallax className="parallax-bg-image" bgImage="./images/25806094933_c023fe0036_h.jpg" strength={600}>
           <div style={
             {

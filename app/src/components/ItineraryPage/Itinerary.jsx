@@ -13,14 +13,26 @@ class Itinerary extends Component {
     this.state = {
       entries: [],
       newEntry: false,
-      markers: []
+      markers: [],
+      itinID: '',
     };
 
     this.newEntryAdded = this.newEntryAdded.bind(this);
     this.getUserEntries = this.getUserEntries.bind(this);
     this.deleteEntry = this.deleteEntry.bind(this);
+    this.getQueryParams = this.getQueryParams.bind(this);
 
-    this.itinID = '1'
+    this.itinID = Number(this.getQueryParams('itinID'));
+  }
+
+  getQueryParams(param) {
+    var query = window.location.hash.substring(1);
+    var vars = query.split("?");
+    for (var i=0;i<vars.length;i++) {
+      var pair = vars[i].split("=");
+      if(pair[0] == param){return pair[1];}
+    }
+    return(false);
   }
 
   getUserEntries() {
@@ -132,12 +144,12 @@ class Itinerary extends Component {
             <AddNewEntry className="add-entry" data={''} newEntryAdded={this.newEntryAdded} />
           </div>
           <div className="entries">
-            <div>
+            <div className="text-center">
               <Card.Group className="existing-entries">
                 {this.state.entries.length ?
                   (this.state.entries.map((entryData, i) => (
                     <ContributorEntry key={i} {...entryData} deleteEntry={this.deleteEntry} />))) :
-                  <div className="text-center">No entries yet!</div>
+                  <div style={{'margin':'auto'}} className="text-center">No entries yet!</div>
                 }
               </Card.Group>
             </div>
