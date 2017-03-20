@@ -1,6 +1,7 @@
 import Auth0Lock from 'auth0-lock'
 import jwtDecode from 'jwt-decode'
 
+
 // import LogoImg from 'images/test-icon.png';
 
 export default class AuthService {
