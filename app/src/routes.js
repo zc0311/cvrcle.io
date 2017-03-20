@@ -6,6 +6,7 @@ import { HomePage, AboutPage, NotFoundPage, Landing, Itinerary } from './compone
 
 export default function createRoutes() {
   return(
+
     <Route path='/' component={AppContainer}>
       <IndexRoute component={LandingContainer} />
       <Route path='/#/home' component={HomePage}/>
