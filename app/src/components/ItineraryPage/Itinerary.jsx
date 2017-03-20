@@ -129,8 +129,6 @@ class Itinerary extends Component {
         <div className="container">
           <div className="map-view">
             <GoogleMap locations={this.state.entries} />
-          </div>
-          <div className="add-entry">
             <AddNewEntry className="add-entry" data={''} newEntryAdded={this.newEntryAdded} />
           </div>
           <div className="entries">

@@ -20,6 +20,17 @@
   float: right;
 }
 
+.itin-container .ui.icon.center.aligned.header {
+  margin-top: 20px;
+  margin-bottom: 45px;
+}
+
+.itin-container .add-itin {
+  position: absolute;
+  margin-top: -5px;
+  margin-left: 15%;
+}
+
 .ui.card .glyphicon-remove:hover {
   color: #777;
 }
