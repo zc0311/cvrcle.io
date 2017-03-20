@@ -47,7 +47,7 @@ class HomePage extends Component {
 
   getUserItineraries() {
 
-    axios.get(`http://cvrcle.io/itineraries?ownerID=${this.state.oid}`)
+    axios.get(`http://arcane-shore-51156.herokuapp.com/itineraries?ownerID=${this.state.oid}`)
       .then((res) => this.setState({ itins: res.data }))
       .catch(err => console.log(err))
   }
