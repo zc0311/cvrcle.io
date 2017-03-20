@@ -144,7 +144,7 @@ class Landing extends React.Component {
                 </div>
               </Col>
               <Col xsHidden md={4}>
-                <Image src='http://i.imgur.com/eFKk2W0.jpg' className="img-circle" />
+                <Image src='http://i.imgur.com/h3LP9x7.jpg' className="img-circle" />
                 <div style={
                   {
                     textAlign: 'center'
