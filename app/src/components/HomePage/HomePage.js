@@ -17,6 +17,7 @@ class HomePage extends Component {
 
     this.getUserItineraries = this.getUserItineraries.bind(this);
     this.deleteItinerary = this.deleteItinerary.bind(this);
+    this.addUserItinerary = this.addUserItinerary.bind(this);
 
     //using this fake data until redux state is ready
     this.fakeReduxStateUserId = 1;
@@ -56,20 +57,35 @@ class HomePage extends Component {
       .catch(err => console.log(err))
   }
 
+  addUserItinerary() {
+    const itinData = {
+      ownerID: "1",
+      itinName: "  ",
+      isActive: 1,
+      isPublic: 0
+    }
+
+    axios.post('http://localhost:3000/itineraries', itinData)
+      .then((res) => {
+        console.log("successful post", res);
+      })
+      .catch(err => console.log(err))
+  }
+
   render() {
     return (
-      <div>
+      <div className="itin-container container">
           <div>
             <Header as='h2' icon textAlign='center'>
-              <Image shape='circular' src='http://i.imgur.com/na128Pj.png' size='small'/>
               <Header.Content>
-                Your Itineraries...Where shall we go?
+                Itineraries
+                <span className="add-itin"><button className="btn btn-primary" onClick={this.addUserItinerary}>New</button></span>
               </Header.Content>
-          </Header>
-        </div>
-        <div className="itin-container">
+            </Header>
+          </div>
+        
           {this.state.itins ? this.state.itins.map((itin) => (
-            <Card id={"id-" + itin.id} color="teal" href={`/#/itinerary?itinID=${itin.id}`}>
+            <Card id={"id-" + itin.id} color="red" href={`/#/itinerary?itinID=${itin.id}`}>
               <Card.Content>
                 <span
                   className="glyphicon glyphicon-remove"
@@ -84,7 +100,7 @@ class HomePage extends Component {
             </Card>
           )) : ""}
         </div>
-      </div>
+      
     );
   }
 }
