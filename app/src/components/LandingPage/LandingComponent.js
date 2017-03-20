@@ -7,7 +7,7 @@ import { Col, Grid, Row } from 'react-bootstrap';
 class Landing extends React.Component {
   constructor(props) {
     super(props)
-    this.props.checkLogin() // check is Auth0 lock is authenticating after login callback
+    this.props.checkLogin()    
   }
 
   render() {
@@ -19,11 +19,12 @@ class Landing extends React.Component {
               width: 800,
               height: 300
             }}>
+            <Image style={{margin: 'auto', height: 190, width: 680 }} src='../../../cvrcle.png' />
             <div className="parallax-content1">
               <h3 style={{
                 fontWeight: 300,
                 fontSize: 50
-              }}>Where's your next adventure?</h3>
+              }}>When's your next adventure?</h3>
             </div>
           </div>
         </Parallax>
@@ -37,7 +38,7 @@ class Landing extends React.Component {
               marginTop: 2,
               marginBottom: 40
             }}>
-            <h3>With cvrcle, allow the people who know you best help you plan your getaway. </h3>
+            <h3>Crowdsourced Travel Planning </h3>
           </div>
           <div style={
             {
@@ -45,7 +46,6 @@ class Landing extends React.Component {
               marginTop: 2,
               marginBottom: 40
             }}>
-            <h4>How it works:</h4>
           </div>
           <Grid>
             <Row>
@@ -57,7 +57,7 @@ class Landing extends React.Component {
                   <h3 style={{
                     fontWeight: 200
                   }}>Step 1</h3>
-                  <h4>Invite people you trust to share their insider knowledge and collaborate on your itinerary</h4>
+                  <h4>Create a circle for your itinerary.</h4>
                 </div>
               </Col>
               <Col xs={6} md={4}>
@@ -68,7 +68,7 @@ class Landing extends React.Component {
                   <h3 style={{
                     fontWeight: 200
                   }}>Step 2</h3>
-                  <h4>From the Eiffel Tower to the Great Wall of China, search for locations all over the world.</h4>
+                  <h4>Your circle can contribute to your trip.</h4>
                 </div>
               </Col>
               <Col xsHidden md={4}>
@@ -79,7 +79,7 @@ class Landing extends React.Component {
                   <h3 style={{
                     fontWeight: 200
                   }}>Step 3</h3>
-                  <h4>Pack your bags and enjoy!</h4>
+                  <h4>Have Fun!</h4>
                 </div>
               </Col>
             </Row>

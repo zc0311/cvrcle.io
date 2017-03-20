@@ -46,7 +46,7 @@
 .container > .navbar-header {
   float: left;
   font-size: 18px;
-  margin-top: 11px;
+  margin-top: 13px;
 }
 
 .navbar-header li > a {
@@ -55,10 +55,12 @@
 
 .navbar.navbar-default {
   background-color: #333;
+  min-height: 55px;
 }
 
 .nav.navbar-nav {
   float: right;
+  margin-top: 2px;
 }
 
 .navbar .nav > li {
@@ -162,7 +164,7 @@
 
 .react-parallax-content {
   display: inline-block;
-  margin-top: 250px;
+  margin-top: 100px;
   color: black;
 }
 
