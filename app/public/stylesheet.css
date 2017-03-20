@@ -156,10 +156,20 @@
   margin-top: -30px
 }
 
+.img-circle {
+  height: 200px;
+  margin: auto;
+  border-radius: 50%;
+}
+
 .react-parallax {
   background-size: cover;
   height: 600px;
   text-align: center
+}
+
+.developer-story {
+
 }
 
 .react-parallax-content {
