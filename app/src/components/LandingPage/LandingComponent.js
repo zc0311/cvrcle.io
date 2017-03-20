@@ -20,11 +20,11 @@ class Landing extends React.Component {
               height: 300
             }}>
             <Image style={{margin: 'auto', height: 190, width: 680 }} src='../../../cvrcle.png' />
-            <div className="parallax-content1">
-              <h3 style={{
+            <div className="parallax-content1 typewriter">
+              <h4 style={{
                 fontWeight: 300,
                 fontSize: 50
-              }}>When's your next adventure?</h3>
+              }}>Where is your next adventure?</h4>
             </div>
           </div>
         </Parallax>
