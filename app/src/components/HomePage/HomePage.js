@@ -6,25 +6,46 @@ import { Card, Header, Icon, Image } from 'semantic-ui-react';
 import { hashHistory } from 'react-router';
 import { Link } from 'react-router';
 import $ from 'jquery';
+import { connect } from 'react-redux';
 
 class HomePage extends Component {
   constructor() {
     super();
 
     this.state = {
-      itins: []
+      itins: [],
+      oid: ''
     }
 
     this.getUserItineraries = this.getUserItineraries.bind(this);
     this.deleteItinerary = this.deleteItinerary.bind(this);
     this.addUserItinerary = this.addUserItinerary.bind(this);
 
-    //using this fake data until redux state is ready
-    this.fakeReduxStateUserId = 1;
+
   }
 
   componentDidMount() {
-    this.getUserItineraries();
+    console.log('props in homepage', this.props)
+    if (this.props.isAuthenticated) {
+      let fbID = this.props.profile.user_id
+      let id = fbID.split('|')
+      console.log('fbid', fbID);
+      console.log('id', id[1]); // returns fbid number
+      axios.get(`http://localhost:3000/users?fbID=${id[1]}`)
+        .then((res) => {
+          let tmp = res.data[0]["id"]
+          console.log('tmp', tmp)
+          this.setState({
+            oid: tmp
+          })
+        })
+        .then(() => {
+          this.getUserItineraries();
+        })
+        .catch((err) => {
+          console.log(err)
+        })
+    }
   }
 
   getUserItineraries() {
@@ -35,13 +56,10 @@ class HomePage extends Component {
 
     // let url = `localhost:3000/users?fbID=${id}`
 
-    axios.get('http://localhost:3000/itineraries')
+    axios.get(`http://localhost:3000/itineraries?ownerID=${this.state.oid}`)
       .then((res) => this.setState({ itins: res.data }))
       .catch(err => console.log(err))
 
-    // axios.get('http://localhost:3000/itineraries?ownerID='+this.fakeReduxStateUserId)
-    //   .then((res) => this.setState({ itins: res.data } ))
-    //   .catch(err => console.log(err))
   }
 
   deleteItinerary(e) {
@@ -105,4 +123,15 @@ class HomePage extends Component {
   }
 }
 
-export default HomePage
+// export default HomePage
+
+
+const mapStateToProps = (state) => {
+  const { isAuthenticated, profile, error } = state.auth
+  return {
+    isAuthenticated,
+    profile
+  }
+}
+
+export default HomePage = connect(mapStateToProps)(HomePage)
