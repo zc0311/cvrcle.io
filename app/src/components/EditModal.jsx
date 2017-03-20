@@ -55,7 +55,7 @@ class EditModal extends Component {
         console.log(`The longitutde and latitude for ${address}`, { lat, lng })
       
       const key = 'AIzaSyBJ22p9p-wIVDRsTz3Xc97HpcrnXUQBaM0'
-      let url = `https://maps.googleapis.com/maps/api/geocode/json?latlng=${lat},${lng}&key=${key}`
+      let url = `https://maps.googleapis.com/maps/api/geocode/json?latlng=${lat},${lng}&key=AIzaSyBJ22p9p-wIVDRsTz3Xc97HpcrnXUQBaM0`
       
       //axios call to google maps api with lat and lng
       axios
