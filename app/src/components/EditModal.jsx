@@ -54,7 +54,7 @@ class EditModal extends Component {
       if (err) { console.log('Error', err) } 
         console.log(`The longitutde and latitude for ${address}`, { lat, lng })
       
-      const key = GOOGLE_API_KEY
+      const key = 'AIzaSyBJ22p9p-wIVDRsTz3Xc97HpcrnXUQBaM0'
       let url = `https://maps.googleapis.com/maps/api/geocode/json?latlng=${lat},${lng}&key=${key}`
       
       //axios call to google maps api with lat and lng
