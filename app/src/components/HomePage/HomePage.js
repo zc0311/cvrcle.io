@@ -63,6 +63,7 @@ class HomePage extends Component {
             <Header as='h2' icon textAlign='center'>
               <Image shape='circular' src='http://i.imgur.com/na128Pj.png' size='small'/>
               <Header.Content>
+              <br>
                 Your Itineraries...Where shall we go?
               </Header.Content>
           </Header>
