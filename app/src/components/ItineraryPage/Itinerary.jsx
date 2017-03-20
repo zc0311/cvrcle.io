@@ -74,7 +74,7 @@ class Itinerary extends Component {
 
   getItinName() {
     console.log('itinid', this.itinID);
-    axios.get('http://cvrcle.io/itineraries?id=' + this.itinID)
+    axios.get('http://arcane-shore-51156.herokuapp.com/itineraries?id=' + this.itinID)
       .then((res) => {
         console.log('RESPONSE', res)
         this.setState({

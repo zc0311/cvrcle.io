@@ -28,7 +28,7 @@ class HomePage extends Component {
     if (this.props.isAuthenticated) {
       let fbID = this.props.profile.user_id
       let id = fbID.split('|')
-      axios.get(`http://cvrcle.io/users?fbID=${id[1]}`)
+      axios.get(`http://arcane-shore-51156.herokuapp.com/users?fbID=${id[1]}`)
         .then((res) => {
           console.log('res in homepage', res)
           let tmp = res.data[0]["id"]
