@@ -7,6 +7,7 @@ import { hashHistory } from 'react-router';
 import { Link } from 'react-router';
 import $ from 'jquery';
 import { connect } from 'react-redux';
+import NewItinModal from '../NewItinModal.jsx'
 
 class HomePage extends Component {
   constructor() {
@@ -15,11 +16,13 @@ class HomePage extends Component {
     this.state = {
       itins: [],
       oid: '',
+      isClicked: false
     }
 
     this.getUserItineraries = this.getUserItineraries.bind(this);
     this.deleteItinerary = this.deleteItinerary.bind(this);
-    this.addUserItinerary = this.addUserItinerary.bind(this);
+    this.toggleModal = this.toggleModal.bind(this);
+    this.newItinAdded = this.newItinAdded.bind(this)
   }
 
   componentDidMount() {
@@ -61,50 +64,55 @@ class HomePage extends Component {
       .catch(err => console.log(err))
   }
 
-  addUserItinerary() {
-    const itinData = {
-      ownerID: "1",
-      itinName: "  ",
-      isActive: 1,
-      isPublic: 0
-    }
+  toggleModal() {
+    this.setState({
+      isClicked: !this.state.isClicked
+    })
+  }
 
-    axios.post('http://localhost:3000/itineraries', itinData)
-      .then((res) => {
-        console.log("successful post", res);
-      })
-      .catch(err => console.log(err))
+  newItinAdded(newItin) {
+    let tmp = this.state.itins
+    tmp.push(newItin)
+    this.setState({
+      itins: tmp
+    })
+
   }
 
   render() {
     return (
       <div className="itin-container container">
-          <div>
-            <Header as='h2' icon textAlign='center'>
-              <Header.Content>
-                Itineraries
-                <span className="add-itin"><button className="btn btn-primary" onClick={this.addUserItinerary}>New</button></span>
-              </Header.Content>
-            </Header>
-          </div>
-        
-          {this.state.itins ? this.state.itins.map((itin) => (
-            <Card id={"id-" + itin.id} color="red" href={`/#/itinerary?itinID=${itin.id}`}>
-              <Card.Content>
-                <span
-                  className="glyphicon glyphicon-remove"
-                  data-id={itin.id} data-ownerid={itin.ownerID}
-                  onClick={this.deleteItinerary}
-                ></span>
-                <Card.Header>{itin.itinName}</Card.Header>
-              </Card.Content>
-              <Card.Content extra>
-                Created: {itin.created_at.substring(0, 10)}
-              </Card.Content>
-            </Card>
-          )) : "No itineraries yet!"}
+        <div>
+          <Header as='h2' icon textAlign='center'>
+            <Header.Content>
+              Itineraries
+                <span className="add-itin"><button className="btn btn-primary" onClick={this.toggleModal}>New</button></span>
+            </Header.Content>
+          </Header>
         </div>
-      
+        {this.state.isClicked ? 
+          <NewItinModal 
+            resetFlag={this.toggleModal} 
+            oid={this.state.oid}
+            newItinAdded={this.newItinAdded}
+            /> : ""}
+        {this.state.itins ? this.state.itins.map((itin) => (
+          <Card id={"id-" + itin.id} color="red" href={`/#/itinerary?itinID=${itin.id}`}>
+            <Card.Content>
+              <span
+                className="glyphicon glyphicon-remove"
+                data-id={itin.id} data-ownerid={itin.ownerID}
+                onClick={this.deleteItinerary}
+              ></span>
+              <Card.Header>{itin.itinName}</Card.Header>
+            </Card.Content>
+            <Card.Content extra>
+              Created: {itin.created_at.substring(0, 10)}
+            </Card.Content>
+          </Card>
+        )) : "No itineraries yet!"}
+      </div>
+
     );
   }
 }
