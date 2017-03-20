@@ -88,15 +88,16 @@ class HomePage extends Component {
             oid={this.state.oid}
             newItinAdded={this.newItinAdded}
           /> : ""}
-        <div>
-          <div className="ui card col-xs-5 profile-picture" style={{width: 230}}>
-            <img className="ui image" src={this.props.profile.picture_large} style={{ width: 230, height: 230 }} />
+        <div className="col-xs-5">
+          <div className="ui card profile-picture" style={{width: 260}}>
+            <img className="ui image" src={this.props.profile.picture_large} style={{ width: 260, height: 260 }} />
             <div className="content">
               <div className="header">{this.props.profile.name}</div>
               <div className="description">Welcome. Where will you be headed to next?</div>
             </div>
           </div>
-          <div className="col-xs-7 itin-list">
+        </div>
+        <div className="col-xs-7 itin-list">
             <Header as='h2' icon textAlign='center'>
               <Header.Content>
                 Your Itineraries
@@ -119,7 +120,6 @@ class HomePage extends Component {
               </Card>
             )) : "No itineraries yet!"}
           </div>
-        </div>
       </div>
 
     );
