@@ -19,7 +19,7 @@ export function checkLogin() {
   return (dispatch) => {
     // Add callback for lock's `authenticated` event
     authService.lock.on('authenticated', (authResult) => {
-      console.log('WE FUCKIN HERE BRO!')
+      console.log('WE FUCKIN HERE BRO!', authResult)
       authService.lock.getProfile(authResult.idToken, (error, profile) => {
         if (error)
           return dispatch(loginError(error))

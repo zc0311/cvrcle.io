@@ -102,7 +102,6 @@ class Itinerary extends Component {
   deleteEntry(entry) {
     event.preventDefault();
     event.stopPropagation();
-    console.log('getting in here', this.state.entries)
     let arr = this.state.entries
     arr.forEach((item, i) => {
       if (item.id === entry.id) {
@@ -122,7 +121,6 @@ class Itinerary extends Component {
     })
 
     // window.map.fitBounds(window.markerBounds);    
-    console.log('end', this.state.entries)
   }
 
   render() {

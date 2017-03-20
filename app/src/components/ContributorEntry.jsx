@@ -54,7 +54,6 @@ class ContributorEntry extends Component {
   }
 
   end(e) {
-    console.log('gettffffff');
     e.stopPropagation()
   }
 
