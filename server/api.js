@@ -12,6 +12,7 @@ const Entry = require('./models/Entry');
 // that is incomplete/malformed/invalid
 
 module.exports = (app) => {
+  
   app.get('/users', (req, res, next) => {
     User
       .query()
