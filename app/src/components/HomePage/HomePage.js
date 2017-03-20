@@ -14,7 +14,7 @@ class HomePage extends Component {
 
     this.state = {
       itins: [],
-      oid: ''
+      oid: '',
     }
 
     this.getUserItineraries = this.getUserItineraries.bind(this);
@@ -103,7 +103,7 @@ class HomePage extends Component {
                 Created: {itin.created_at.substring(0, 10)}
               </Card.Content>
             </Card>
-          )) : ""}
+          )) : "No itineraries yet!"}
         </div>
       
     );

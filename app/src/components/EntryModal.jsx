@@ -9,8 +9,6 @@ import { bindActionCreators } from 'redux';
 // import rootReducer from '../reducers/reducers_index';
 let GOOGLE_API_KEY = 'AIzaSyBJ22p9p-wIVDRsTz3Xc97HpcrnXUQBaM0';
 
-
-
 const qs = require('qs');
 
 class EntryModal extends Component {
@@ -22,17 +20,52 @@ class EntryModal extends Component {
       formAuthor: "",
       formBody: "",
       address: '',
+      contributorID: '',
     }
     // function binds
     this.close = this.close.bind(this);
     this.handleInputchange = this.handleInputchange.bind(this);
     this.handleFormSubmit = this.handleFormSubmit.bind(this);
+    this.getQueryParams = this.getQueryParams.bind(this);
+
+    this.itinID = Number(this.getQueryParams('itinID'));
   }
 
   close() {
     this.setState({showModal: false}, () => {
       this.props.resetFlag();
     });
+  }
+  
+  getQueryParams(param) {
+    var query = window.location.hash.substring(1);
+    var vars = query.split("?");
+    for (var i=0;i<vars.length;i++) {
+      var pair = vars[i].split("=");
+      if(pair[0] == param){return pair[1];}
+    }
+    return(false);
+  }
+
+  componentDidMount() {
+    if (this.props.isAuthenticated) {
+      let fbID = this.props.profile.user_id
+      let id = fbID.split('|')
+      // console.log('jfdksjafkjdskfajdskfa', this.props.profile)
+      console.log('fbid', fbID);
+      console.log('id', id[1]); // returns fbid number
+      axios.get(`http://localhost:3000/users?fbID=${id[1]}`)
+        .then((res) => {
+          let tmp = res.data[0]["id"]
+          console.log(tmp)
+          this.setState({
+            contributorID: tmp
+          })
+        })
+        .catch((err) => {
+          console.log(err)
+        })
+    }
   }
 
   handleInputchange(e) {
@@ -62,6 +95,8 @@ class EntryModal extends Component {
       const key = 'AIzaSyBJ22p9p-wIVDRsTz3Xc97HpcrnXUQBaM0'
       let url = `https://maps.googleapis.com/maps/api/geocode/json?latlng=${lat},${lng}&key=AIzaSyBJ22p9p-wIVDRsTz3Xc97HpcrnXUQBaM0`
       
+      console.log('cont id', this.state.contributorID)
+      console.log('itinid', this.itinID)
       //axios call to google maps api with lat and lng
       axios
         .get(url)
@@ -74,8 +109,8 @@ class EntryModal extends Component {
             lng: lng,
             name: address,
             address: response.data.results[0].formatted_address,
-            contributorID: 1,
-            itinID: 1
+            contributorID: this.state.contributorID,
+            itinID: this.itinID
           };
 
           console.log('location to database', locationToDatabase)
@@ -168,21 +203,17 @@ class EntryModal extends Component {
   }
 }
 
-export default EntryModal;
+// export default EntryModal;
 
-// const mapStateToProps = (state) => {
-//   return {
-//     storeLocations: state.storeLocations
-//   }
-// }
+const mapStateToProps = (state) => {
+  const { isAuthenticated, profile, error } = state.auth
+  return {
+    isAuthenticated,
+    profile
+  }
+}
 
-// const mapDispatchToProps = (dispatch) => {
-//   return bindActionCreators({
-//     updateLocations: updateLocations
-//   }, dispatch);
-// }
-
-// export default connect(mapStateToProps, mapDispatchToProps)(EntryModal);
+export default EntryModal = connect(mapStateToProps)(EntryModal)
 
 
 
