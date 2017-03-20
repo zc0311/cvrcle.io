@@ -24,7 +24,7 @@ class Landing extends React.Component {
               <h3 style={{
                 fontWeight: 300,
                 fontSize: 50
-              }}>When's your next adventure?</h3>
+              }}>What's your next adventure?</h3>
             </div>
           </div>
         </Parallax>
