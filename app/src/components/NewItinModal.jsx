@@ -50,11 +50,13 @@ class NewItinModal extends Component {
       ownerID: this.props.oid.toString(),
       itinName: this.state.formTitle,
       isActive: 1,
-      isPublic: 0
+      isPublic: 0,
     }
     axios.post('http://localhost:3000/itineraries', itinData)
       .then((res) => {
-        console.log("successful post", res);
+        console.log("successful post", res.data.created_at);
+        itinData.created_at = res.data.created_at.substring(0,10)
+        this.props.newItinAdded(itinData);
       })
       .catch(err => console.log(err))
     this.close();
