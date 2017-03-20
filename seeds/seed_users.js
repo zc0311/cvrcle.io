@@ -15,14 +15,14 @@ exports.seed = function (knex, Promise) {
         firstName: 'Regina',
         lastName: 'Lee',
         email: 'regina.v.lee@gmail.com',
-        fbID: '10158329375645263'
+        fbID: '10158358766930263'
       },
       {
         id: 3,
         firstName: 'Andrew',
         lastName: 'Yi',
         email: 'andrew.yi.j@gmail.com',
-        fbID: '179529875886295'
+        fbID: '182613242244625'
       }
       ]);
     })

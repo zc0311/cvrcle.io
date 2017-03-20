@@ -19,7 +19,7 @@ class ContributorEntry extends Component {
       name: "",
       author:""
     }
-
+    console.log('contributor entry', this.props)
     this.toggleModal = this.toggleModal.bind(this);
     this.updateEntry = this.updateEntry.bind(this);
     this.updateState = this.updateState.bind(this);
