@@ -101,6 +101,7 @@ class Itinerary extends Component {
 
   // TODO: itinID is HARDCODED IN
   deleteEntry(entry) {
+    console.log('getting in here', this.state.entries)
     let arr = this.state.entries
     arr.forEach((item, i) => {
       if (item.id === entry.id) { 
@@ -108,6 +109,7 @@ class Itinerary extends Component {
         this.state.markers[i].setMap(null);
         axios.delete(`http://localhost:3000/entries?id=${entry.id}&itinID=1`)
           .then((res) => {
+            console.log('fkjdks', res)
           })
           .catch(err => console.log(err))
       }
@@ -115,7 +117,8 @@ class Itinerary extends Component {
     this.setState({
       entries: arr
     })
-    window.map.fitBounds(window.markerBounds);    
+    // window.map.fitBounds(window.markerBounds);    
+    console.log('end', this.state.entries)
   }
 
   render() {
