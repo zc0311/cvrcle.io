@@ -28,11 +28,11 @@ class Itinerary extends Component {
   getQueryParams(param) {
     var query = window.location.hash.substring(1);
     var vars = query.split("?");
-    for (var i=0;i<vars.length;i++) {
+    for (var i = 0; i < vars.length; i++) {
       var pair = vars[i].split("=");
-      if(pair[0] == param){return pair[1];}
+      if (pair[0] == param) { return pair[1]; }
     }
-    return(false);
+    return (false);
   }
 
   getUserEntries() {
@@ -72,14 +72,30 @@ class Itinerary extends Component {
   createMarkers(data) {
     // grabs existing locations from database and renders them onto the map
     data.forEach((location) => {
+      console.log('location', location)
       let center = {
         lat: location.lat,
         lng: location.lng
       }
       let marker = new google.maps.Marker({
         position: center,
-        map: window.map
+        map: window.map,
+        title: location.name
       })
+      let contentString = '<div id="content">' +
+        '<div id="siteNotice">' +
+        '</div>' +
+        `<h5 id="firstHeading" class="firstHeading">${location.name}</h5>` +
+        '<div id="bodyContent">' +
+        `<p>${location.body}</p>` +
+        '</div>' +
+        '</div>';
+      var infowindow = new google.maps.InfoWindow({
+        content: contentString
+      });
+      marker.addListener('click', function () {
+        infowindow.open(map, marker);
+      });
       this.state.markers.push(marker);
       window.markerBounds.extend(center);
     })
@@ -149,7 +165,7 @@ class Itinerary extends Component {
                 {this.state.entries.length ?
                   (this.state.entries.map((entryData, i) => (
                     <ContributorEntry key={i} {...entryData} deleteEntry={this.deleteEntry} />))) :
-                  <div style={{'margin':'auto'}} className="text-center">No entries yet!</div>
+                  <div style={{ 'margin': 'auto' }} className="text-center">No entries yet!</div>
                 }
               </Card.Group>
             </div>
