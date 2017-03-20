@@ -32,12 +32,6 @@ class ContributorEntry extends Component {
     if (this.props.isAuthenticated) {
       let fbID = this.props.profile.user_id
       let id = fbID.split('|')
-      console.log('fbid', fbID);
-      console.log('id', id[1]); // returns fbid number
-      // this.setState({
-      //   author: this.props.contributorID
-      // })
-
       axios.get(`http://localhost:3000/users?id=${this.props.contributorID}`)
         .then((res) => {
           let tmp = res.data[0]["id"]
@@ -110,8 +104,6 @@ class ContributorEntry extends Component {
     );
   }
 }
-
-// export default ContributorEntry;
  
 const mapStateToProps = (state) => {
   const { isAuthenticated, profile, error } = state.auth
