@@ -143,9 +143,9 @@ class Itinerary extends Component {
     let contentString = '<div id="content">' +
       '<div id="siteNotice">' +
       '</div>' +
-      `<h5 id="firstHeading" class="firstHeading">${location.name}</h5>` +
+      `<h5 id="firstHeading" class="firstHeading">${newLocation.name}</h5>` +
       '<div id="bodyContent">' +
-      `<p>${location.body}</p>` +
+      `<p>${newLocation.body}</p>` +
       '</div>' +
       '</div>';
     var infowindow = new google.maps.InfoWindow({
@@ -186,7 +186,7 @@ class Itinerary extends Component {
     return (
       <div>
         <div className="container">
-          <h3 className="itin-name">{this.state.itinName}</h3>
+          <h2 className="itin-name">{this.state.itinName}</h2>
           <div className="map-view">
             <GoogleMap locations={this.state.entries} />
             <AddNewEntry className="add-entry" data={''} newEntryAdded={this.newEntryAdded} />
