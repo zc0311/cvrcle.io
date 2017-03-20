@@ -5,8 +5,6 @@ import { Container, Header, Card, Message, Segment, Form } from 'semantic-ui-rea
 import ContributorEntry from '../ContributorEntry.jsx';
 import GoogleMap from '../map.jsx';
 import AddNewEntry from '../AddNewEntry.jsx';
-import { connect, Provider } from 'react-redux';
-import { bindActionCreators } from 'redux';
 import NavBar from '../NavBar/NavBar.js';
 
 class Itinerary extends Component {
@@ -21,21 +19,9 @@ class Itinerary extends Component {
     this.newEntryAdded = this.newEntryAdded.bind(this);
     this.getUserEntries = this.getUserEntries.bind(this);
     this.deleteEntry = this.deleteEntry.bind(this);
-    //this.getQueryParams = this.getQueryParams.bind(this);
 
-    //this.itinID = this.getQueryParams('itinID');
     this.itinID = '1'
   }
-
-  // getQueryParams(param) {
-  //   var query = window.location.hash.substring(1);
-  //   var vars = query.split("?");
-  //   for (var i=0;i<vars.length;i++) {
-  //     var pair = vars[i].split("=");
-  //     if(pair[0] == param){return pair[1];}
-  //   }
-  //   return(false);
-  // }
 
   getUserEntries() {
     axios.get('http://localhost:3000/entries?itinID=' + this.itinID)
@@ -105,15 +91,16 @@ class Itinerary extends Component {
     window.markerBounds.extend(center)
     window.map.fitBounds(window.markerBounds);
 
-    return new google.maps.Marker({
+    let marker = new google.maps.Marker({
       position: center,
       map: window.map
     })
+    this.state.markers.push(marker);
+    return marker;
   }
 
   // TODO: itinID is HARDCODED IN
   deleteEntry(entry) {
-    console.log('entry in delete entry', entry);
     let arr = this.state.entries
     arr.forEach((item, i) => {
       if (item.id === entry.id) { 
@@ -121,15 +108,14 @@ class Itinerary extends Component {
         this.state.markers[i].setMap(null);
         axios.delete(`http://localhost:3000/entries?id=${entry.id}&itinID=1`)
           .then((res) => {
-            console.log("reserser", res);
           })
           .catch(err => console.log(err))
       }
     })
-    console.log(arr);
     this.setState({
       entries: arr
     })
+    window.map.fitBounds(window.markerBounds);    
   }
 
   render() {
@@ -161,18 +147,4 @@ class Itinerary extends Component {
 }
 
 export default Itinerary
-
-// const mapStateToProps = (state) => {
-//   return {
-//     storeLocations: state.storeLocations
-//   }
-// }
-
-// const mapDispatchToProps = (dispatch) => {
-//   return bindActionCreators({
-//     updateLocations: updateLocations
-//   }, dispatch);
-// }
-
-// export default connect(mapStateToProps, mapDispatchToProps)(Itinerary);
 
