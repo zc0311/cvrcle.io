@@ -89,18 +89,14 @@ class HomePage extends Component {
             newItinAdded={this.newItinAdded}
           /> : ""}
         <div>
-          <div className="ui card col-xs-3">
+          <div className="ui card col-xs-5 profile-picture" style={{width: 230}}>
             <img className="ui image" src={this.props.profile.picture_large} style={{ width: 230, height: 230 }} />
             <div className="content">
               <div className="header">{this.props.profile.name}</div>
               <div className="description">Welcome. Where will you be headed to next?</div>
             </div>
-            <div className="extra content">
-              <a>
-                <i aria-hidden="true" className="user icon"></i>16 Friends</a>
-            </div>
           </div>
-          <div className="col-xs-9 itin-list">
+          <div className="col-xs-7 itin-list">
             <Header as='h2' icon textAlign='center'>
               <Header.Content>
                 Your Itineraries
@@ -140,10 +136,3 @@ const mapStateToProps = (state) => {
 
 export default HomePage = connect(mapStateToProps)(HomePage)
 
-        // <div className="col-xs-3 profile">
-        //   <Image src={this.props.profile.picture_large} size="medium" shape="circular" className='prof-picture' />
-        //   <div>
-        //     <h3>Welcome {this.props.profile.name}!
-        //   </h3>
-        //   </div>
-        // </div>
