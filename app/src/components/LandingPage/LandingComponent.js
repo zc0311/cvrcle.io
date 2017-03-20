@@ -8,6 +8,7 @@ class Landing extends React.Component {
   constructor(props) {
     super(props)
     this.props.checkLogin() // check is Auth0 lock is authenticating after login callback
+
   }
 
   render() {
