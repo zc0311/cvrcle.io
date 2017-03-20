@@ -104,19 +104,20 @@ class Itinerary extends Component {
     console.log('getting in here', this.state.entries)
     let arr = this.state.entries
     arr.forEach((item, i) => {
-      if (item.id === entry.id) { 
+      if (item.id === entry.id) {
         arr.splice(i, 1);
         this.state.markers[i].setMap(null);
         axios.delete(`http://localhost:3000/entries?id=${entry.id}&itinID=1`)
           .then((res) => {
+            this.setState({
+              entries: arr
+            })
             console.log('fkjdks', res)
           })
           .catch(err => console.log(err))
       }
     })
-    this.setState({
-      entries: arr
-    })
+
     // window.map.fitBounds(window.markerBounds);    
     console.log('end', this.state.entries)
   }
