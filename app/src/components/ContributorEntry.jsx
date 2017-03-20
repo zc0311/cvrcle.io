@@ -36,7 +36,11 @@ class ContributorEntry extends Component {
       console.log('id', id[1]); // returns fbid number
       axios.get(`http://localhost:3000/users?fbID=${id[1]}`)
         .then((res) => {
-          console.log(res)
+          let tmp = res.data[0]["id"]
+          console.log(tmp)
+          this.setState({
+            author: res.data[0]["firstName"] + ' ' + res.data[0]["lastName"]
+          })
         })
         .catch((err) => {
           console.log(err)
