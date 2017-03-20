@@ -27,14 +27,14 @@ class HomePage extends Component {
   }
 
   getUserItineraries() {
-    let fbID = this.props.profile.user_id
-    let id = fbID.split('|')
-    console.log('fbid', fbID);
-    console.log('id', id[1]); // returns fbid number
+    // let fbID = this.props.profile.user_id
+    // let id = fbID.split('|')
+    // console.log('fbid', fbID);
+    // console.log('id', id[1]); // returns fbid number
 
-    let url = `localhost:3000/users?fbID=${id}`
+    // let url = `localhost:3000/users?fbID=${id}`
 
-    axios.get(url)
+    axios.get('http://localhost:3000/itineraries')
       .then((res) => this.setState({ itins: res.data }))
       .catch(err => console.log(err))
 
