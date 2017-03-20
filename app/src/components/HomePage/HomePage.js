@@ -82,38 +82,48 @@ class HomePage extends Component {
   render() {
     return (
       <div className="itin-container container">
-        {this.state.isClicked ? 
-          <NewItinModal 
-            resetFlag={this.toggleModal} 
+        {this.state.isClicked ?
+          <NewItinModal
+            resetFlag={this.toggleModal}
             oid={this.state.oid}
             newItinAdded={this.newItinAdded}
-            /> : ""}
-          <div className="col-xs-6 profile">
-            <Image src={this.props.profile.picture_large} size="medium" shape="circular"/>
+          /> : ""}
+        <div>
+          <div className="ui card col-xs-3">
+            <img className="ui image" src={this.props.profile.picture_large} style={{ width: 230, height: 230 }} />
+            <div className="content">
+              <div className="header">{this.props.profile.name}</div>
+              <div className="description">Welcome. Where will you be headed to next?</div>
+            </div>
+            <div className="extra content">
+              <a>
+                <i aria-hidden="true" className="user icon"></i>16 Friends</a>
+            </div>
           </div>
-          <div className=" col-xs-6 itin-list">
-          <Header as='h2' icon textAlign='center'>
-            <Header.Content>
-              Itineraries
+          <div className="col-xs-9 itin-list">
+            <Header as='h2' icon textAlign='center'>
+              <Header.Content>
+                Your Itineraries
                 <span className="add-itin"><button className="btn btn-primary" onClick={this.toggleModal}>New</button></span>
-            </Header.Content>
-          </Header>
-          {this.state.itins ? this.state.itins.map((itin) => (
-            <Card id={"id-" + itin.id} color="red" href={`/#/itinerary?itinID=${itin.id}`}>
-              <Card.Content>
-                <span
-                  className="glyphicon glyphicon-remove"
-                  data-id={itin.id} data-ownerid={itin.ownerID}
-                  onClick={this.deleteItinerary}
-                ></span>
-                <Card.Header>{itin.itinName}</Card.Header>
-              </Card.Content>
-              <Card.Content extra>
-                Created: {itin.created_at.substring(0, 10)}
-              </Card.Content>
-            </Card>
-          )) : "No itineraries yet!"}
+              </Header.Content>
+            </Header>
+            {this.state.itins ? this.state.itins.map((itin) => (
+              <Card id={"id-" + itin.id} color="red" href={`/#/itinerary?itinID=${itin.id}`}>
+                <Card.Content>
+                  <span
+                    className="glyphicon glyphicon-remove"
+                    data-id={itin.id} data-ownerid={itin.ownerID}
+                    onClick={this.deleteItinerary}
+                  ></span>
+                  <Card.Header>{itin.itinName}</Card.Header>
+                </Card.Content>
+                <Card.Content extra>
+                  Created: {itin.created_at.substring(0, 10)}
+                </Card.Content>
+              </Card>
+            )) : "No itineraries yet!"}
           </div>
+        </div>
       </div>
 
     );
@@ -129,3 +139,11 @@ const mapStateToProps = (state) => {
 }
 
 export default HomePage = connect(mapStateToProps)(HomePage)
+
+        // <div className="col-xs-3 profile">
+        //   <Image src={this.props.profile.picture_large} size="medium" shape="circular" className='prof-picture' />
+        //   <div>
+        //     <h3>Welcome {this.props.profile.name}!
+        //   </h3>
+        //   </div>
+        // </div>
