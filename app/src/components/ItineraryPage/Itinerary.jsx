@@ -123,6 +123,20 @@ class Itinerary extends Component {
       position: center,
       map: window.map
     })
+    let contentString = '<div id="content">' +
+      '<div id="siteNotice">' +
+      '</div>' +
+      `<h5 id="firstHeading" class="firstHeading">${location.name}</h5>` +
+      '<div id="bodyContent">' +
+      `<p>${location.body}</p>` +
+      '</div>' +
+      '</div>';
+    var infowindow = new google.maps.InfoWindow({
+      content: contentString
+    });
+    marker.addListener('click', function () {
+      infowindow.open(map, marker);
+    });
     this.state.markers.push(marker);
     return marker;
   }
