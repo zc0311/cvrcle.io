@@ -29,10 +29,8 @@ class HomePage extends Component {
     if (this.props.isAuthenticated) {
       let fbID = this.props.profile.user_id
       let id = fbID.split('|')
-      console.log('fbid', fbID);
-      console.log('id', id[1]); // returns fbid number
 
-      axios.get('http://localhost:3000/itineraries?ownerID='+fbID)
+      axios.get('http://localhost:3000/itineraries?ownerID='+id)
         .then((res) => this.setState({ itins: res.data } ))
         .catch(err => console.log(err))
     }
