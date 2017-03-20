@@ -19,7 +19,7 @@ class NewItinModal extends Component {
     this.close = this.close.bind(this);
     this.onChange = this.onChange.bind(this);
     this.handleInputchange = this.handleInputchange.bind(this);
-    this.handleFormSubmit = this.handleFormSubmit.bind(this);
+    // this.handleFormSubmit = this.handleFormSubmit.bind(this);
     this.addUserItinerary = this.addUserItinerary.bind(this);
   }
 
@@ -78,7 +78,7 @@ class NewItinModal extends Component {
           </form>
         </Modal.Body>
         <Modal.Footer>
-          <Button className="btn btn-primary" onClick={this.handleFormSubmit}>Save</Button>
+          <Button className="btn btn-primary" onClick={this.addUserItinerary}>Save</Button>
         </Modal.Footer>
       </Modal>
     );

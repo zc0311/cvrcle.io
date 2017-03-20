@@ -21,9 +21,7 @@ class HomePage extends Component {
 
     this.getUserItineraries = this.getUserItineraries.bind(this);
     this.deleteItinerary = this.deleteItinerary.bind(this);
-    // this.addUserItinerary = this.addUserItinerary.bind(this);
     this.toggleModal = this.toggleModal.bind(this);
-
   }
 
   componentDidMount() {
@@ -82,10 +80,9 @@ class HomePage extends Component {
             </Header.Content>
           </Header>
         </div>
-        {this.state.isClicked ?
-          <NewItinModal
-          /> : ""}
-
+        {this.state.isClicked ? 
+          <NewItinModal resetFlag={this.toggleModal} 
+            /> : ""}
         {this.state.itins ? this.state.itins.map((itin) => (
           <Card id={"id-" + itin.id} color="red" href={`/#/itinerary?itinID=${itin.id}`}>
             <Card.Content>
