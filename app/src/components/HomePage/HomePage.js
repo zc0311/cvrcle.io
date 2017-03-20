@@ -7,13 +7,15 @@ import { hashHistory } from 'react-router';
 import { Link } from 'react-router';
 import { connect } from 'react-redux';
 import $ from 'jquery';
+import { connect } from 'react-redux';
 
 class HomePage extends Component {
   constructor() {
     super();
 
     this.state = {
-      itins: []
+      itins: [],
+      oid: ''
     }
 
     this.getUserItineraries = this.getUserItineraries.bind(this);
@@ -22,22 +24,29 @@ class HomePage extends Component {
   }
 
   componentDidMount() {
-    this.getUserItineraries();
-  }
-
-  getUserItineraries() {
     if (this.props.isAuthenticated) {
       let fbID = this.props.profile.user_id
       let id = fbID.split('|')
-
-      axios.get('http://localhost:3000/itineraries?ownerID='+id)
-        .then((res) => this.setState({ itins: res.data } ))
-        .catch(err => console.log(err))
+      axios.get(`http://localhost:3000/users?fbID=${id[1]}`)
+        .then((res) => {
+          let tmp = res.data[0]["id"]
+          this.setState({
+            oid: tmp
+          })
+        })
+        .then(() => {
+          this.getUserItineraries();
+        })
+        .catch((err) => {
+          console.log(err)
+        })
     }
+  }
 
-    // axios.get('http://localhost:3000/itineraries')
-    //   .then((res) => this.setState({ itins: res.data }))
-    //   .catch(err => console.log(err))
+  getUserItineraries() {
+    axios.get(`http://localhost:3000/itineraries?ownerID=${this.state.oid}`)
+      .then((res) => this.setState({ itins: res.data }))
+      .catch(err => console.log(err))
   }
 
   deleteItinerary(e) {
@@ -101,6 +110,12 @@ class HomePage extends Component {
   }
 }
 
+<<<<<<< HEAD
+=======
+// export default HomePage
+
+
+>>>>>>> master
 const mapStateToProps = (state) => {
   const { isAuthenticated, profile, error } = state.auth
   return {

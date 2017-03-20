@@ -20,7 +20,6 @@ class Itinerary extends Component {
     this.getUserEntries = this.getUserEntries.bind(this);
     this.deleteEntry = this.deleteEntry.bind(this);
 
-    this.itinID = '1'
   }
 
   getUserEntries() {
