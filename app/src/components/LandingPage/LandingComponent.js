@@ -7,7 +7,7 @@ import { Col, Grid, Row } from 'react-bootstrap';
 class Landing extends React.Component {
   constructor(props) {
     super(props)
-    // this.props.checkLogin() // check is Auth0 lock is authenticating after login callback
+    this.props.checkLogin() // check is Auth0 lock is authenticating after login callback
   }
 
   render() {
@@ -25,6 +25,13 @@ class Landing extends React.Component {
                 fontWeight: 300,
                 fontSize: 50
               }}>Where is your next adventure?</h3>
+            </div>
+            <div>
+              {!this.props.isAuthenticated ? (
+                <button onClick={this.props.onLoginClick}>Login</button>
+              ) : (
+                  <button onClick={this.props.onLogoutClick}>Logout</button>
+                )}
             </div>
           </div>
         </Parallax>
@@ -99,18 +106,11 @@ class Landing extends React.Component {
   }
 }
 
-// Landing.propTypes = {
-//   isAuthenticated: React.PropTypes.bool.isRequired,
-//   onLoginClick: React.PropTypes.func.isRequired,
-//   onLogoutClick: React.PropTypes.func.isRequired,
-//   checkLogin: React.PropTypes.func.isRequired
-// }
+Landing.propTypes = {
+  isAuthenticated: React.PropTypes.bool.isRequired,
+  onLoginClick: React.PropTypes.func.isRequired,
+  onLogoutClick: React.PropTypes.func.isRequired,
+  checkLogin: React.PropTypes.func.isRequired
+}
 
 export default Landing
-            // <div>
-            //   {!this.props.isAuthenticated ? (
-            //     <button onClick={this.props.onLoginClick}>Login</button>
-            //   ) : (
-            //       <button onClick={this.props.onLogoutClick}>Logout</button>
-            //     )}
-            // </div>
