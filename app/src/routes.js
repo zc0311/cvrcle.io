@@ -9,10 +9,10 @@ export default function createRoutes() {
 
     <Route path='/' component={AppContainer}>
       <IndexRoute component={LandingContainer} />
-      <Route path='/#/home' component={HomePage}/>
-      <Route path="/#/itinerary" component={Itinerary} />
+      <Route path='/home' component={HomePage}/>
+      <Route path="/itinerary" component={Itinerary} />
       <Route path='*' component={NotFoundPage} />
-      <Route path='/#/logout' component={NotFoundPage} />
+      <Route path='/logout' component={NotFoundPage} />
     </Route>
   )
 }
