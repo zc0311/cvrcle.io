@@ -7,7 +7,7 @@ import GoogleMap from '../map.jsx';
 import AddNewEntry from '../AddNewEntry.jsx';
 import { connect, Provider } from 'react-redux';
 import { bindActionCreators } from 'redux';
-import NavBar from '../NavBar/NavBar.js'; 
+import NavBar from '../NavBar/NavBar.js';
 
 class Itinerary extends Component {
   constructor(props) {
@@ -19,6 +19,7 @@ class Itinerary extends Component {
 
     this.newEntryAdded = this.newEntryAdded.bind(this);
     this.getUserEntries = this.getUserEntries.bind(this);
+    this.deleteEntry = this.deleteEntry.bind(this);
     //this.getQueryParams = this.getQueryParams.bind(this);
 
     //this.itinID = this.getQueryParams('itinID');
@@ -36,7 +37,7 @@ class Itinerary extends Component {
   // }
 
   getUserEntries() {
-    axios.get('http://localhost:3000/entries?itinID='+this.itinID)
+    axios.get('http://localhost:3000/entries?itinID=' + this.itinID)
       .then((res) => {
         let filteredEntries = [];
         res.data.forEach((entry) => {
@@ -101,10 +102,30 @@ class Itinerary extends Component {
     }
     window.markerBounds.extend(center)
     window.map.fitBounds(window.markerBounds);
-    
+
     return new google.maps.Marker({
       position: center,
       map: window.map
+    })
+  }
+
+  // TODO: itinID is HARDCODED IN
+  deleteEntry(entry) {
+    console.log('entry in delete entry', entry);
+    let arr = this.state.entries
+    arr.forEach((item, i) => {
+      if (item.id === entry.id) { 
+        arr.splice(i, 1);
+        axios.delete(`http://localhost:3000/entries?id=${entry.id}&itinID=1`)
+          .then((res) => {
+            console.log("reserser", res);
+          })
+          .catch(err => console.log(err))
+      }
+    })
+    console.log(arr);
+    this.setState({
+      entries: arr
     })
   }
 
@@ -124,7 +145,7 @@ class Itinerary extends Component {
               <Card.Group className="existing-entries">
                 {this.state.entries.length ?
                   (this.state.entries.map((entryData, i) => (
-                    <ContributorEntry key={i} {...entryData} />))) :
+                    <ContributorEntry key={i} {...entryData} deleteEntry={this.deleteEntry} />))) :
                   <div className="text-center">No entries yet!</div>
                 }
               </Card.Group>
