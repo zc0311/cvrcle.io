@@ -79,7 +79,7 @@ class EditModal extends Component {
           // TODO: Find contributor name from contributorID in join table
           // TODO: CHANGE TO PUT REQUEST (MODIFYING)
           // axios
-          //   .put('http://localhost:3000/entries', location)
+          //   .put('http://arcane-shore-51156.herokuapp.com/entries', location)
           //   .then((response) => {
           //     console.log(response)
           //   })

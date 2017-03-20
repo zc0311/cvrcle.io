@@ -24,7 +24,7 @@ class Itinerary extends Component {
   }
 
   getUserEntries() {
-    axios.get('http://localhost:3000/entries?itinID=' + this.itinID)
+    axios.get('http://arcane-shore-51156.herokuapp.com/entries?itinID=' + this.itinID)
       .then((res) => {
         let filteredEntries = [];
         res.data.forEach((entry) => {
@@ -107,7 +107,7 @@ class Itinerary extends Component {
       if (item.id === entry.id) {
         arr.splice(i, 1);
         this.state.markers[i].setMap(null);
-        axios.delete(`http://localhost:3000/entries?id=${entry.id}&itinID=${this.itinID}`)
+        axios.delete(`http://arcane-shore-51156.herokuapp.com/entries?id=${entry.id}&itinID=${this.itinID}`)
           .then((res) => {
             console.log('fkjdks', res)
           })

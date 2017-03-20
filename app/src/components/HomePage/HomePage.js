@@ -32,13 +32,13 @@ class HomePage extends Component {
     // console.log('fbid', fbID);
     // console.log('id', id[1]); // returns fbid number
 
-    // let url = `localhost:3000/users?fbID=${id}`
+    // let url = `arcane-shore-51156.herokuapp.com/users?fbID=${id}`
 
-    axios.get('http://localhost:3000/itineraries')
+    axios.get('http://arcane-shore-51156.herokuapp.com/itineraries')
       .then((res) => this.setState({ itins: res.data }))
       .catch(err => console.log(err))
 
-    // axios.get('http://localhost:3000/itineraries?ownerID='+this.fakeReduxStateUserId)
+    // axios.get('http://arcane-shore-51156.herokuapp.com/itineraries?ownerID='+this.fakeReduxStateUserId)
     //   .then((res) => this.setState({ itins: res.data } ))
     //   .catch(err => console.log(err))
   }
@@ -49,7 +49,7 @@ class HomePage extends Component {
     const id = e.target.dataset.id;
     const oid = e.target.dataset.ownerid;
 
-    axios.delete(`http://localhost:3000/itineraries?id=${id}&ownerID=${oid}`)
+    axios.delete(`http://arcane-shore-51156.herokuapp.com/itineraries?id=${id}&ownerID=${oid}`)
       .then((res) => {
         $('#id-' + id).remove();
       })
