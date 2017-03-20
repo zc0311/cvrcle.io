@@ -5,7 +5,6 @@ import NavBar from '../NavBar/NavBar.js';
 import { Card, Header, Icon, Image } from 'semantic-ui-react';
 import { hashHistory } from 'react-router';
 import { Link } from 'react-router';
-import { connect } from 'react-redux';
 import $ from 'jquery';
 import { connect } from 'react-redux';
 
@@ -110,12 +109,6 @@ class HomePage extends Component {
   }
 }
 
-<<<<<<< HEAD
-=======
-// export default HomePage
-
-
->>>>>>> master
 const mapStateToProps = (state) => {
   const { isAuthenticated, profile, error } = state.auth
   return {
