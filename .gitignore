@@ -9,6 +9,6 @@ db.json
 .env
 .vscode
 .DS_Store
-config.js
+#config.js
 db.json
 .scratchfile
