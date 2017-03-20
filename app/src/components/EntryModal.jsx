@@ -6,8 +6,8 @@ import PlacesAutocomplete from 'react-places-autocomplete';
 import { geocodeByAddress, geocodeByPlaceId } from 'react-places-autocomplete';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
-import GOOGLE_API_KEY from '../../../config.js';
 // import rootReducer from '../reducers/reducers_index';
+let GOOGLE_API_KEY = 'AIzaSyBJ22p9p-wIVDRsTz3Xc97HpcrnXUQBaM0';
 
 
 
