@@ -89,8 +89,8 @@ class HomePage extends Component {
             newItinAdded={this.newItinAdded}
           /> : ""}
         <div className="col-xs-5">
-          <div className="ui card profile-picture" style={{width: 260}}>
-            <img className="ui image" src={this.props.profile.picture_large} style={{ width: 260, height: 260 }} />
+          <div className="ui card profile-picture" style={{width: 325}}>
+            <img className="ui image" src={this.props.profile.picture_large} style={{ width: 325, height: 325 }} />
             <div className="content">
               <div className="header">{this.props.profile.name}</div>
               <div className="description">Welcome. Where will you be headed to next?</div>
