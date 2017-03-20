@@ -37,6 +37,9 @@ app.use((err, req, res, next) => {
     next();
   }
 })
+  app.get('*', function response(req, res) {
+    res.sendFile(path.join(__dirname, 'app/build/index.html'));
+  });
 
 // listen and serve
 app.listen(port, function () {
