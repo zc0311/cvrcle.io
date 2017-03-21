@@ -1,13 +1,10 @@
 import React, { Component } from 'react';
-import ReactDOM from "react-dom";
 import axios from 'axios';
 import { Button, Modal, Form, FormGroup, FormControl, ControlLabel } from 'react-bootstrap';
 import PlacesAutocomplete from 'react-places-autocomplete';
 import { geocodeByAddress, geocodeByPlaceId } from 'react-places-autocomplete';
 import { connect } from 'react-redux';
-import { bindActionCreators } from 'redux';
 import GOOGLE_API_KEY from '../../../config.js';
-// import rootReducer from '../reducers/reducers_index';
 
 const qs = require('qs');
 
@@ -51,13 +48,9 @@ class EntryModal extends Component {
     if (this.props.isAuthenticated) {
       let fbID = this.props.profile.user_id
       let id = fbID.split('|')
-      // console.log('jfdksjafkjdskfajdskfa', this.props.profile)
-      console.log('fbid', fbID);
-      console.log('id', id[1]); // returns fbid number
       axios.get(`http://localhost:3000/users?fbID=${id[1]}`)
         .then((res) => {
           let tmp = res.data[0]["id"]
-          console.log(tmp)
           this.setState({
             contributorID: tmp
           })
@@ -90,13 +83,8 @@ class EntryModal extends Component {
 
     geocodeByAddress(address,  (err, { lat, lng }) => {
       if (err) { console.log('Error', err) } 
-        console.log(`The longitutde and latitude for ${address}`, { lat, lng })
-      
       const key = GOOGLE_API_KEY
       let url = `https://maps.googleapis.com/maps/api/geocode/json?latlng=${lat},${lng}&key=${key}`
-      
-      console.log('cont id', this.state.contributorID)
-      console.log('itinid', this.itinID)
       //axios call to google maps api with lat and lng
       axios
         .get(url)
@@ -113,24 +101,16 @@ class EntryModal extends Component {
             itinID: this.itinID
           };
 
-          console.log('location to database', locationToDatabase)
-
-          // TODO: Find contributor name from contributorID in join table
-          // console.log('location', location);
           axios
             .post('http://localhost:3000/entries', qs.stringify(locationToDatabase))
             .then((response) => {
-              console.log(response)
-              // this.props.updateLocations(locationToDatabase)
               this.props.newEntryAdded(locationToDatabase);
             })
             .catch((err) => {
-              console.log('error1')
               if (err) {console.log(err)}
             })
         })
         .catch((err) => {
-          console.log('error2')
           if (err) {console.log(err)}
         })
     })
@@ -202,8 +182,6 @@ class EntryModal extends Component {
     );
   }
 }
-
-// export default EntryModal;
 
 const mapStateToProps = (state) => {
   const { isAuthenticated, profile, error } = state.auth

@@ -4,7 +4,6 @@ import { Landing } from '../../components'
 import { hashHistory } from 'react-router'
 import { checkLogin } from '../../actions/auth'
 
-
 const mapStateToProps = (state) => {
   const { isAuthenticated, profile, error } = state.auth
   return {
@@ -34,5 +33,3 @@ const mapDispatchToProps = (dispatch) => {
 const LandingContainer = connect(mapStateToProps, mapDispatchToProps)(Landing)
 
 export default LandingContainer
-
-//for regina

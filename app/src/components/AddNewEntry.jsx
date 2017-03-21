@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import { Card } from 'semantic-ui-react';
 import EntryModal from './EntryModal.jsx';
 import { Button }  from 'react-bootstrap';
 

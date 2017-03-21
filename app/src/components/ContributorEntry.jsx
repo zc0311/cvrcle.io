@@ -1,10 +1,8 @@
 import React, { Component } from 'react';
-import ReactDOM from "react-dom";
 import axios from "axios";
-import { Card, Modal } from 'semantic-ui-react';
+import { Card } from 'semantic-ui-react';
 import EditModal from './EditModal.jsx';
 import { connect } from 'react-redux'
-
 
 class ContributorEntry extends Component {
   constructor(props) {
@@ -19,7 +17,6 @@ class ContributorEntry extends Component {
       name: "",
       author:""
     }
-    console.log('contributor entry', this.props)
     this.toggleModal = this.toggleModal.bind(this);
     this.updateEntry = this.updateEntry.bind(this);
     this.updateState = this.updateState.bind(this);
@@ -28,14 +25,12 @@ class ContributorEntry extends Component {
 
   componentDidMount() {
     this.updateState();
-    console.log(this.props.contributorID)
     if (this.props.isAuthenticated) {
       let fbID = this.props.profile.user_id
       let id = fbID.split('|')
       axios.get(`http://localhost:3000/users?id=${this.props.contributorID}`)
         .then((res) => {
           let tmp = res.data[0]["id"]
-          console.log(tmp)
           this.setState({
             author: res.data[0]["firstName"] + ' ' + res.data[0]["lastName"]
           })
