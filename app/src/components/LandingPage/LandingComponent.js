@@ -1,8 +1,8 @@
 import React, { Component } from 'react';
-import { Card, Image } from 'semantic-ui-react';
+// import { Image } from 'semantic-ui-react';
 import { NavBarContainer } from '../../containers'
 import { Parallax, Background } from 'react-parallax';
-import { Col, Grid, Row } from 'react-bootstrap';
+import { Col, Grid, Row, Image } from 'react-bootstrap';
 
 class Landing extends React.Component {
   constructor(props) {
@@ -29,7 +29,7 @@ class Landing extends React.Component {
           </div>
         </Parallax>
 
-
+        
         <div className="container" style={{
           marginTop: 40,
           marginBottom: 80
@@ -165,9 +165,6 @@ class Landing extends React.Component {
 }
 
 Landing.propTypes = {
-  isAuthenticated: React.PropTypes.bool.isRequired,
-  onLoginClick: React.PropTypes.func.isRequired,
-  onLogoutClick: React.PropTypes.func.isRequired,
   checkLogin: React.PropTypes.func.isRequired
 }
 

@@ -8,8 +8,8 @@ import AddNewEntry from '../AddNewEntry.jsx';
 import NavBar from '../NavBar/NavBar.js';
 
 /**
- * @description:    
- * 
+ * @description:  Individual itinerary view
+ *                Holds the map view with markers and card list of entries
  * @class Itinerary
  * @extends {Component}
  */
@@ -125,7 +125,6 @@ class Itinerary extends Component {
     this.setState({
       entries: tmp
     })
-
     let center = {
       lat: newLocation.lat,
       lng: newLocation.lng
@@ -168,8 +167,7 @@ class Itinerary extends Component {
             this.setState({
               entries: arr
             })
-          }
-          )
+          })
           .catch(err => console.log(err))
       }
     })

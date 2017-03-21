@@ -87,7 +87,6 @@ class HomePage extends Component {
     this.setState({
       itins: tmp
     })
-
   }
 
   render() {
