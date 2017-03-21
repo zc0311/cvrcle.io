@@ -7,6 +7,11 @@ import GoogleMap from '../../containers/map.jsx';
 import AddNewEntry from '../AddNewEntry.jsx';
 import NavBar from '../NavBar/NavBar.js';
 
+/**
+ * @description:  Individual itinerary view
+ *                Holds the map view with markers and card list of entries
+ */
+
 class Itinerary extends Component {
   constructor(props) {
     super(props);
@@ -26,7 +31,8 @@ class Itinerary extends Component {
 
     this.itinID = Number(this.getQueryParams('itinID'));
   }
-
+  
+  // gets itineraryID from the url
   getQueryParams(param) {
     var query = window.location.hash.substring(1);
     var vars = query.split("?");
@@ -37,20 +43,16 @@ class Itinerary extends Component {
     return (false);
   }
 
+  // request to databse for the specific itinerary then
+  // sets state for entries to pass down to GoogleMap and ContributorEntry
   getUserEntries() {
     axios.get('http://localhost:3000/entries?itinID=' + this.itinID)
       .then((res) => {
-        let filteredEntries = [];
-        res.data.forEach((entry) => {
-          filteredEntries.push(entry);
-        })
-        return filteredEntries
-      })
-      .then((data) => {
-        this.setState({ entries: data })
-        if (data.length) {
-          this.createMarkers(data);
+        this.setState({ entries: res.data })
+        if (res.data.length) {
+          this.createMarkers(res.data);
         } else {
+          // if there are no entries in the db, map defaults to current geolocation
           if (navigator.geolocation) {
             navigator.geolocation.getCurrentPosition((position) => {
               let pos = {
@@ -72,11 +74,10 @@ class Itinerary extends Component {
     this.getItinName();
   }
 
+  // gets the itinerary for title of the page
   getItinName() {
-    console.log('itinid', this.itinID);
     axios.get('http://localhost:3000/itineraries?id=' + this.itinID)
       .then((res) => {
-        console.log('RESPONSE', res)
         this.setState({
           itinName: res.data[0].itinName
         })
@@ -89,16 +90,17 @@ class Itinerary extends Component {
   createMarkers(data) {
     // grabs existing locations from database and renders them onto the map
     data.forEach((location) => {
-      console.log('location', location)
       let center = {
         lat: location.lat,
         lng: location.lng
       }
+      // each new marker instance
       let marker = new google.maps.Marker({
         position: center,
         map: window.map,
         title: location.name
       })
+      // content for infowindow
       let contentString = '<div id="content">' +
         '<div id="siteNotice">' +
         '</div>' +
@@ -121,14 +123,13 @@ class Itinerary extends Component {
     window.map.fitBounds(window.markerBounds);
   }
 
-
   newEntryAdded(newLocation) {
+    // resets state with the new location added to entries array
     let tmp = this.state.entries
     tmp.push(newLocation)
     this.setState({
       entries: tmp
     })
-
     let center = {
       lat: newLocation.lat,
       lng: newLocation.lng
@@ -136,6 +137,7 @@ class Itinerary extends Component {
     window.markerBounds.extend(center)
     window.map.fitBounds(window.markerBounds);
 
+    // new marker for the new entry
     let marker = new google.maps.Marker({
       position: center,
       map: window.map
@@ -159,8 +161,10 @@ class Itinerary extends Component {
   }
 
   deleteEntry(entry) {
+    // prevent modal from popping up
     event.preventDefault();
     event.stopPropagation();
+    
     let arr = this.state.entries
     arr.forEach((item, i) => {
       if (item.id === entry.id) {
@@ -171,12 +175,10 @@ class Itinerary extends Component {
             this.setState({
               entries: arr
             })
-          }
-          )
+          })
           .catch(err => console.log(err))
       }
     })
-
     // window.map.fitBounds(window.markerBounds);    
   }
 

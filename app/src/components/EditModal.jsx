@@ -79,7 +79,7 @@ class EditModal extends Component {
   }
 
   render() {
-    // cssClasses and myStyles is req'd for styling location search bar
+    // cssClasses and myStyles for styling location search bar
     const cssClasses = {
       root: 'form-group',
       input: 'form-control',
@@ -92,6 +92,7 @@ class EditModal extends Component {
       autocompleteItemActive: { color: 'blue' }
     }
 
+    // styling for the location search bar inside of the modal
     const AutocompleteItem = ({ formattedSuggestion }) => (
       <div>
         <strong>{ formattedSuggestion.mainText }</strong>{' '}

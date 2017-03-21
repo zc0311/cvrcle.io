@@ -1,8 +1,10 @@
 import React, { Component } from 'react';
-import { Card, Image } from 'semantic-ui-react';
+// import { Image } from 'semantic-ui-react';
 import { NavBarContainer } from '../../containers'
 import { Parallax, Background } from 'react-parallax';
-import { Col, Grid, Row } from 'react-bootstrap';
+import { Col, Grid, Row, Image } from 'react-bootstrap';
+
+// Landing Page for the site
 
 class Landing extends React.Component {
   constructor(props) {
@@ -13,6 +15,7 @@ class Landing extends React.Component {
   render() {
     return (
       <div style={{"marginTop": '29px'}}>
+
         <Parallax className="parallax-bg-image" bgImage="./images/25806094933_c023fe0036_h.jpg" strength={600}>
           <div style={
             {
@@ -29,7 +32,7 @@ class Landing extends React.Component {
           </div>
         </Parallax>
 
-
+        
         <div className="container" style={{
           marginTop: 40,
           marginBottom: 80
@@ -165,9 +168,6 @@ class Landing extends React.Component {
 }
 
 Landing.propTypes = {
-  isAuthenticated: React.PropTypes.bool.isRequired,
-  onLoginClick: React.PropTypes.func.isRequired,
-  onLogoutClick: React.PropTypes.func.isRequired,
   checkLogin: React.PropTypes.func.isRequired
 }
 
