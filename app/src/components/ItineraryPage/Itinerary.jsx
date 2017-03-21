@@ -2,8 +2,8 @@ import React, { Component } from 'react';
 import ReactDOM from 'react-dom';
 import axios from "axios";
 import { Container, Header, Card, Message, Segment, Form } from 'semantic-ui-react';
-import ContributorEntry from '../ContributorEntry.jsx';
-import GoogleMap from '../map.jsx';
+import ContributorEntry from '../../containers/ContributorEntry.jsx';
+import GoogleMap from '../../containers/map.jsx';
 import AddNewEntry from '../AddNewEntry.jsx';
 import NavBar from '../NavBar/NavBar.js';
 
@@ -167,13 +167,11 @@ class Itinerary extends Component {
         arr.splice(i, 1);
         this.state.markers[i].setMap(null);
         axios.delete(`http://localhost:3000/entries?id=${entry.id}&itinID=${this.itinID}`)
-          .then((res) => {
-            console.log('fkjdks', res)
-          })
-          .then(() => (
+          .then(() => {
             this.setState({
               entries: arr
-            }))
+            })
+          }
           )
           .catch(err => console.log(err))
       }

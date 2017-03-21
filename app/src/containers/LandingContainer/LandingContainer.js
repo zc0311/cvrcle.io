@@ -4,7 +4,6 @@ import { Landing } from '../../components'
 import { hashHistory } from 'react-router'
 import { checkLogin } from '../../actions/auth'
 
-
 const mapStateToProps = (state) => {
   const { isAuthenticated, profile, error } = state.auth
   return {
@@ -17,7 +16,6 @@ const mapStateToProps = (state) => {
 const mapDispatchToProps = (dispatch) => {
   return {
      onLoginClick: () => {
-       console.log('1');
       dispatch(loginRequest())
     },
     onLogoutClick: () => {
@@ -26,7 +24,6 @@ const mapDispatchToProps = (dispatch) => {
       location.reload()
     },
     checkLogin: () => {
-      console.log('2');
       dispatch(checkLogin())}
   }
 }
@@ -34,5 +31,3 @@ const mapDispatchToProps = (dispatch) => {
 const LandingContainer = connect(mapStateToProps, mapDispatchToProps)(Landing)
 
 export default LandingContainer
-
-//for regina

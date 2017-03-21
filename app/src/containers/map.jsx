@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-// import store from '../store.js';
 import { connect } from 'react-redux';
 
 class GoogleMap extends Component {
@@ -22,7 +21,6 @@ class GoogleMap extends Component {
       center: this.mapCenter()
     });
     window.markerBounds = new google.maps.LatLngBounds();
-
   }
 
   mapCenter() {
@@ -38,8 +36,6 @@ class GoogleMap extends Component {
     );
   }
 }
-
-// export default GoogleMap;
 
 const mapStateToProps = (state) => {
   return {
