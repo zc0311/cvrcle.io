@@ -27,6 +27,7 @@ const app = express()
   .use(express.static('./app/build'));
 
 // pull server into API context
+// this was badass
 registerApi(app);
 
 // catch all errors and use next() cleverly
