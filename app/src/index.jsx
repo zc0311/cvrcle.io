@@ -16,6 +16,3 @@ render(
   </Provider>,
   document.getElementById('appRoot')
 )
-
-      //hashHistory.push('/')
-      //location.reload()

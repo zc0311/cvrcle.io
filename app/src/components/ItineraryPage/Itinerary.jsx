@@ -73,10 +73,8 @@ class Itinerary extends Component {
   }
 
   getItinName() {
-    console.log('itinid', this.itinID);
     axios.get('http://localhost:3000/itineraries?id=' + this.itinID)
       .then((res) => {
-        console.log('RESPONSE', res)
         this.setState({
           itinName: res.data[0].itinName
         })
@@ -89,7 +87,6 @@ class Itinerary extends Component {
   createMarkers(data) {
     // grabs existing locations from database and renders them onto the map
     data.forEach((location) => {
-      console.log('location', location)
       let center = {
         lat: location.lat,
         lng: location.lng
@@ -176,7 +173,6 @@ class Itinerary extends Component {
           .catch(err => console.log(err))
       }
     })
-
     // window.map.fitBounds(window.markerBounds);    
   }
 

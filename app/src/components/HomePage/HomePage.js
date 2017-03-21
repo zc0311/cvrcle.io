@@ -30,7 +30,6 @@ class HomePage extends Component {
       let id = fbID.split('|')
       axios.get(`http://localhost:3000/users?fbID=${id[1]}`)
         .then((res) => {
-          console.log('res in homepage', res)
           let tmp = res.data[0]["id"]
           this.setState({
             oid: tmp
