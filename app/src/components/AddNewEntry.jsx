@@ -10,22 +10,6 @@ class AddNewEntry extends Component {
     }
     this.toggleModal = this.toggleModal.bind(this);
     this.updateEntry = this.updateEntry.bind(this);
-    this.updateState = this.updateState.bind(this);
-  }
-
-  componentDidMount() {
-    this.updateState();
-  }
-
-  updateState() {
-    this.setState({
-      id: this.props.id,
-      title: this.props.title,
-      author: this.props.author,
-      body: this.props.body,
-      date: this.props.date,
-      location: this.props.location
-    })
   }
 
   toggleModal() {
@@ -34,6 +18,11 @@ class AddNewEntry extends Component {
     })
   }
 
+  /** updateEntry
+   * @description gets user input from child component 'EntryModal' and 
+   * sets it in component state
+   * 
+   */
   updateEntry(title, body) {
     this.setState({
       title: title,
