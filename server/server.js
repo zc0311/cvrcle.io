@@ -30,7 +30,7 @@ const app = express()
 // this was badass
 registerApi(app);
 
-// catch all errors and use next() cleverly
+// catch all errors up front and use next() cleverly
 app.use((err, req, res, next) => {
   if (err) {
     res.status(err.statusCode || err.status || 500).send(err.data || err.message || {});
