@@ -49,4 +49,4 @@ Tech used:
 
 - JQuery because everyting fucking uses JQuery
 
-- WebPack / WebPack Dev Server w/ hot reload
+- WebPack / WebPack Dev Server w/ hot reload + WebPack Dashboard
