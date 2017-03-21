@@ -4,6 +4,8 @@ import { NavBarContainer } from '../../containers'
 import { Parallax, Background } from 'react-parallax';
 import { Col, Grid, Row, Image } from 'react-bootstrap';
 
+// Landing Page for the site
+
 class Landing extends React.Component {
   constructor(props) {
     super(props)
@@ -13,6 +15,7 @@ class Landing extends React.Component {
   render() {
     return (
       <div style={{"marginTop": '29px'}}>
+
         <Parallax className="parallax-bg-image" bgImage="./images/25806094933_c023fe0036_h.jpg" strength={600}>
           <div style={
             {

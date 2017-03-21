@@ -1,6 +1,9 @@
 import React from 'react'
 import { NavBarContainer } from '../../containers'
 
+// default view for the app
+// see /src/routes for routes for this.props.children
+
 class App extends React.Component {
   constructor(props) {
     super(props)
@@ -9,6 +12,7 @@ class App extends React.Component {
 
   render() {
     return(
+      // navbar persists throughout the whole app
       <div>
         <NavBarContainer />
         {this.props.children}

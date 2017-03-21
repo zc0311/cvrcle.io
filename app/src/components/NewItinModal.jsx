@@ -34,11 +34,6 @@ class NewItinModal extends Component {
     });
   }
 
-  // functions for location search bar
-  onChange = (address) => {
-    this.setState({ address })
-  }
-
   addUserItinerary() {
     event.preventDefault()
     const itinData = {

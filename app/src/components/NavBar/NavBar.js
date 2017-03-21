@@ -3,6 +3,8 @@ import { Navbar, NavbarHeader, Nav } from 'react-bootstrap';
 import { Image } from 'semantic-ui-react';
 import { Link } from 'react-router';
 
+// props passed down from redux store
+
 const NavBar = ({ isAuthenticated, onLoginClick, onLogoutClick }) =>
   <div>
     <Navbar>
@@ -12,7 +14,8 @@ const NavBar = ({ isAuthenticated, onLoginClick, onLogoutClick }) =>
         </Link>
       </Navbar.Header>
       <Nav>
-        {!isAuthenticated ? (
+        { // checks auth0 to see if the user is authenticated
+          !isAuthenticated ? (
           <button onClick={onLoginClick} className="navbar-links">Login</button>
         ) : (
             <button onClick={onLogoutClick} className="navbar-links">Logout</button>

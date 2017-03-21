@@ -2,6 +2,8 @@ import React, { Component } from 'react';
 import EntryModal from '../containers/EntryModal.jsx';
 import { Button }  from 'react-bootstrap';
 
+// add new entry Button
+
 class AddNewEntry extends Component {
   constructor(props) {
     super(props);
@@ -12,17 +14,14 @@ class AddNewEntry extends Component {
     this.updateEntry = this.updateEntry.bind(this);
   }
 
+  // default state is closed modal
   toggleModal() {
     this.setState({
       isClicked: !this.state.isClicked
     })
   }
 
-  /** updateEntry
-   * @description gets user input from child component 'EntryModal' and 
-   * sets it in component state
-   * 
-   */
+  // gets user input from child component 'EntryModal' and sets it in component state
   updateEntry(title, body) {
     this.setState({
       title: title,

@@ -31,11 +31,7 @@ class HomePage extends Component {
     this.newItinAdded = this.newItinAdded.bind(this)
   }
 
-  /**
-   * @description:  gets owwner id information from redux store, then
-   *                grabs list of itineraries from the database
-   * @memberOf HomePage
-   */
+  // gets owwner id information from redux store, then grabs list of itineraries from the database
   componentDidMount() {
     if (this.props.isAuthenticated) {
       let fbID = this.props.profile.user_id

@@ -10,8 +10,6 @@ import NavBar from '../NavBar/NavBar.js';
 /**
  * @description:  Individual itinerary view
  *                Holds the map view with markers and card list of entries
- * @class Itinerary
- * @extends {Component}
  */
 
 class Itinerary extends Component {
@@ -33,7 +31,8 @@ class Itinerary extends Component {
 
     this.itinID = Number(this.getQueryParams('itinID'));
   }
-
+  
+  // gets itineraryID from the url
   getQueryParams(param) {
     var query = window.location.hash.substring(1);
     var vars = query.split("?");
@@ -44,6 +43,8 @@ class Itinerary extends Component {
     return (false);
   }
 
+  // request to databse for the specific itinerary then
+  // sets state for entries to pass down to GoogleMap and ContributorEntry
   getUserEntries() {
     axios.get('http://localhost:3000/entries?itinID=' + this.itinID)
       .then((res) => {
@@ -51,6 +52,7 @@ class Itinerary extends Component {
         if (res.data.length) {
           this.createMarkers(res.data);
         } else {
+          // if there are no entries in the db, map defaults to current geolocation
           if (navigator.geolocation) {
             navigator.geolocation.getCurrentPosition((position) => {
               let pos = {
@@ -72,6 +74,7 @@ class Itinerary extends Component {
     this.getItinName();
   }
 
+  // gets the itinerary for title of the page
   getItinName() {
     axios.get('http://localhost:3000/itineraries?id=' + this.itinID)
       .then((res) => {
@@ -91,11 +94,13 @@ class Itinerary extends Component {
         lat: location.lat,
         lng: location.lng
       }
+      // each new marker instance
       let marker = new google.maps.Marker({
         position: center,
         map: window.map,
         title: location.name
       })
+      // content for infowindow
       let contentString = '<div id="content">' +
         '<div id="siteNotice">' +
         '</div>' +
@@ -118,8 +123,8 @@ class Itinerary extends Component {
     window.map.fitBounds(window.markerBounds);
   }
 
-
   newEntryAdded(newLocation) {
+    // resets state with the new location added to entries array
     let tmp = this.state.entries
     tmp.push(newLocation)
     this.setState({
@@ -132,6 +137,7 @@ class Itinerary extends Component {
     window.markerBounds.extend(center)
     window.map.fitBounds(window.markerBounds);
 
+    // new marker for the new entry
     let marker = new google.maps.Marker({
       position: center,
       map: window.map
@@ -155,8 +161,10 @@ class Itinerary extends Component {
   }
 
   deleteEntry(entry) {
+    // prevent modal from popping up
     event.preventDefault();
     event.stopPropagation();
+    
     let arr = this.state.entries
     arr.forEach((item, i) => {
       if (item.id === entry.id) {
