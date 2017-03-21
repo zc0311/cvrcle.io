@@ -14,12 +14,9 @@ const NavBar = ({ isAuthenticated, onLoginClick, onLogoutClick }) =>
         </Link>
       </Navbar.Header>
       <Nav>
-        { // checks auth0 to see if the user is authenticated
-          !isAuthenticated ? (
-          <button onClick={onLoginClick} className="navbar-links">Login</button>
-        ) : (
-            <button onClick={onLogoutClick} className="navbar-links">Logout</button>
-          )}
+        { !isAuthenticated ? 
+        (<button onClick={onLoginClick} className="navbar-links">Login</button>) : 
+        (<button onClick={onLogoutClick} className="navbar-links">Logout</button> )}
       </Nav>
     </Navbar>
   </div>

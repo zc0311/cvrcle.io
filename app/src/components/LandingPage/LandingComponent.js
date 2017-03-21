@@ -26,8 +26,7 @@ class Landing extends React.Component {
           <div style={{ textAlign: 'center', marginTop: 2, marginBottom: 40 }}>
             <h3>Crowdsourced Travel Planning </h3>
           </div>
-          <div style={{ textAlign: 'center', marginTop: 2, marginBottom: 40 }}>
-          </div>
+          <div style={{ textAlign: 'center', marginTop: 2, marginBottom: 40 }}></div>
           <Grid>
             <Row>
               <Col xs={6} md={4}>
