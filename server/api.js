@@ -3,13 +3,16 @@ const User = require('./models/User');
 const Itinerary = require('./models/Itinerary');
 const Entry = require('./models/Entry');
 
-// we should refactor this to DRY out the code and instead user
-// express.router and controllers
+// we should refactor this to DRY out the code and instead use
+// express.router and controllers modularly
+
 // since the models come with their own validation schematic
 // we can create ONE "postOne" method for all routes
 // and then trust that the model defined in the ORM will 
 // prevent an insertOne of any given Model type object
 // that is incomplete/malformed/invalid
+// The insertOne function can look like this:
+// controller.insertOne(payload, ModelType) 
 
 module.exports = (app) => {
   app.get('/users', (req, res, next) => {
@@ -30,7 +33,7 @@ module.exports = (app) => {
     User
       .query()
       .insertAndFetch(req.body)
-      .then((user) => { res.send(user)})
+      .then((user) => { res.send(user) })
       .catch(next);
   })
 
@@ -63,7 +66,7 @@ module.exports = (app) => {
     Entry
       .query()
       .insertAndFetch(formattedEntry)
-      .then((entry) => { res.send(entry)})
+      .then((entry) => { res.send(entry) })
       .catch(next);
   })
 

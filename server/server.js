@@ -1,3 +1,4 @@
+//recipe for creating our backend
 const Knex = require('knex');
 const morgan = require('morgan');
 const express = require('express');
@@ -21,15 +22,18 @@ Model.knex(knex);
 const app = express()
   .use(cors())
   .use(bodyParser.json())
-  .use(bodyParser.urlencoded({ extended: true }))
+  .use(bodyParser.urlencoded({
+    extended: true
+  }))
   .use(morgan('dev'))
   .set('json spaces', 2)
-  .use(express.static('./app/build'));
+  .use(express.static('./app/build'));  // serve the react client app
 
 // pull server into API context
+// this was badass
 registerApi(app);
 
-// catch all errors and use next() cleverly
+// catch all errors up front and use next() cleverly
 app.use((err, req, res, next) => {
   if (err) {
     res.status(err.statusCode || err.status || 500).send(err.data || err.message || {});
@@ -37,9 +41,12 @@ app.use((err, req, res, next) => {
     next();
   }
 })
-  app.get('*', function response(req, res) {
-    res.sendFile(path.join(__dirname, 'app/build/index.html'));
-  });
+
+// if you decide to use browserHistory instead of hashHistory
+// in react-router
+app.get('*', function response(req, res) {
+  res.sendFile(path.join(__dirname, 'app/build/index.html'));
+});
 
 // listen and serve
 app.listen(port, function () {
