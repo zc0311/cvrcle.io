@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import axios from "axios";
 import { Card } from 'semantic-ui-react';
-import EditModal from './EditModal.jsx';
+import EditModal from '../components/EditModal.jsx';
 import { connect } from 'react-redux'
 
 class ContributorEntry extends Component {
