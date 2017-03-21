@@ -20,14 +20,6 @@ const NavBar = ({ isAuthenticated, profile, error, onLoginClick, onLogoutClick }
     </Nav>
   </Navbar>
   </div>
-    // <Nav><li><Link to="/logout">Logout</Link></li></Nav>
-
-
-  // <div>
-  //   { error &&
-  //     <p>{error}</p>
-  //   }
-  // </div>
 
 NavBar.propTypes = {
   isAuthenticated: React.PropTypes.bool.isRequired,

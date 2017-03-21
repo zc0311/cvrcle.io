@@ -1,11 +1,8 @@
 import React, { Component } from 'react';
-import ReactDOM from "react-dom";
 import axios from "axios";
 import { Button, Modal, Form, FormGroup, FormControl, ControlLabel } from 'react-bootstrap';
 import PlacesAutocomplete from 'react-places-autocomplete';
-import { geocodeByAddress, geocodeByPlaceId } from 'react-places-autocomplete';
-import { connect } from 'react-redux';
-import { bindActionCreators } from 'redux';
+import { geocodeByAddress } from 'react-places-autocomplete';
 import GOOGLE_API_KEY from '../../../config.js';
 
 class EditModal extends Component {
@@ -52,7 +49,6 @@ class EditModal extends Component {
 
     geocodeByAddress(address,  (err, { lat, lng }) => {
       if (err) { console.log('Error', err) } 
-        console.log(`The longitutde and latitude for ${address}`, { lat, lng })
       
       const key = GOOGLE_API_KEY
       let url = `https://maps.googleapis.com/maps/api/geocode/json?latlng=${lat},${lng}&key=${key}`
@@ -61,7 +57,6 @@ class EditModal extends Component {
       axios
         .get(url)
         .then((response) => {
-          console.log('address is: ', response.data.results[0].formatted_address)
           // formatting object that gets sent to the database + gets updated to app state
           let locationToDatabase = { 
             title: this.state.formTitle,
@@ -75,17 +70,6 @@ class EditModal extends Component {
           };
           
           this.props.updateEntry(locationToDatabase);
-
-          // TODO: Find contributor name from contributorID in join table
-          // TODO: CHANGE TO PUT REQUEST (MODIFYING)
-          // axios
-          //   .put('http://localhost:3000/entries', location)
-          //   .then((response) => {
-          //     console.log(response)
-          //   })
-          //   .catch((err) => {
-          //     if (err) {console.log(err)}
-          //   })
         })
         .catch((err) => {
           if (err) {console.log(err)}

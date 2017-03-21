@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
-import { Card } from 'semantic-ui-react';
-import EntryModal from './EntryModal.jsx';
+import EntryModal from '../containers/EntryModal.jsx';
 import { Button }  from 'react-bootstrap';
 
 class AddNewEntry extends Component {

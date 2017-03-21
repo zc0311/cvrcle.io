@@ -1,11 +1,6 @@
 import React, { Component } from 'react';
-import ReactDOM from "react-dom";
 import axios from "axios";
 import { Button, Modal, Form, FormGroup, FormControl, ControlLabel } from 'react-bootstrap';
-import PlacesAutocomplete from 'react-places-autocomplete';
-import { geocodeByAddress, geocodeByPlaceId } from 'react-places-autocomplete';
-import { connect } from 'react-redux';
-import { bindActionCreators } from 'redux';
 import GOOGLE_API_KEY from '../../../config.js';
 
 class NewItinModal extends Component {
@@ -54,7 +49,6 @@ class NewItinModal extends Component {
     }
     axios.post('http://localhost:3000/itineraries', itinData)
       .then((res) => {
-        console.log("successful post", res.data.created_at);
         itinData.created_at = res.data.created_at.substring(0,10)
         this.props.newItinAdded(itinData);
       })
