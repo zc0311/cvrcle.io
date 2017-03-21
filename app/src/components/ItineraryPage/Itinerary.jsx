@@ -7,6 +7,13 @@ import GoogleMap from '../../containers/map.jsx';
 import AddNewEntry from '../AddNewEntry.jsx';
 import NavBar from '../NavBar/NavBar.js';
 
+/**
+ * @description:    
+ * 
+ * @class Itinerary
+ * @extends {Component}
+ */
+
 class Itinerary extends Component {
   constructor(props) {
     super(props);
@@ -40,16 +47,9 @@ class Itinerary extends Component {
   getUserEntries() {
     axios.get('http://localhost:3000/entries?itinID=' + this.itinID)
       .then((res) => {
-        let filteredEntries = [];
-        res.data.forEach((entry) => {
-          filteredEntries.push(entry);
-        })
-        return filteredEntries
-      })
-      .then((data) => {
-        this.setState({ entries: data })
-        if (data.length) {
-          this.createMarkers(data);
+        this.setState({ entries: res.data })
+        if (res.data.length) {
+          this.createMarkers(res.data);
         } else {
           if (navigator.geolocation) {
             navigator.geolocation.getCurrentPosition((position) => {

@@ -1,18 +1,25 @@
 import React, { Component } from 'react';
 import ReactDOM from "react-dom";
 import axios from 'axios';
-import NavBar from '../NavBar/NavBar.js';
+import NavBar from '../../components/NavBar/NavBar.js';
 import { Card, Header, Icon, Image, Circular } from 'semantic-ui-react';
 import { hashHistory } from 'react-router';
 import { Link } from 'react-router';
 import $ from 'jquery';
 import { connect } from 'react-redux';
-import NewItinModal from '../NewItinModal.jsx'
+import NewItinModal from '../../components/NewItinModal.jsx'
+
+/**
+ * @description:  HomePage.js renders a unique homepage for every user after logging in
+ *                Has their profile (picture + name) and their list of itineraries
+ *                + receives props from redux store (for user ID)
+ * @class HomePage
+ * @extends {Component}
+ */
 
 class HomePage extends Component {
   constructor() {
     super();
-
     this.state = {
       itins: [],
       oid: '',
@@ -24,6 +31,11 @@ class HomePage extends Component {
     this.newItinAdded = this.newItinAdded.bind(this)
   }
 
+  /**
+   * @description:  gets owwner id information from redux store, then
+   *                grabs list of itineraries from the database
+   * @memberOf HomePage
+   */
   componentDidMount() {
     if (this.props.isAuthenticated) {
       let fbID = this.props.profile.user_id

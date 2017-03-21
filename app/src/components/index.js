@@ -1,5 +1,4 @@
 export App from './App/App'
-export HomePage from './HomePage/HomePage'
 export NotFoundPage from './NotFoundPage/NotFoundPage'
 export NavBar from './NavBar/NavBar'
 export Landing from './LandingPage/LandingComponent'
