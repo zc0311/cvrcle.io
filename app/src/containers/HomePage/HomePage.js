@@ -85,6 +85,39 @@ class HomePage extends Component {
     })
   }
 
+//reformat to proper axios call
+//may need to stringify input
+  getFlights() {
+    axios.post('https://www.googleapis.com/qpxExpress/v1/trips/search?key=AIzaSyCqKD3kCHGqspIcc9ma7xzuUPgtpmQgGKY',
+      {
+        "request": {
+        "slice": [
+          {
+            "origin": "LAX",
+            "destination": "JFK",
+            "date": "2017-04-20"
+          }
+        ],
+        "passengers": {
+          "adultCount": 1,
+          "infantInLapCount": 0,
+          "infantInSeatCount": 0,
+          "childCount": 0,
+          "seniorCount": 0
+        },
+        "solutions": 5,
+        "refundable": false
+      }
+    })
+    .then(function(response) {
+      //pop up a modal
+      console.log(response);
+    })
+    .catch(function(error) {
+      console.log(error);
+    })
+  }
+
   render() {
     return (
       <div className="itin-container container">
@@ -101,6 +134,12 @@ class HomePage extends Component {
               <div className="header">{this.props.profile.name}</div>
               <div className="description">Welcome. Where will you be headed to next?</div>
             </div>
+              <div>
+                <h3>Travel planner </h3>
+                <span className="travel">
+                <button className="btn btn-primary" onClick={this.toggleModal}>Flights</button>
+                </span>
+              </div>
           </div>
         </div>
         <div className="col-xs-7 itin-list">

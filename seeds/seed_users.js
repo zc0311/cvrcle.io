@@ -23,7 +23,14 @@ exports.seed = function (knex, Promise) {
         lastName: 'Yi',
         email: 'andrew.yi.j@gmail.com',
         fbID: '182613242244625'
-      }
+      },
+      {
+        id: 4,
+        firstName: 'Zach ',
+        lastName: 'Carr',
+        email: 'zc0311@gmail.com',
+        fbID: '10155124205331882'
+      } 
       ]);
     })
 };
