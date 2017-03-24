@@ -8,6 +8,8 @@ import { Link } from 'react-router';
 import $ from 'jquery';
 import { connect } from 'react-redux';
 import NewItinModal from '../../components/NewItinModal.jsx'
+import NewFlightsModal from '../../components/NewFlightsModal.jsx'
+import { Button, ButtonGroup } from 'react-bootstrap'
 
 /**
  * @description:  HomePage.js renders a unique homepage for every user after logging in
@@ -23,12 +25,14 @@ class HomePage extends Component {
     this.state = {
       itins: [],
       oid: '',
-      isClicked: false
+      isClicked: false,
+      isFlights: false
     }
     this.getUserItineraries = this.getUserItineraries.bind(this);
     this.deleteItinerary = this.deleteItinerary.bind(this);
     this.toggleModal = this.toggleModal.bind(this);
-    this.newItinAdded = this.newItinAdded.bind(this)
+    this.toggleFlights = this.toggleFlights.bind(this);
+    this.newItinAdded = this.newItinAdded.bind(this);
   }
 
   // gets owwner id information from redux store, then grabs list of itineraries from the database
@@ -77,44 +81,17 @@ class HomePage extends Component {
     })
   }
 
+  toggleFlights() {
+    this.setState({
+      isFlights: !this.state.isFlights
+    })
+  }
+
   newItinAdded(newItin) {
     let tmp = this.state.itins
     tmp.push(newItin)
     this.setState({
       itins: tmp
-    })
-  }
-
-//reformat to proper axios call
-//may need to stringify input
-  getFlights() {
-    axios.post('https://www.googleapis.com/qpxExpress/v1/trips/search?key=AIzaSyCqKD3kCHGqspIcc9ma7xzuUPgtpmQgGKY',
-      {
-        "request": {
-        "slice": [
-          {
-            "origin": "LAX",
-            "destination": "JFK",
-            "date": "2017-04-20"
-          }
-        ],
-        "passengers": {
-          "adultCount": 1,
-          "infantInLapCount": 0,
-          "infantInSeatCount": 0,
-          "childCount": 0,
-          "seniorCount": 0
-        },
-        "solutions": 5,
-        "refundable": false
-      }
-    })
-    .then(function(response) {
-      //pop up a modal
-      console.log(response);
-    })
-    .catch(function(error) {
-      console.log(error);
     })
   }
 
@@ -127,6 +104,11 @@ class HomePage extends Component {
             oid={this.state.oid}
             newItinAdded={this.newItinAdded}
           /> : ""}
+          {this.state.isFlights ?
+          <NewFlightsModal
+            resetFlag={this.toggleFlights}
+            oid={this.state.oid}
+          /> : ""}
         <div className="col-xs-5">
           <div className="ui card profile-picture" style={{width: 325}}>
             <img className="ui image" src={this.props.profile.picture_large} style={{ width: 325, height: 325 }} />
@@ -137,7 +119,11 @@ class HomePage extends Component {
               <div>
                 <h3>Travel planner </h3>
                 <span className="travel">
-                <button className="btn btn-primary" onClick={this.toggleModal}>Flights</button>
+                  <ButtonGroup>
+                    <Button onClick={this.toggleFlights}>Flights</Button>
+                    <Button>Trains</Button>
+                    <Button>Driving routes</Button>
+                  </ButtonGroup>
                 </span>
               </div>
           </div>
