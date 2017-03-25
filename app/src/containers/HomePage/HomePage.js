@@ -26,12 +26,14 @@ class HomePage extends Component {
       itins: [],
       oid: '',
       isClicked: false,
-      isFlights: false
+      isFlights: false,
+      flightResults: false
     }
     this.getUserItineraries = this.getUserItineraries.bind(this);
     this.deleteItinerary = this.deleteItinerary.bind(this);
     this.toggleModal = this.toggleModal.bind(this);
     this.toggleFlights = this.toggleFlights.bind(this);
+    this.toggleResults = this.toggleResults.bind(this);
     this.newItinAdded = this.newItinAdded.bind(this);
   }
 
@@ -87,6 +89,12 @@ class HomePage extends Component {
     })
   }
 
+  toggleResults() {
+    this.setState({
+      flightResults: !this.state.flightResults
+    })
+  }
+
   newItinAdded(newItin) {
     let tmp = this.state.itins
     tmp.push(newItin)
@@ -117,7 +125,9 @@ class HomePage extends Component {
               <div className="description">Welcome. Where will you be headed to next?</div>
             </div>
               <div>
-                <h3>Travel planner </h3>
+              </div>
+          </div>
+          <h3>Travel planner </h3>
                 <span className="travel">
                   <ButtonGroup>
                     <Button onClick={this.toggleFlights}>Flights</Button>
@@ -125,8 +135,6 @@ class HomePage extends Component {
                     <Button>Driving routes</Button>
                   </ButtonGroup>
                 </span>
-              </div>
-          </div>
         </div>
         <div className="col-xs-7 itin-list">
             <Header as='h2' icon textAlign='center'>

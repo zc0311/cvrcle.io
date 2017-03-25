@@ -10,13 +10,12 @@ class NewFlightsModal extends Component {
       showModal: true,
       from: "",
       to: "",
-      date: ""
+      date: "",
+      flightData: ""
     }
     // function binds
     this.close = this.close.bind(this);
-    //this.onChange = this.onChange.bind(this);
     this.handleInputchange = this.handleInputchange.bind(this);
-    //this.addUserItinerary = this.addUserItinerary.bind(this);
     this.findFlights = this.findFlights.bind(this);
   }
 
@@ -37,27 +36,10 @@ class NewFlightsModal extends Component {
     });
   }
 
-  // addUserItinerary() {
-  //   event.preventDefault()
-  //   const itinData = {
-  //     ownerID: this.props.oid.toString(),
-  //     itinName: this.state.formTitle,
-  //     isActive: 1,
-  //     isPublic: 0,
-  //   }
-  //   axios.post('http://localhost:3000/itineraries', itinData)
-  //     .then((res) => {
-  //       itinData.created_at = res.data.created_at.substring(0,10)
-  //       this.props.newItinAdded(itinData);
-  //     })
-  //     .catch(err => console.log(err))
-  //   this.close();
-  // }
-
-//reformat to proper axios call
-//may need to stringify input
+//${GOOGLE_API_KEY}
   findFlights() {
-    axios.post('https://www.googleapis.com/qpxExpress/v1/trips/search?key=AIzaSyCqKD3kCHGqspIcc9ma7xzuUPgtpmQgGKY',
+    var self = this;
+    axios.post(`https://www.googleapis.com/qpxExpress/v1/trips/search?key=AIzaSyCqKD3kCHGqspIcc9ma7xzuUPgtpmQgGKY`,
       {
         "request": {
         "slice": [
@@ -74,24 +56,29 @@ class NewFlightsModal extends Component {
           "childCount": 0,
           "seniorCount": 0
         },
-        "solutions": 5,
+        "solutions": 4,
         "refundable": false
       }
     })
     .then(function(response) {
-      //pop up a modal
-      console.log(response);
+      console.log(response)
+      //var parsedData = JSON.parse(response);
+      self.setState({
+        flightData: [parsedData.data.trips.tripOption["0"].saleTotal, parsedData.request.response]
+        //response.request.response.trips.tripOption["0"].saleTotal
+        //response.request.response.trips.tripOption["0"].slice["0"].segment["0"].flight.carrier
+        //response.request.response.trips.tripOption["0"].slice["0"].segment["0"].flight.number
+      })
     })
     .catch(function(error) {
       console.log(error);
     })
-    this.close();
   }
 
   render() {
     return (
       <Modal show={this.state.showModal} onHide={this.close}>
-        <Modal.Header closeButton>Flight planning</Modal.Header>
+        <Modal.Header closeButton>Flight planning </Modal.Header>
         <Modal.Body>
           <form>
             <FormGroup>
@@ -101,7 +88,7 @@ class NewFlightsModal extends Component {
                 onChange={this.handleInputchange}
                 componentClass="input"
               />
-              <ControlLabel>Where are going? (3 character airport or city code)</ControlLabel>
+              <ControlLabel>Where are you going? (airport or city code)</ControlLabel>
               <FormControl
                 name="to"
                 onChange={this.handleInputchange}
@@ -115,9 +102,11 @@ class NewFlightsModal extends Component {
               />
             </FormGroup>
           </form>
+          <div>{this.state.flightData}</div>
         </Modal.Body>
         <Modal.Footer>
           <Button className="btn btn-primary" onClick={this.findFlights}>Find flights</Button>
+          <Button onClick={this.close}>Close</Button>
         </Modal.Footer>
       </Modal>
     );
