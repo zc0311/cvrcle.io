@@ -26,14 +26,12 @@ class HomePage extends Component {
       itins: [],
       oid: '',
       isClicked: false,
-      isFlights: false,
-      flightResults: false
+      isFlights: false
     }
     this.getUserItineraries = this.getUserItineraries.bind(this);
     this.deleteItinerary = this.deleteItinerary.bind(this);
     this.toggleModal = this.toggleModal.bind(this);
     this.toggleFlights = this.toggleFlights.bind(this);
-    this.toggleResults = this.toggleResults.bind(this);
     this.newItinAdded = this.newItinAdded.bind(this);
   }
 
@@ -86,12 +84,6 @@ class HomePage extends Component {
   toggleFlights() {
     this.setState({
       isFlights: !this.state.isFlights
-    })
-  }
-
-  toggleResults() {
-    this.setState({
-      flightResults: !this.state.flightResults
     })
   }
 

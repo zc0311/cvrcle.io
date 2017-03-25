@@ -61,10 +61,10 @@ class NewFlightsModal extends Component {
       }
     })
     .then(function(response) {
-      console.log(response)
-      //var parsedData = JSON.parse(response);
+      var parsedData = JSON.parse(response.request.response);
+      console.log(parsedData);
       self.setState({
-        flightData: [parsedData.data.trips.tripOption["0"].saleTotal, parsedData.request.response]
+        flightData: [response.data.trips.tripOption["0"].saleTotal]
         //response.request.response.trips.tripOption["0"].saleTotal
         //response.request.response.trips.tripOption["0"].slice["0"].segment["0"].flight.carrier
         //response.request.response.trips.tripOption["0"].slice["0"].segment["0"].flight.number
