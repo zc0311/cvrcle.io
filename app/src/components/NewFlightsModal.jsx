@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import axios from "axios";
 import { Button, Modal, Form, FormGroup, FormControl, ControlLabel } from 'react-bootstrap';
 import GOOGLE_API_KEY from '../../../config.js';
+import { Segment } from 'semantic-ui-react'
 
 class NewFlightsModal extends Component {
   constructor(props) {
@@ -11,7 +12,8 @@ class NewFlightsModal extends Component {
       from: "",
       to: "",
       date: "",
-      flightData: ""
+      flightData: [],
+      fetching: "Waiting to fetch flight data."
     }
     // function binds
     this.close = this.close.bind(this);
@@ -30,7 +32,7 @@ class NewFlightsModal extends Component {
     const val = e.target.value;
 
     const obj = {};
-    obj[name] = val;
+    obj[name] = val;  
     this.setState((prevState, props) => {
       return obj;
     });
@@ -39,6 +41,9 @@ class NewFlightsModal extends Component {
 //${GOOGLE_API_KEY}
   findFlights() {
     var self = this;
+    this.setState({
+      fetching: "Flight data is fetching..."
+    })
     axios.post(`https://www.googleapis.com/qpxExpress/v1/trips/search?key=AIzaSyCqKD3kCHGqspIcc9ma7xzuUPgtpmQgGKY`,
       {
         "request": {
@@ -62,13 +67,15 @@ class NewFlightsModal extends Component {
     })
     .then(function(response) {
       var parsedData = JSON.parse(response.request.response);
-      console.log(parsedData);
       self.setState({
-        flightData: [response.data.trips.tripOption["0"].saleTotal]
-        //response.request.response.trips.tripOption["0"].saleTotal
-        //response.request.response.trips.tripOption["0"].slice["0"].segment["0"].flight.carrier
-        //response.request.response.trips.tripOption["0"].slice["0"].segment["0"].flight.number
+        fetching: "Complete!",
+        flightData: 
+        ["Option 1 - price: " + response.data.trips.tripOption["0"].saleTotal + " - flight info: " + parsedData.trips.tripOption[0].slice[0].segment[0].flight.carrier + " " + parsedData.trips.tripOption[0].slice[0].segment[0].flight.number,
+        "Option 2 - price: " + response.data.trips.tripOption["1"].saleTotal + " - flight info: " + parsedData.trips.tripOption[1].slice[0].segment[0].flight.carrier + " " + parsedData.trips.tripOption[0].slice[0].segment[0].flight.number,
+        "Option 3 - price: " + response.data.trips.tripOption["2"].saleTotal + " - flight info: " + parsedData.trips.tripOption[2].slice[0].segment[0].flight.carrier + " " + parsedData.trips.tripOption[0].slice[0].segment[0].flight.number,
+        "Option 4 - price: " + response.data.trips.tripOption["3"].saleTotal + " - flight info: " + parsedData.trips.tripOption[3].slice[0].segment[0].flight.carrier + " " + parsedData.trips.tripOption[0].slice[0].segment[0].flight.number]
       })
+      console.log(self.state.flightData);
     })
     .catch(function(error) {
       console.log(error);
@@ -102,7 +109,20 @@ class NewFlightsModal extends Component {
               />
             </FormGroup>
           </form>
-          <div>{this.state.flightData}</div>
+          <div>
+            <Segment.Group>
+              {this.state.flightData.map((item) => {
+                return (
+                  <div>
+                    <Segment>
+                    {item}
+                    </Segment>
+                  </div>
+                )
+              })}
+            </Segment.Group>
+            {this.state.fetching}
+          </div>
         </Modal.Body>
         <Modal.Footer>
           <Button className="btn btn-primary" onClick={this.findFlights}>Find flights</Button>
